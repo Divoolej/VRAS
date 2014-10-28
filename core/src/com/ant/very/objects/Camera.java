@@ -30,29 +30,20 @@ public class Camera {
         this.maxY = maxY;
     }
 
-    public void equalizeOrigin() {  //This is used after dragging to make the Origin variables ready for another drag
+    public void equalizeOrigin() {  // This is used after dragging to make the Origin variables ready for another drag
         setOriginX(getX());
         setOriginY(getY());
     }
 
-    public void move(int x, int y) { //move & moveTo are used to move the Camera (wow, rly?), the difference is clear I guess
-        setX(getX() + x);
+    public void move(int x, int y) { // move & moveTo are used to move the Camera (wow, rly?),
+        setX(getX() + x);            // the difference is clear I guess
         setY(getY() + y);
     }
 
     public void moveTo(int x, int y) {
-        if (x < 0)
-            setX(0);
-        else if (x > maxX)
-            setX(maxX);
-        else
+        if (!(x < 0 || x > maxX))
             setX(x);
-
-        if (y < 0)
-            setY(0);
-        else if (y > maxY)
-            setY(maxY);
-        else
+        if (!(y < 0 || y > maxY))
             setY(y);
     }
 

@@ -39,7 +39,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
                  // rest of the screen is for communication
 
         ant = new Ant();
-        gEngine = new GEngine(map, ant, camera, batch);
+        gEngine = new GEngine(ant, camera, batch);
     }
 
     @Override
