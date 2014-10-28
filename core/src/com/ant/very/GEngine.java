@@ -1,8 +1,7 @@
 package com.ant.very;
 
-import com.ant.very.Ant;
-import com.ant.very.Camera;
-import com.ant.very.WorldMap;
+import com.ant.very.objects.Ant;
+import com.ant.very.objects.Camera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -10,34 +9,30 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 /**
  * Created by Divoolej on 2014-10-27.
  */
-public class GEngine { //This is the graphics "engine" of the Simulator. It's crappy.
-    private WorldMap mapInfo;
-    private Camera cameraInfo;
-    private Ant antInfo;
+public class GEngine {
+    private WorldMap worldMap;
+    private Camera camera;
     private TextureAtlas atlas;
-    private Sprite[] sprites;
-    private double scale;
     private int tileSize;
+
     SpriteBatch batch;
 
-    public GEngine(WorldMap map, Ant ant, Camera camera, SpriteBatch batch)
-    {
-        mapInfo = map;
-        antInfo = ant;
-        cameraInfo = camera;
-        tileSize = cameraInfo.getWidth() / 9;
-        scale = tileSize / 86.0;
+    private Ant ant;
+    private Sprite dirtSprite;
+
+    public GEngine(WorldMap map, Ant ant, Camera camera, SpriteBatch batch) {
+        this.worldMap = map;
+        this.ant = ant;
+        this.camera = camera;
         this.batch = batch;
+        tileSize = this.camera.getWidth() / 9;
         loadAssets();
     }
 
     public void loadAssets() {
         atlas = new TextureAtlas("assets.txt");
-        sprites = new Sprite[1];
-        //
-        sprites[0] = new Sprite(atlas.findRegion("dirt"));
-        sprites[0].setSize(tileSize, tileSize);
-        //
+        dirtSprite = new Sprite(atlas.findRegion("dirt"));
+        dirtSprite.setSize(tileSize, tileSize);
     }
 
     public void drawAll()
@@ -46,18 +41,17 @@ public class GEngine { //This is the graphics "engine" of the Simulator. It's cr
     }
 
     private void drawMap() {
-        int start_x = cameraInfo.getX() / tileSize;
-        int start_y = cameraInfo.getY() / tileSize;
+        int start_x = camera.getX() / tileSize;
+        int start_y = camera.getY() / tileSize;
         int end_x = start_x + 10;
         int end_y = start_y + 13;
 
-        for (int i = 0; i < end_x - start_x; i++)
-        {
-            for (int j = 0; j < end_y - start_y; j++)
-            {
-                int tile = mapInfo.getTile(i + start_x, j + start_y);
-                sprites[tile].setPosition(i * tileSize - (cameraInfo.getX() % tileSize), j * tileSize - (cameraInfo.getY() % tileSize));
-                sprites[tile].draw(batch);
+        for (int i = 0; i < end_x - start_x; i++) {
+            for (int j = 0; j < end_y - start_y; j++) {
+                WorldMap.Tile tile = worldMap.getTile(i + start_x, j + start_y);
+                dirtSprite.setPosition(i * tileSize - (camera.getX() % tileSize),
+                        j * tileSize - (camera.getY() % tileSize));
+                dirtSprite.draw(batch);
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.ant.very;
+package com.ant.very.objects;
 
 /**
  * Created by Divoolej on 2014-10-27.

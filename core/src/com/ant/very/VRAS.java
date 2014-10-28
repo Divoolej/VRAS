@@ -1,5 +1,7 @@
 package com.ant.very;
 
+import com.ant.very.objects.Ant;
+import com.ant.very.objects.Camera;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -9,24 +11,33 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class VRAS extends ApplicationAdapter implements InputProcessor {
-    SpriteBatch batch;
-        BitmapFont font; //debug
-    Camera camera;
-    GEngine gEngine;
-    Ant ant;
-    WorldMap map;
+    public int GFX_WIDTH;
+    public int GFX_HEIGHT;
+
+    private SpriteBatch batch;
+    private Camera camera;
+    private GEngine gEngine;
+    private Ant ant;
+    private WorldMap map;
+    BitmapFont font;
 
     @Override
     public void create () {
+        GFX_WIDTH = Gdx.graphics.getWidth();
+        GFX_HEIGHT = Gdx.graphics.getHeight();
+
+        font = new BitmapFont(); //debug
+        font.setColor(Color.RED); //debug
         batch = new SpriteBatch();
-          font = new BitmapFont(); //debug
-          font.setColor(Color.RED); //debug
         Gdx.input.setInputProcessor(this);
 
-        map = new WorldMap(30, 30);
-        camera = new Camera(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(),
-                (int)((Gdx.graphics.getWidth() / 9.0) * map.getW() - Gdx.graphics.getWidth()),
-                (int)((Gdx.graphics.getWidth() / 9.0) * map.getH() - ((Gdx.graphics.getWidth() / 9.0) * 12))); //We want our our "ground" to take 12x9 tiles, the rest of the screen is for communication
+        map = WorldMap.getInstance();
+        camera = new Camera(0, 0, GFX_WIDTH, GFX_HEIGHT,
+                (int)((GFX_WIDTH / 9.0f) * map.getWidth() - GFX_WIDTH),
+                (int)((GFX_WIDTH / 9.0f) * map.getHeight() - ((GFX_WIDTH / 9.0f) * 12)));
+                 // We want our our "ground" to take 12x9 tiles, the
+                 // rest of the screen is for communication
+
         ant = new Ant();
         gEngine = new GEngine(map, ant, camera, batch);
     }
@@ -37,15 +48,15 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-            gEngine.drawAll();
-            font.draw(batch, "x = " + camera.getX() + ", y = " + camera.getY(), 30, 30); //debug
+        gEngine.drawAll();
+        font.draw(batch, "x = " + camera.getX() + ", y = " + camera.getY(), 30, 30); //debug
         batch.end();
     }
 
     @Override
     public void dispose() {
         batch.dispose();
-        font.dispose();
+//        font.dispose();
         gEngine.dispose();
     }
 
@@ -79,7 +90,8 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        camera.moveTo(camera.getOriginX() + camera.getDraggedX() - screenX, camera.getOriginY() + screenY - camera.getDraggedY());
+        camera.moveTo(camera.getOriginX() + camera.getDraggedX()
+                - screenX, camera.getOriginY() + screenY - camera.getDraggedY());
         return false;
     }
 

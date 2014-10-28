@@ -1,28 +1,33 @@
-package com.ant.very;
+package com.ant.very.objects;
 
 /**
  * Created by Divoolej on 2014-10-27.
  */
 public class Camera {
-    private int x, y; //Coordinates of the bottom left corner of the Camera
+    private int x; //Coordinates of the bottom left corner of the Camera
+    private int y;
     private int draggedX; //When dragging the Camera, these are the coordinates of the initial touch
     private int draggedY; //They are used to calculate the offset by which we should move the Camera
-    private int originX, originY; //These are very important, they are used to store the coordinates of Camera before the dragging begins, so that the camera won't move by the calculated offset EVERY frame.
-                                  //When the user isn't dragging the Camera, they are equal to x and y
-    private int w, h; // the width and height of the camera (the width is equal to the width of the device screen)
 
-    private int maxX, maxY;
+    private int originX; // These are very important, they are used to store the coordinates
+    private int originY; // of Camera before the dragging begins, so that the camera won't
+                         // move by the calculated offset EVERY frame.
+                         // When the user isn't dragging the Camera, they are equal to x and y
 
-    public Camera(int x, int y, int w, int h, int mX, int mY)
-    {
-        setX(x);
-        setY(y);
-        setOriginX(x);
-        setOriginY(y);
-        this.w = w;
-        this.h = h;
-        maxX = mX;
-        maxY = mY;
+    private int cameraWidth;
+    private int cameraHeight; // (the width is equal to the width of the device screen)
+    private int maxX;
+    private int maxY;
+
+    public Camera(int x, int y, int cameraWidth, int cameraHeight, int maxX, int maxY) {
+        this.x = x;
+        this.y = y;
+        this.originX = x;
+        this.originY = y;
+        this.cameraWidth = cameraWidth;
+        this.cameraHeight = cameraHeight;
+        this.maxX = maxX;
+        this.maxY = maxY;
     }
 
     public void equalizeOrigin() {  //This is used after dragging to make the Origin variables ready for another drag
@@ -54,11 +59,11 @@ public class Camera {
     //Getters & Setters
 
     public int getWidth() {
-        return w;
+        return cameraWidth;
     }
 
     public int getHeight() {
-        return h;
+        return cameraHeight;
     }
 
     public int getDraggedY() {

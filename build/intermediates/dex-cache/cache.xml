@@ -2,26 +2,26 @@
 <pre-dex-items>
 
     <item
-        dex="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VeryRealisticAntSimulator\android\build\intermediates\pre-dexed\debug\gdx-1.4.1-a98a0cf20edf663f937af6640b6c366c99628043.jar"
-        jar="C:\Users\Divoolej\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx\1.4.1\df470d263438048af74860ca51fc497c16a0c76a\gdx-1.4.1.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="df470d263438048af74860ca51fc497c16a0c76a"/>
-    <item
-        dex="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VeryRealisticAntSimulator\android\build\intermediates\pre-dexed\debug\gdx-freetype-1.4.1-c4cc3dd4bde4c06f28eb5fcad44977155150d903.jar"
-        jar="C:\Users\Divoolej\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-freetype\1.4.1\5f54c6af55fa98e8dc469809e952c980e07541a\gdx-freetype-1.4.1.jar"
+        dex="/home/hubert/Desktop/VeryRealisticAntSimulator/android/build/intermediates/pre-dexed/debug/gdx-freetype-1.4.1-412e439bec9f9ba7db8ec6d6cea7e0254d593929.jar"
+        jar="/home/hubert/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.4.1/5f54c6af55fa98e8dc469809e952c980e07541a/gdx-freetype-1.4.1.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="05f54c6af55fa98e8dc469809e952c980e07541a"/>
     <item
-        dex="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VeryRealisticAntSimulator\android\build\intermediates\pre-dexed\debug\core-1.0-4ce464b1de50dbe845cbf3ffa67e6bb1112c7808.jar"
-        jar="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VeryRealisticAntSimulator\core\build\libs\core-1.0.jar"
+        dex="/home/hubert/Desktop/VeryRealisticAntSimulator/android/build/intermediates/pre-dexed/debug/core-1.0-26c37f69cbd2437fd4614629ad0bbf9d69007a3b.jar"
+        jar="/home/hubert/Desktop/VeryRealisticAntSimulator/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="3ef8cdc2e558bb352bdb0e6344b47e7972876b91"/>
+        sha1="2d77a9193af4a9e9f5cbd08fa83855c1af368c88"/>
     <item
-        dex="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VeryRealisticAntSimulator\android\build\intermediates\pre-dexed\debug\gdx-backend-android-1.4.1-c9680719f9d5000679eff36e88cec182d92b9707.jar"
-        jar="C:\Users\Divoolej\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-backend-android\1.4.1\eca2621f18b162c03992bd3ecc226e8a477dc6f9\gdx-backend-android-1.4.1.jar"
+        dex="/home/hubert/Desktop/VeryRealisticAntSimulator/android/build/intermediates/pre-dexed/debug/gdx-1.4.1-73d3c1f63074959883d274821206300b8b63e9e8.jar"
+        jar="/home/hubert/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.4.1/df470d263438048af74860ca51fc497c16a0c76a/gdx-1.4.1.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="df470d263438048af74860ca51fc497c16a0c76a"/>
+    <item
+        dex="/home/hubert/Desktop/VeryRealisticAntSimulator/android/build/intermediates/pre-dexed/debug/gdx-backend-android-1.4.1-55755b9ab172f9814e23196bc70b10708499216f.jar"
+        jar="/home/hubert/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.4.1/eca2621f18b162c03992bd3ecc226e8a477dc6f9/gdx-backend-android-1.4.1.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="eca2621f18b162c03992bd3ecc226e8a477dc6f9"/>
