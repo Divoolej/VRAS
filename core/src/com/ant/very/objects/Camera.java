@@ -12,8 +12,7 @@ public class Camera {
     private int originX; // These are very important, they are used to store the coordinates
     private int originY; // of Camera before the dragging begins, so that the camera won't
                          // move by the calculated offset EVERY frame.
-                         // When the user isn't dragging the Camera, they are equal to x and y
-
+                         // When the user isn't dragging the Camera, they are equal to x and y.
     private int cameraWidth;
     private int cameraHeight; // (the width is equal to the width of the device screen)
     private int maxX;
@@ -30,14 +29,10 @@ public class Camera {
         this.maxY = maxY;
     }
 
-    public void equalizeOrigin() {  // This is used after dragging to make the Origin variables ready for another drag
+    // This is used after dragging to make the Origin variables ready for another drag
+    public void equalizeOrigin() {
         setOriginX(getX());
         setOriginY(getY());
-    }
-
-    public void move(int x, int y) { // move & moveTo are used to move the Camera (wow, rly?),
-        setX(getX() + x);            // the difference is clear I guess
-        setY(getY() + y);
     }
 
     public void moveTo(int x, int y) {
@@ -47,7 +42,12 @@ public class Camera {
             setY(y);
     }
 
-    //Getters & Setters
+    public void moveBy(int x, int y) {
+        setX(getX() + x);
+        setY(getY() + y);
+    }
+
+    // Getters & Setters:
 
     public int getWidth() {
         return cameraWidth;
@@ -93,7 +93,7 @@ public class Camera {
         return originX;
     }
 
-    public void setOriginX(int originX) {
+    private void setOriginX(int originX) {
         this.originX = originX;
     }
 
@@ -101,7 +101,7 @@ public class Camera {
         return originY;
     }
 
-    public void setOriginY(int originY) {
+    private void setOriginY(int originY) {
         this.originY = originY;
     }
 }
