@@ -12,7 +12,7 @@
         jar="/home/hubert/Desktop/VeryRealisticAntSimulator/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="5a03ee93de029898b72f9d09657f39e42a120ca3"/>
+        sha1="7aa45b16411a78a98fb9bc522d2835099c116b54"/>
     <item
         dex="/home/hubert/Desktop/VeryRealisticAntSimulator/android/build/intermediates/pre-dexed/debug/gdx-1.4.1-73d3c1f63074959883d274821206300b8b63e9e8.jar"
         jar="/home/hubert/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.4.1/df470d263438048af74860ca51fc497c16a0c76a/gdx-1.4.1.jar"

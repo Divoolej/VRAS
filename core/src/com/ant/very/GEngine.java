@@ -2,6 +2,7 @@ package com.ant.very;
 
 import com.ant.very.objects.Ant;
 import com.ant.very.objects.Camera;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,6 +14,7 @@ public class GEngine {
     private Camera camera;
     private TextureAtlas atlas;
     private int tileSize;
+    private WorldMap map;
 
     SpriteBatch batch;
 
@@ -20,6 +22,7 @@ public class GEngine {
     private Sprite dirtSprite;
 
     public GEngine(Ant ant, Camera camera, SpriteBatch batch) {
+        map = WorldMap.getInstance();
         this.ant = ant;
         this.camera = camera;
         this.batch = batch;
@@ -46,9 +49,24 @@ public class GEngine {
 
         for (int i = 0; i < end_x - start_x; i++) {
             for (int j = 0; j < end_y - start_y; j++) {
-                dirtSprite.setPosition(i * tileSize - (camera.getX() % tileSize),
+                Sprite sprite = new Sprite();
+
+                switch (map.getTileType(i, j)) {
+                    case WorldMap.DIRT_TILE:
+                        sprite = dirtSprite;
+                        break;
+//                    case WorldMap.STONE_TILE;
+//                        sprite = stoneSprite;
+//                    case WorldMap.TRAP_TILE:
+//                        sprite = trapSprite;
+                      default:
+                          Gdx.app.error(this.getClass().getName(),
+                                  "Error while drawing map tile: <" + i + ">, <" + j + ">.");
+                }
+
+                sprite.setPosition(i * tileSize - (camera.getX() % tileSize),
                         j * tileSize - (camera.getY() % tileSize));
-                dirtSprite.draw(batch);
+                sprite.draw(batch);
             }
         }
     }
