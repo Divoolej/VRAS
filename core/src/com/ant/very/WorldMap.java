@@ -1,35 +1,81 @@
 package com.ant.very;
 
+import com.ant.very.utils.Constants;
+import com.badlogic.gdx.Gdx;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Divoolej on 2014-10-27.
  */
+
 public class WorldMap {
-    private int w, h;
-    private int[][] map;
+    // This is OK, but we could create a tile class for added functionality.
+    public static final int DIRT_TILE = 0;
+    public static final int STONE_TILE = 1;
+    public static final int TRAP_TILE = 2;
 
-    public WorldMap(int x, int y) {
-        w = x;
-        h = y;
-        generate();
-    }
+    private static WorldMap worldMap = null;
 
-    public void generate() {
-        map = new int[w][h];
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++)
-                map[i][j] = 0;
+    private final int height;
+    private final int width;
+    private Map<Coordinate, Integer> hashMap;
+
+    private class Coordinate {
+        final int x;
+        final int y;
+
+        Coordinate(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        // The methods below are necessary to pass this object as the key for the hash map.
+        public int hashCode() {
+            return x >> 16 & y;
+        }
+
+        public boolean equals(Object o) {
+            if (o instanceof Coordinate) {
+                Coordinate c = (Coordinate)o;
+                return c.x==x && c.y==y;
+            }
+            return false;
         }
     }
 
-    public int getTile(int x, int y) {
-        return map[x][y];
+    private WorldMap(int width, int height) { // Prevent other classes from instantiating
+        this.height = height;
+        this.width = width;
+        hashMap = new HashMap<Coordinate, Integer>();
+        generateMap();
     }
 
-    public int getW() {
-        return w;
+    public static WorldMap getInstance() { // Singleton pattern; lazy instantiation
+        if (worldMap == null) {
+            worldMap = new WorldMap(Constants.MAP_WIDTH, Constants.MAP_HEIGHT);
+        }
+        return worldMap;
     }
 
-    public int getH() {
-        return h;
+    private void generateMap() {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                hashMap.put(new Coordinate(x, y), DIRT_TILE);
+            }
+        }
+    }
+
+    public int getTileType(int x, int y) {
+        return hashMap.get(new Coordinate(x, y));
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
