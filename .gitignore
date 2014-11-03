@@ -1,2 +1,7 @@
 local.properties
 *.swp
+*.swo
+*~
+./
+!android/
+!core/
