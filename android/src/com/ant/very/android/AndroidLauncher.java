@@ -7,9 +7,15 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.ant.very.VRAS;
 
 public class AndroidLauncher extends AndroidApplication {
+
+    ActionResolverAndroid actionResolver;
+
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+        actionResolver = new ActionResolverAndroid(this);
+
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new VRAS(), config);
 	}
