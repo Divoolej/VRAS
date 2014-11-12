@@ -9,8 +9,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 public class VRAS extends ApplicationAdapter implements InputProcessor {
+    public static final String TAG = "VRAS";
+    public static final int FONT_SIZE = 16;
     public int GFX_WIDTH;
     public int GFX_HEIGHT;
 
@@ -19,6 +23,8 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
     private GEngine gEngine;
     private Ant ant;
     private WorldMap map;
+
+    // UI stuff:
     BitmapFont font;
 
     @Override
@@ -26,8 +32,9 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         GFX_WIDTH = Gdx.graphics.getWidth();
         GFX_HEIGHT = Gdx.graphics.getHeight();
 
-        font = new BitmapFont(); //debug
-        font.setColor(Color.RED); //debug
+        createFont();
+        font.setColor(Color.RED);
+
         batch = new SpriteBatch();
         Gdx.input.setInputProcessor(this);
 
@@ -40,6 +47,16 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
 
         ant = new Ant();
         gEngine = new GEngine(ant, camera, batch);
+    }
+
+    private void createFont() {
+        FreeTypeFontGenerator generator;
+        FreeTypeFontParameter parameter;
+        generator = new FreeTypeFontGenerator(Gdx.files.internal("myfont.ttf"));
+        parameter = new FreeTypeFontParameter();
+        parameter.size = FONT_SIZE;
+        font = generator.generateFont(parameter);
+        generator.dispose();
     }
 
     @Override

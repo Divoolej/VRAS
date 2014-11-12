@@ -6,4 +6,5 @@ package com.ant.very.utils;
 public class Constants {
     public static final int MAP_HEIGHT = 30;
     public static final int MAP_WIDTH = 30;
+    public static final int UI_SIZE = 100;
 }

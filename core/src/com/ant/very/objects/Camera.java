@@ -4,19 +4,15 @@ package com.ant.very.objects;
  * Created by Divoolej on 2014-10-27.
  */
 public class Camera {
-    private int x; //Coordinates of the bottom left corner of the Camera
-    private int y;
-    private int draggedX; //When dragging the Camera, these are the coordinates of the initial touch
-    private int draggedY; //They are used to calculate the offset by which we should move the Camera
+    private int x, y; //Coordinates of the bottom left corner of the Camera.
+    private int draggedX, draggedY; // When dragging the Camera, these are the coordinates of the initial touch.
+    private int cameraWidth, cameraHeight; // (the width is equal to the width of the device screen)
+    private int maxX, maxY;
 
-    private int originX; // These are very important, they are used to store the coordinates
-    private int originY; // of Camera before the dragging begins, so that the camera won't
-                         // move by the calculated offset EVERY frame.
-                         // When the user isn't dragging the Camera, they are equal to x and y.
-    private int cameraWidth;
-    private int cameraHeight; // (the width is equal to the width of the device screen)
-    private int maxX;
-    private int maxY;
+    // The following are very important, they are used to store the coordinates of Camera before
+    // the dragging begins, so that the camera won't move by the calculated offset EVERY frame.
+    // When the user isn't dragging the Camera, they are equal to x and y.
+    private int originX, originY;
 
     public Camera(int x, int y, int cameraWidth, int cameraHeight, int maxX, int maxY) {
         this.x = x;

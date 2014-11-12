@@ -28,8 +28,6 @@ public class ActionResolverAndroid implements ActionResolver {
         } catch (Exception e) {
             showToast("Error creating the chatbot: " + e, 5000);
         }
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(appContext);
-        speechRecognizer.setRecognitionListener(new MyListener(appContext));
     }
 
     @Override
@@ -44,10 +42,13 @@ public class ActionResolverAndroid implements ActionResolver {
 
     @Override
     public void recognizeSpeech() {
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(appContext);
+        speechRecognizer.setRecognitionListener(new MyListener(appContext));
         uiThread.post(new Runnable() {
             @Override
             public void run() {
             }
         });
     }
+
 }
