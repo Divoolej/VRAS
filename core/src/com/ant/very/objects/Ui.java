@@ -2,6 +2,7 @@ package com.ant.very.objects;
 
 import com.ant.very.ActionResolver;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -34,7 +35,6 @@ public class Ui {
         // Create the stage
         stage = new Stage(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         skin = new Skin(Gdx.files.internal("Scene2D/uiskin.json"));
-        Gdx.input.setInputProcessor(stage);
 
         // Create the actors
         botResponseTextArea = new TextArea("\n Tell me something!...", skin);
@@ -47,6 +47,11 @@ public class Ui {
         stage.addActor(micButton);
 
         actionResolver.showToast("Created the UI.", 5000);
+    }
+
+    // Get stage for input processing over in VRAS.
+    public Stage getStage() {
+        return stage;
     }
 
     public void actionPulseMicButton() {
@@ -65,8 +70,8 @@ public class Ui {
     }
 
     public void setupActors() {
-        float textBoxWidth = Gdx.graphics.getWidth() - (Gdx.graphics.getWidth() / 10.0f);
-        float textBoxHeight = 1000;
+        float textBoxWidth = Gdx.graphics.getWidth();
+        float textBoxHeight = 120;
         float offset = Gdx.graphics.getWidth() - textBoxWidth;
 
         botResponseTextArea.setWidth(textBoxWidth);
@@ -76,14 +81,13 @@ public class Ui {
         botResponseTextArea.setY(Gdx.graphics.getHeight() - textBoxHeight);
         botResponseTextArea.setDisabled(true);
 
-        inputTextField.setWidth(textBoxWidth);
+        inputTextField.setWidth(textBoxWidth - micButton.getWidth());
         inputTextField.setHeight(textBoxHeight);
-        inputTextField.setX(50);
-        inputTextField.setY(50);
+        inputTextField.setX(offset - offset / 2.0f);
+        inputTextField.setY(Gdx.graphics.getHeight() - textBoxHeight * 2);
 
         micButton.setTouchable(Touchable.enabled);
-        micButton.setPosition(inputTextField.getX() + inputTextField.getWidth() - micButton.getWidth(),
-                inputTextField.getY() - micButton.getHeight());
+        micButton.setPosition(inputTextField.getX() + inputTextField.getWidth(), inputTextField.getY());
     }
 
     public void stopMicButtonPulse() {
@@ -105,8 +109,8 @@ public class Ui {
         Texture texture = new Texture(Gdx.files.internal("Scene2D/mic.jpg"));
 
         protected MicButton() {
-            setBounds(getX(), getY(), texture.getWidth()/2.0f, texture.getHeight()/2.0f);
-            setOrigin(texture.getWidth()/4.0f, texture.getHeight()/4.0f);
+            setBounds(getX(), getY(), texture.getWidth()/1.5f, texture.getHeight()/1.5f);
+            setOrigin(texture.getWidth()/3.0f, texture.getHeight()/3.0f);
 
             addListener(new InputListener() {
                 @Override

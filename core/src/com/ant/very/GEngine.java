@@ -46,7 +46,7 @@ public class GEngine {
         int start_x = camera.getX() / tileSize;
         int start_y = camera.getY() / tileSize;
         int end_x = start_x + 10;
-        int end_y = start_y + 13;
+        int end_y = start_y + 14;
 
         for (int i = 0; i < end_x - start_x; i++) {
             for (int j = 0; j < end_y - start_y; j++) {

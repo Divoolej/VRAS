@@ -5,6 +5,7 @@ import com.ant.very.objects.Camera;
 import com.ant.very.objects.Ui;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -45,9 +46,10 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         font.setColor(Color.RED);
 
         batch = new SpriteBatch();
-        Gdx.input.setInputProcessor(this);
 
         ui = new Ui(actionResolver);
+
+        Gdx.input.setInputProcessor(new InputMultiplexer(ui.getStage(), this));
 
         map = WorldMap.getInstance();
         camera = new Camera(0, 0, GFX_WIDTH, GFX_HEIGHT,
