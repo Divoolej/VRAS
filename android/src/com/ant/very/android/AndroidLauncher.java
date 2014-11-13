@@ -17,6 +17,6 @@ public class AndroidLauncher extends AndroidApplication {
         actionResolver = new ActionResolverAndroid(this);
 
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		initialize(new VRAS(), config);
+		initialize(new VRAS(actionResolver), config);
 	}
 }

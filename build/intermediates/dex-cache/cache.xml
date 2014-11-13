@@ -6,7 +6,7 @@
         jar="/home/hubert/AndroidStudioProjects/VeryRealisticAntSimulator/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="1e97ac24ea2f3d8d0f0926ba80e1470f2280f76e"/>
+        sha1="1ea09680fc4f6a1802d3255569fff071582f41f1"/>
     <item
         dex="/home/hubert/AndroidStudioProjects/VeryRealisticAntSimulator/android/build/intermediates/pre-dexed/debug/gdx-freetype-1.4.1-412e439bec9f9ba7db8ec6d6cea7e0254d593929.jar"
         jar="/home/hubert/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.4.1/5f54c6af55fa98e8dc469809e952c980e07541a/gdx-freetype-1.4.1.jar"

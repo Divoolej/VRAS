@@ -2,6 +2,7 @@ package com.ant.very;
 
 import com.ant.very.objects.Ant;
 import com.ant.very.objects.Camera;
+import com.ant.very.objects.Ui;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -25,7 +26,15 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
     private WorldMap map;
 
     // UI stuff:
-    BitmapFont font;
+    private Ui ui;
+    private BitmapFont font;
+
+    // For android methods:
+    private ActionResolver actionResolver;
+
+    public VRAS(ActionResolver ar) {
+        actionResolver = ar;
+    }
 
     @Override
     public void create () {
@@ -37,6 +46,8 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
 
         batch = new SpriteBatch();
         Gdx.input.setInputProcessor(this);
+
+        ui = new Ui(actionResolver);
 
         map = WorldMap.getInstance();
         camera = new Camera(0, 0, GFX_WIDTH, GFX_HEIGHT,
@@ -68,13 +79,16 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         gEngine.drawAll();
         font.draw(batch, "x = " + camera.getX() + ", y = " + camera.getY(), 30, 30); //debug
         batch.end();
+
+        ui.renderUI();
     }
 
     @Override
     public void dispose() {
         batch.dispose();
-//        font.dispose();
+        font.dispose();
         gEngine.dispose();
+        ui.disposeUi();
     }
 
     @Override
@@ -121,4 +135,5 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
+
 }

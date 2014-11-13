@@ -2,25 +2,18 @@ package com.ant.very;
 
 import com.ant.very.objects.Ant;
 import com.ant.very.objects.Camera;
-import com.ant.very.utils.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-/**
- * Created by Divoolej on 2014-10-27.
- */
+
 public class GEngine {
     private Camera camera;
     private TextureAtlas atlas;
     private int tileSize;
     private WorldMap map;
-
-    // Stage for scene2d (UI):
-    private Stage stage;
 
     SpriteBatch batch;
 
@@ -33,12 +26,12 @@ public class GEngine {
         this.camera = camera;
         this.batch = batch;
         tileSize = this.camera.getWidth() / 9;
-        loadAssets();
-        this.stage = new Stage();
+
+        atlas = new TextureAtlas("assets.txt");
+        loadSprites();
     }
 
-    public void loadAssets() {
-        atlas = new TextureAtlas("assets.txt");
+    public void loadSprites() {
         dirtSprite = new Sprite(atlas.findRegion("dirt"));
         dirtSprite.setSize(tileSize, tileSize);
     }
