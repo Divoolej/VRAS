@@ -16,13 +16,12 @@ import com.ant.very.objects.Ui;
  * Created by hubert on 09.11.14.
  */
 public class ActionResolverAndroid implements ActionResolver {
-    Handler uiThread;
-
     Context appContext;
-    SpeechRecognizer speechRecognizer;
+    Handler uiThread;
 
     private ConversationBot bot;
     private Ui ui;
+    private SpeechRecognizer speechRecognizer;
 
     public ActionResolverAndroid(Context appContext) {
         uiThread = new Handler();
@@ -57,7 +56,7 @@ public class ActionResolverAndroid implements ActionResolver {
             @Override
             public void run() {
                 speechRecognizer = SpeechRecognizer.createSpeechRecognizer(appContext);
-                speechRecognizer.setRecognitionListener(new MyListener(appContext, ui));
+                speechRecognizer.setRecognitionListener(new MyListener(appContext, ui, bot));
 
                 Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -67,10 +66,14 @@ public class ActionResolverAndroid implements ActionResolver {
                 i.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", new String[]{});
 
                 i.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
-    //                gdx.actionPulseMicButton();
+                ui.actionPulseMicButton();
                 speechRecognizer.startListening(i);
             }
         };
         mainHandler.post(recognizeRunnable);
+    }
+
+    public void destroySpeechRecognizer() {
+        speechRecognizer.destroy();
     }
 }

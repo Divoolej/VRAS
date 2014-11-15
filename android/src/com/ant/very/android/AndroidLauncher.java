@@ -20,4 +20,10 @@ public class AndroidLauncher extends AndroidApplication {
         VRAS vras = new VRAS(actionResolver);
         initialize(vras, config);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        actionResolver.destroySpeechRecognizer();
+    }
 }

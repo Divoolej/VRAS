@@ -2,10 +2,10 @@ package com.ant.very.android;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.speech.RecognitionListener;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 
 import com.ant.very.objects.Ui;
 import com.badlogic.gdx.Gdx;
@@ -24,9 +24,11 @@ public class MyListener implements RecognitionListener {
     private Context appContext;
     private TextToSpeech tts;
     private Ui ui;
+    private ConversationBot bot;
 
-    public MyListener(Context context, Ui ui) {
+    public MyListener(Context context, Ui ui, ConversationBot bot) {
         appContext = context;
+        this.bot = bot;
         this.ui = ui;
         tts = new TextToSpeech(appContext, new TextToSpeech.OnInitListener() {
             @Override
@@ -54,8 +56,9 @@ public class MyListener implements RecognitionListener {
     }
 
     @Override
-    public void onRmsChanged(float v) {
-
+    public void onRmsChanged(float volumeDB) {
+//        This gets called when the input voice volume changes. May be useful.
+//        float volumeNo = (volumeDB+120)/1.8f; // Normalize to 0-100 scale.
     }
 
     @Override
@@ -65,14 +68,17 @@ public class MyListener implements RecognitionListener {
 
     @Override
     public void onEndOfSpeech() {
-        // Stop mic button pulse and vibrate
+        // Stop the mic button pulse and vibrate just a bit.
+        Gdx.app.log(TAG, "onEndOfSpeech");
+        ui.stopMicButtonPulse();
+        Vibrator v = (Vibrator)appContext.getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(50);
     }
 
     @Override
     public void onError(int i) {
         // Stop mic button pulse and show error toast
-        Log.d(TAG, "Error # " + i);
-//        ui.stopMicButtonPulse();
+        ui.stopMicButtonPulse();
         switch (i) {
             case SpeechRecognizer.ERROR_AUDIO:
                 ui.showToast("Audio error");
@@ -128,10 +134,10 @@ public class MyListener implements RecognitionListener {
         }
     }
 
-    private void handleResult(String sentence) {
-//        String response = bot.ask(sentence);
-//        ui.setBotResponseTextAreaText(" " + response);
-//        speakOutLoud(response);
+    private void handleResult(String sentence) throws Exception {
+        String response = bot.ask(sentence);
+        ui.setBotResponseTextAreaText("\n " + response);
+        speakOutLoud(response);
     }
 
     private void speakOutLoud(String sentence) {

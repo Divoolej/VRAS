@@ -40,7 +40,7 @@ public class ConversationBot {
             try {
                 response = botSession.think(strings[0]);
             } catch (Exception e) {
-                Gdx.app.log("There was a problem communicating with the bot: ", e.getMessage());
+                Gdx.app.log("There was a problem connecting with the bot: ", e.getMessage());
             }
             return response;
         }
