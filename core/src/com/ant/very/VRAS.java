@@ -16,7 +16,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 
 public class VRAS extends ApplicationAdapter implements InputProcessor {
     private static final String TAG = "VRAS";
-    public static final int FONT_SIZE = 16;
+    public static final int FONT_SIZE = 20;
     public int GFX_WIDTH;
     public int GFX_HEIGHT;
 

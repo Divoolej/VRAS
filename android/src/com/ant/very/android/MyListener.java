@@ -11,7 +11,6 @@ import com.ant.very.objects.Ui;
 import com.badlogic.gdx.Gdx;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Custom listener used for receiving notifications from the
@@ -22,7 +21,6 @@ public class MyListener implements RecognitionListener {
     public static final String TAG = "MyListener";
 
     private Context appContext;
-    private TextToSpeech tts;
     private Ui ui;
     private ConversationBot bot;
 
@@ -30,19 +28,6 @@ public class MyListener implements RecognitionListener {
         appContext = context;
         this.bot = bot;
         this.ui = ui;
-        tts = new TextToSpeech(appContext, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int i) {
-                if (i == TextToSpeech.SUCCESS) {
-                    int lang = tts.setLanguage(Locale.UK);
-                    if (lang == TextToSpeech.LANG_MISSING_DATA ||
-                            lang == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Gdx.app.error(TAG, "Language not supported or missing");
-                    }
-                } else
-                    Gdx.app.error(TAG, "Error initializing speech to text engine.");
-            }
-        });
     }
 
     @Override
@@ -141,8 +126,9 @@ public class MyListener implements RecognitionListener {
     }
 
     private void speakOutLoud(String sentence) {
-        if(sentence == null || "".equals(sentence)) { return; } // Ignore empty output.
-        else tts.speak(sentence, TextToSpeech.QUEUE_FLUSH, null);
+        // Ignore empty input.
+        if(!( sentence == null || "".equals(sentence)) )
+            bot.getTts().speak(sentence, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     @Override

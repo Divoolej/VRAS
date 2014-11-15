@@ -47,8 +47,6 @@ public class Ui {
         group.addActor(botResponseTextArea);
         group.addActor(micButton);
         stage.addActor(group);
-
-        actionResolver.showToast("Created the UI.", 5000);
     }
 
     // Get the stage for input processing over in VRAS:
@@ -75,8 +73,8 @@ public class Ui {
         inputTextField.setY(Gdx.graphics.getHeight() - textBoxHeight * 2);
 
         micButton.setTouchable(Touchable.enabled);
-        micButton.setPosition(inputTextField.getX() + inputTextField.getWidth()
-                - micButton.getWidth(), inputTextField.getY());
+        micButton.setPosition(inputTextField.getX() + inputTextField.getWidth() - 15
+                - micButton.getWidth(), inputTextField.getY() - 10);
     }
 
     public void disposeUi() {
@@ -100,7 +98,7 @@ public class Ui {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     actionResolver.recognizeSpeech();
-                    return false;
+                    return true;
                 }
             });
         }

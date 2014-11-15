@@ -1,6 +1,8 @@
 package com.ant.very.android;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.speech.tts.TextToSpeech;
 
 import com.badlogic.gdx.Gdx;
 import com.google.code.chatterbotapi.ChatterBot;
@@ -8,20 +10,45 @@ import com.google.code.chatterbotapi.ChatterBotFactory;
 import com.google.code.chatterbotapi.ChatterBotSession;
 import com.google.code.chatterbotapi.ChatterBotType;
 
+import java.util.Locale;
+
 /**
  * An implementation of the ChatterBot API by pierredavidbelanger.
  * Created by hubert on 09.11.14.
  */
 
 public class ConversationBot {
+    private static final String TAG = "ConversationBot";
+    Context appContext;
+
     ChatterBotFactory factory;
     ChatterBot bot;
+    TextToSpeech tts;
     static ChatterBotSession botSession;
 
-    public ConversationBot() throws Exception {
+    public ConversationBot(Context appContext) throws Exception {
+        this.appContext = appContext;
         factory = new ChatterBotFactory();
         bot = factory.create(ChatterBotType.JABBERWACKY); // I found it a bit faster than Cleverbot.
         botSession = bot.createSession();
+
+        tts = new TextToSpeech(appContext, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if (i == TextToSpeech.SUCCESS) {
+                    int lang = tts.setLanguage(Locale.UK);
+                    if (lang == TextToSpeech.LANG_MISSING_DATA ||
+                            lang == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Gdx.app.error(TAG, "Language not supported or missing");
+                    }
+                } else
+                    Gdx.app.error(TAG, "Error initializing speech to text engine.");
+            }
+        });
+    }
+
+    public TextToSpeech getTts() {
+        return tts;
     }
 
     public String ask(String what) throws Exception {

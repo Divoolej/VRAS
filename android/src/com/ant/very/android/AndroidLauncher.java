@@ -24,6 +24,8 @@ public class AndroidLauncher extends AndroidApplication {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // These two services need to be stopped, otherwise they grow up to become Hitler.
         actionResolver.destroySpeechRecognizer();
+        actionResolver.shutDownTtsEngine();
     }
 }

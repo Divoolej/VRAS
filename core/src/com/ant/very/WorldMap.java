@@ -1,26 +1,27 @@
 package com.ant.very;
 
 import com.ant.very.utils.Constants;
-import com.badlogic.gdx.Gdx;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Divoolej on 2014-10-27.
- */
-
 public class WorldMap {
-    // This is OK, but we could create a tile class for added functionality.
-    public static final int DIRT_TILE = 0;
-    public static final int STONE_TILE = 1;
-    public static final int TRAP_TILE = 2;
-
     private static WorldMap worldMap = null;
 
     private final int height;
     private final int width;
-    private Map<Coordinate, Integer> hashMap;
+    private Map<Coordinate, Tile> hashMap;
+
+    enum Tile {
+//        GRASS_TILE,
+//        BOX_TILE,
+//        BOMB_TILE
+        DIRT_TILE,
+        METAL_TILE,
+        LAVA_TILE,
+        STONE_TILE,
+        CAKE_TILE,
+    }
 
     private class Coordinate {
         final int x;
@@ -48,7 +49,7 @@ public class WorldMap {
     private WorldMap(int width, int height) { // Prevent other classes from instantiating
         this.height = height;
         this.width = width;
-        hashMap = new HashMap<Coordinate, Integer>();
+        hashMap = new HashMap<Coordinate, Tile>();
         generateMap();
     }
 
@@ -62,12 +63,16 @@ public class WorldMap {
     private void generateMap() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                hashMap.put(new Coordinate(x, y), DIRT_TILE);
+                hashMap.put(new Coordinate(x, y), getRandomTile());
             }
         }
     }
 
-    public int getTileType(int x, int y) {
+    public Tile getRandomTile() {
+        return Tile.values()[(int)(Math.random()*Tile.values().length)];
+    }
+
+    public Tile getTileType(int x, int y) {
         return hashMap.get(new Coordinate(x, y));
     }
 

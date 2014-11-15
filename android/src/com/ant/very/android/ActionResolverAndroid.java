@@ -27,7 +27,7 @@ public class ActionResolverAndroid implements ActionResolver {
         uiThread = new Handler();
         this.appContext = appContext;
         try {
-            bot = new ConversationBot();
+            bot = new ConversationBot(appContext);
         } catch (Exception e) {
             showToast("Error creating the chatbot: " + e, 5000);
         }
@@ -75,5 +75,9 @@ public class ActionResolverAndroid implements ActionResolver {
 
     public void destroySpeechRecognizer() {
         speechRecognizer.destroy();
+    }
+
+    public void shutDownTtsEngine() {
+        bot.getTts().shutdown();
     }
 }
