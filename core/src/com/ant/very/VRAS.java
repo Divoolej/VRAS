@@ -125,7 +125,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         camera.moveTo(camera.getOriginX() + camera.getDraggedX()
                 - screenX, camera.getOriginY() + screenY - camera.getDraggedY());
-        return false;
+        return true;
     }
 
     @Override
@@ -137,5 +137,4 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
-
 }

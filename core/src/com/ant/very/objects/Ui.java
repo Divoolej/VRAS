@@ -2,7 +2,6 @@ package com.ant.very.objects;
 
 import com.ant.very.ActionResolver;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -98,6 +97,7 @@ public class Ui {
     public void disposeUi() {
         stage.dispose();
         skin.dispose();
+        stage.getBatch().dispose();
     }
 
     public void renderUI() {
@@ -115,7 +115,7 @@ public class Ui {
             addListener(new InputListener() {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-//                    actionResolver.recognizeSpeech();
+                    actionResolver.recognizeSpeech();
                     return false;
                 }
             });

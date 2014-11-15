@@ -1,7 +1,9 @@
 package com.ant.very.android;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.widget.Toast;
 
@@ -44,11 +46,26 @@ public class ActionResolverAndroid implements ActionResolver {
     public void recognizeSpeech() {
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(appContext);
         speechRecognizer.setRecognitionListener(new MyListener(appContext));
-        uiThread.post(new Runnable() {
+        Handler mainHandler = new Handler(appContext.getMainLooper());
+        Runnable recognizeRunnable = new Runnable() {
             @Override
             public void run() {
+                speechRecognizer = SpeechRecognizer.createSpeechRecognizer(appContext);
+                speechRecognizer.setRecognitionListener(new MyListener(appContext));
+
+                Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+                // The next line is needed to force english in 4.4 KitKat:
+                i.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", new String[]{});
+
+                i.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
+    //                gdx.actionPulseMicButton();
+                speechRecognizer.startListening(i);
             }
-        });
+        };
+        mainHandler.post(recognizeRunnable);
     }
 
 }
