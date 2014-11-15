@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 
 public class Ui {
-    public static final String TAG = "Ui";
+    private static final String TAG = "Ui";
     private Stage stage;
     private Skin skin;
 
@@ -48,27 +48,13 @@ public class Ui {
         actionResolver.showToast("Created the UI.", 5000);
     }
 
-    // Get stage for input processing over in VRAS.
+    // Get the stage for input processing over in VRAS:
     public Stage getStage() {
         return stage;
     }
 
-    public void actionPulseMicButton() {
-       shakeAction = Actions.forever(
-           Actions.sequence(
-               Actions.scaleTo(1.1f, 1.1f, 0.2f),
-               Actions.scaleTo(1.0f, 1.0f, 0.2f),
-               Actions.scaleTo(1.1f, 1.1f, 0.2f),
-               Actions.scaleTo(1.0f, 1.0f, 0.2f),
-               Actions.delay(0.6f)
-           ));
-        if (micButton.getActions().size == 0) {
-            micButton.addAction(shakeAction);
-            micButton.act(Gdx.graphics.getDeltaTime());
-        }
-    }
-
-    public void setupActors() {
+    // Set all the sizes & other parameters for UI elements:
+    private void setupActors() {
         float textBoxWidth = Gdx.graphics.getWidth();
         float textBoxHeight = 120;
         float offset = Gdx.graphics.getWidth() - textBoxWidth;
@@ -87,11 +73,6 @@ public class Ui {
 
         micButton.setTouchable(Touchable.enabled);
         micButton.setPosition(inputTextField.getX() + inputTextField.getWidth(), inputTextField.getY());
-    }
-
-    public void stopMicButtonPulse() {
-        micButton.removeAction(shakeAction);
-        micButton.setScale(1.0f, 1.0f);
     }
 
     public void disposeUi() {
@@ -127,5 +108,36 @@ public class Ui {
                     getHeight(), getScaleX(), getScaleY(), getRotation(), 0, 0,
                     texture.getWidth(), texture.getHeight(), false, false);
         }
+    }
+
+    // Methods accessed from MyListener:
+    public void setInputTextFieldText(String text) {
+        this.inputTextField.setText(" " + text);
+    }
+
+    public void showToast(String message) { actionResolver.showToast(message, 5000);}
+
+    public void setBotResponseTextAreaText(String text) {
+        this.botResponseTextArea.setText(" " + text);
+    }
+
+    public void actionPulseMicButton() {
+        shakeAction = Actions.forever(
+                Actions.sequence(
+                        Actions.scaleTo(1.1f, 1.1f, 0.2f),
+                        Actions.scaleTo(1.0f, 1.0f, 0.2f),
+                        Actions.scaleTo(1.1f, 1.1f, 0.2f),
+                        Actions.scaleTo(1.0f, 1.0f, 0.2f),
+                        Actions.delay(0.6f)
+                ));
+        if (micButton.getActions().size == 0) {
+            micButton.addAction(shakeAction);
+            micButton.act(Gdx.graphics.getDeltaTime());
+        }
+    }
+
+    public void stopMicButtonPulse() {
+        micButton.removeAction(shakeAction);
+        micButton.setScale(1.0f, 1.0f);
     }
 }

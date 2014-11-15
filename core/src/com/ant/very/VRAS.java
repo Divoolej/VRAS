@@ -15,7 +15,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 public class VRAS extends ApplicationAdapter implements InputProcessor {
-    public static final String TAG = "VRAS";
+    private static final String TAG = "VRAS";
     public static final int FONT_SIZE = 16;
     public int GFX_WIDTH;
     public int GFX_HEIGHT;
@@ -42,12 +42,18 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         GFX_WIDTH = Gdx.graphics.getWidth();
         GFX_HEIGHT = Gdx.graphics.getHeight();
 
+        ui = new Ui(actionResolver);
+
+        // Pass the ui like this:
+        // VRAS -> ActionResolver -> MyListener
+        // And update the UI from there on various events (i.e. SpeechRecognizer callbacks).
+        actionResolver.setUi(ui);
+
+        // Create a bitmap font from a ttf file using the freetype module.
         createFont();
         font.setColor(Color.RED);
 
         batch = new SpriteBatch();
-
-        ui = new Ui(actionResolver);
 
         Gdx.input.setInputProcessor(new InputMultiplexer(ui.getStage(), this));
 

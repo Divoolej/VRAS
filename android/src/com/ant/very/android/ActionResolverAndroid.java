@@ -8,6 +8,7 @@ import android.speech.SpeechRecognizer;
 import android.widget.Toast;
 
 import com.ant.very.ActionResolver;
+import com.ant.very.objects.Ui;
 
 
 /**
@@ -21,6 +22,7 @@ public class ActionResolverAndroid implements ActionResolver {
     SpeechRecognizer speechRecognizer;
 
     private ConversationBot bot;
+    private Ui ui;
 
     public ActionResolverAndroid(Context appContext) {
         uiThread = new Handler();
@@ -30,6 +32,11 @@ public class ActionResolverAndroid implements ActionResolver {
         } catch (Exception e) {
             showToast("Error creating the chatbot: " + e, 5000);
         }
+    }
+
+    // Called by VRAS.
+    public void setUi(Ui ui) {
+        this.ui = ui;
     }
 
     @Override
@@ -44,14 +51,13 @@ public class ActionResolverAndroid implements ActionResolver {
 
     @Override
     public void recognizeSpeech() {
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(appContext);
-        speechRecognizer.setRecognitionListener(new MyListener(appContext));
+        // Run from the main thread:
         Handler mainHandler = new Handler(appContext.getMainLooper());
         Runnable recognizeRunnable = new Runnable() {
             @Override
             public void run() {
                 speechRecognizer = SpeechRecognizer.createSpeechRecognizer(appContext);
-                speechRecognizer.setRecognitionListener(new MyListener(appContext));
+                speechRecognizer.setRecognitionListener(new MyListener(appContext, ui));
 
                 Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -67,5 +73,4 @@ public class ActionResolverAndroid implements ActionResolver {
         };
         mainHandler.post(recognizeRunnable);
     }
-
 }
