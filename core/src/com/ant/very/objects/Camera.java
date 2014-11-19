@@ -3,6 +3,7 @@ package com.ant.very.objects;
 /**
  * Created by Divoolej on 2014-10-27.
  */
+
 public class Camera {
     private int x, y; //Coordinates of the bottom left corner of the Camera.
     private int draggedX, draggedY; // When dragging the Camera, these are the coordinates of the initial touch.
@@ -31,11 +32,23 @@ public class Camera {
         setOriginY(getY());
     }
 
-    public void moveTo(int x, int y) {
-        if (!(x < 0 || x > maxX))
+    public void moveTo(int x, int y, int fingerX, int fingerY) {
+        if (!(x < 0 || x > maxX)) {
             setX(x);
-        if (!(y < 0 || y > maxY))
+        }
+        else {
+            setX((x < 0) ? (0) : (maxX));
+            setOriginX(getX());
+            setDraggedX(fingerX);
+        }
+        if (!(y < 0 || y > maxY)) {
             setY(y);
+        }
+        else {
+            setY((y < 0) ? (0) : (maxY));
+            setOriginY(getY());
+            setDraggedY(fingerY);
+        }
     }
 
     public void moveBy(int x, int y) {

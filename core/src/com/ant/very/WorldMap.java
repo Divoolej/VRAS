@@ -1,55 +1,27 @@
 package com.ant.very;
 
+/*
+ * A Singleton class for generating and storing map data
+ */
+
 import com.ant.very.utils.Constants;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class WorldMap {
-    private static WorldMap worldMap = null;
+    private static WorldMap worldMap = null; // The one and only instance
 
-    private final int height;
-    private final int width;
-    private Map<Coordinate, Tile> hashMap;
+    private final int height; // The height of the map array, measured in tiles
+    private final int width;  // The width of the map array, measured in tiles
 
-    enum Tile {
-//        GRASS_TILE,
-//        BOX_TILE,
-//        BOMB_TILE
-        DIRT_TILE,
-        METAL_TILE,
-        LAVA_TILE,
-        STONE_TILE,
-        CAKE_TILE,
-    }
+    private int[][] map; // The Array containing the map data, each field contains an integer
+                         // which represents certain unique type of game object. Possible values
+                         // can be found in the Constants class
 
-    private class Coordinate {
-        final int x;
-        final int y;
-
-        Coordinate(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        // The methods below are necessary to pass this object as the key for the hash map.
-        public int hashCode() {
-            return x >> 16 & y;
-        }
-
-        public boolean equals(Object o) {
-            if (o instanceof Coordinate) {
-                Coordinate c = (Coordinate)o;
-                return c.x==x && c.y==y;
-            }
-            return false;
-        }
-    }
-
-    private WorldMap(int width, int height) { // Prevent other classes from instantiating
+    private WorldMap(int width, int height) { // 'private' prevents other classes from instantiating
         this.height = height;
         this.width = width;
-        hashMap = new HashMap<Coordinate, Tile>();
+
+        map = new int[width][height];
+
         generateMap();
     }
 
@@ -63,17 +35,19 @@ public class WorldMap {
     private void generateMap() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                hashMap.put(new Coordinate(x, y), getRandomTile());
+                map[x][y] = getRandomTile();
             }
         }
     }
 
-    public Tile getRandomTile() {
-        return Tile.values()[(int)(Math.random()*Tile.values().length)];
+    // Function returns the id of a tile given at a target (x, y) position
+    public int at(int x, int y) {
+        return map[x][y];
     }
 
-    public Tile getTileType(int x, int y) {
-        return hashMap.get(new Coordinate(x, y));
+    // Function returns an id of a random tile, currently used for debugging.
+    public int getRandomTile() {
+        return (int)( Math.random() * Constants.Tiles.count() );
     }
 
     public int getWidth() {

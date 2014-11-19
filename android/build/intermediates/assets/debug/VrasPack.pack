@@ -1,0 +1,257 @@
+
+VrasPack.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+grey_button
+  rotate: false
+  xy: 1, 198
+  size: 191, 49
+  orig: 191, 49
+  offset: 0, 0
+  index: -1
+red_button10
+  rotate: false
+  xy: 1, 147
+  size: 190, 49
+  orig: 190, 49
+  offset: 0, 0
+  index: -1
+cloud3
+  rotate: false
+  xy: 1, 74
+  size: 129, 71
+  orig: 129, 71
+  offset: 0, 0
+  index: -1
+cloud2
+  rotate: false
+  xy: 1, 1
+  size: 129, 71
+  orig: 129, 71
+  offset: 0, 0
+  index: -1
+cloud1
+  rotate: false
+  xy: 194, 176
+  size: 128, 71
+  orig: 128, 71
+  offset: 0, 0
+  index: -1
+ant
+  rotate: false
+  xy: 324, 147
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+boxItemAlt
+  rotate: false
+  xy: 426, 177
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+box
+  rotate: false
+  xy: 498, 177
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+lava
+  rotate: false
+  xy: 570, 177
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+stoneRounded
+  rotate: false
+  xy: 642, 177
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+choco
+  rotate: false
+  xy: 714, 177
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+lollipop
+  rotate: false
+  xy: 786, 177
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+grass
+  rotate: false
+  xy: 858, 177
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+mushroomRed
+  rotate: false
+  xy: 930, 177
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+cherry
+  rotate: false
+  xy: 132, 75
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+bomb
+  rotate: false
+  xy: 132, 3
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+boxCoin
+  rotate: false
+  xy: 204, 104
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+stone
+  rotate: false
+  xy: 204, 32
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+medal
+  rotate: false
+  xy: 276, 99
+  size: 41, 75
+  orig: 41, 75
+  offset: 0, 0
+  index: -1
+metalCenter_rounded
+  rotate: false
+  xy: 319, 75
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+poo
+  rotate: false
+  xy: 391, 75
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+sand
+  rotate: false
+  xy: 463, 105
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+mushroomBrown
+  rotate: false
+  xy: 535, 105
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+vanilla
+  rotate: false
+  xy: 607, 105
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+cake
+  rotate: false
+  xy: 679, 105
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+bombFlash
+  rotate: false
+  xy: 751, 105
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+chocoCane
+  rotate: false
+  xy: 823, 105
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+sandRounded
+  rotate: false
+  xy: 895, 105
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+metal
+  rotate: false
+  xy: 463, 33
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+blockerBody
+  rotate: false
+  xy: 535, 52
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+blockerSad
+  rotate: false
+  xy: 588, 52
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+blockerMad
+  rotate: false
+  xy: 641, 52
+  size: 51, 51
+  orig: 51, 51
+  offset: 0, 0
+  index: -1
+historyButton
+  rotate: false
+  xy: 694, 55
+  size: 50, 48
+  orig: 50, 48
+  offset: 0, 0
+  index: -1
+particleStar
+  rotate: false
+  xy: 1002, 226
+  size: 20, 21
+  orig: 20, 21
+  offset: 0, 0
+  index: -1
+particleCartoonStar
+  rotate: false
+  xy: 204, 20
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+particleSmallStar
+  rotate: false
+  xy: 276, 87
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1

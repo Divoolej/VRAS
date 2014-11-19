@@ -3,6 +3,7 @@ package com.ant.very;
 import com.ant.very.objects.Ant;
 import com.ant.very.objects.Camera;
 import com.ant.very.objects.Ui;
+import com.ant.very.utils.Constants;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -58,10 +59,11 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         Gdx.input.setInputProcessor(new InputMultiplexer(ui.getStage(), this));
 
         map = WorldMap.getInstance();
+        float w = (float)Constants.TILES_HORIZONTALLY; // Shortcut variable
         camera = new Camera(0, 0, GFX_WIDTH, GFX_HEIGHT,
-                (int)((GFX_WIDTH / 9.0f) * map.getWidth() - GFX_WIDTH),
-                (int)((GFX_WIDTH / 9.0f) * map.getHeight() - ((GFX_WIDTH / 9.0f) * 12)));
-                 // We want our our "ground" to take 12x9 tiles, the
+                (int)((GFX_WIDTH / w) * map.getWidth() - GFX_WIDTH) - 1,
+                (int)((GFX_WIDTH / w) * map.getHeight() - ((GFX_WIDTH / w) * Constants.TILES_VERTICALLY)));
+                 // We want our our "ground" to take TILES_HORIZONTALLY x TILES_VERTICALLY tiles, the
                  // rest of the screen is for communication
 
         ant = new Ant();
@@ -86,6 +88,8 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         batch.begin();
         gEngine.drawAll();
         font.draw(batch, "x = " + camera.getX() + ", y = " + camera.getY(), 30, 30); //debug
+        font.draw(batch, "dX = " + camera.getDraggedX() + ", dY = " + camera.getDraggedY(), 30, 60);
+        font.draw(batch, "oX = " + camera.getOriginX() + ", oY = " + camera.getOriginY(), 30, 90);
         batch.end();
 
         ui.renderUI();
@@ -130,7 +134,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         camera.moveTo(camera.getOriginX() + camera.getDraggedX()
-                - screenX, camera.getOriginY() + screenY - camera.getDraggedY());
+                - screenX, camera.getOriginY() + screenY - camera.getDraggedY(), screenX, screenY);
         return true;
     }
 
