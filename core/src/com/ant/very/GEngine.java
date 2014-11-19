@@ -57,7 +57,8 @@ public class GEngine {
         int startX = camera.getX() / tileSize;
         int startY = camera.getY() / tileSize;
         int endX = startX + Constants.TILES_HORIZONTALLY + 1;
-        int endY = ( (startY + Constants.TILES_VERTICALLY + 1 > Constants.MAP_HEIGHT) ? (Constants.MAP_HEIGHT) : (startY + Constants.TILES_VERTICALLY + 1) );
+        int endY = ( (startY + Constants.TILES_VERTICALLY + 1 > Constants.MAP_HEIGHT) ?
+                (Constants.MAP_HEIGHT) : (startY + Constants.TILES_VERTICALLY + 1) );
 
         for (int i = 0; i < endX - startX; i++)
         {

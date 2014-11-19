@@ -6,9 +6,8 @@ package com.ant.very.utils;
 public class Constants {
     public static final int MAP_HEIGHT = 30;
     public static final int MAP_WIDTH = 30;
-    public static final int UI_SIZE = 100;
 
-    public static final int TILES_VERTICALLY = 12;
+    public static final int TILES_VERTICALLY = 13;
     public static final int TILES_HORIZONTALLY = 9;
 
     public enum Tiles { // This is PROBABLY to be changed, I'm thinking about introducing a Tile class
