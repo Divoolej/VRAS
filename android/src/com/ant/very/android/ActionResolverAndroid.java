@@ -73,10 +73,6 @@ public class ActionResolverAndroid implements ActionResolver {
         mainHandler.post(recognizeRunnable);
     }
 
-    public void destroySpeechRecognizer() {
-        speechRecognizer.destroy();
-    }
-
     public void shutDownTtsEngine() {
         bot.getTts().shutdown();
     }

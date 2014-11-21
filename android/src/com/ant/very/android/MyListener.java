@@ -53,6 +53,7 @@ public class MyListener implements RecognitionListener {
 
     @Override
     public void onEndOfSpeech() {
+        // TODO Call this when you touch the mic button a second time too.
         // Stop the mic button pulse and vibrate just a bit.
         Gdx.app.log(TAG, "onEndOfSpeech");
         ui.stopMicButtonPulse();
