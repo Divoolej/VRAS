@@ -29,14 +29,17 @@ public class Ui {
     private Action shakeAction;
     private ActionResolver actionResolver;
 
+//    This exists so that tapping the mic button while listening may stop this action.
+    private boolean isCurrentlyRecognizingSpeech = false;
+
     public Ui(ActionResolver ar) {
         actionResolver = ar;
 
-        // Create the stage
+//        Create the stage
         stage = new Stage(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         skin = new Skin(Gdx.files.internal("Scene2D/uiskin.json"));
 
-        // Create the actors
+//        Create the actors
         botResponseTextArea = new TextArea("\n Tell me something!...", skin);
         inputTextField = new TextField("   ...", skin);
         micButton = new MicButton();
@@ -49,12 +52,12 @@ public class Ui {
         stage.addActor(group);
     }
 
-    // Get the stage for input processing over in VRAS:
+//    Get the stage for input processing over in VRAS:
     public Stage getStage() {
         return stage;
     }
 
-    // Set all the sizes & other parameters for UI elements:
+//    Set all the sizes & other parameters for UI elements:
     private void setupActors() {
         float textBoxWidth = Gdx.graphics.getWidth();
         float textBoxHeight = 120;
@@ -77,6 +80,10 @@ public class Ui {
                 - micButton.getWidth(), inputTextField.getY() - 10);
     }
 
+    public void setCurrentlyRecognizingSpeech(boolean is) {
+        isCurrentlyRecognizingSpeech = is;
+    }
+
     public void disposeUi() {
         stage.dispose();
         skin.dispose();
@@ -97,7 +104,14 @@ public class Ui {
             addListener(new InputListener() {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    actionResolver.recognizeSpeech();
+                    if (!isCurrentlyRecognizingSpeech) {
+                        actionResolver.recognizeSpeech();
+                        setCurrentlyRecognizingSpeech(true);
+                    }
+                    else {
+                        actionResolver.stopListeningForSpeech();
+                        setCurrentlyRecognizingSpeech(false);
+                    }
                     return true;
                 }
             });
@@ -141,4 +155,5 @@ public class Ui {
         micButton.clearActions();
         micButton.setScale(1.0f, 1.0f);
     }
+
 }

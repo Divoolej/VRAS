@@ -37,7 +37,7 @@ public class MyListener implements RecognitionListener {
 
     @Override
     public void onBeginningOfSpeech() {
-
+//        ui.setCurrentlyRecognizingSpeech(true);
     }
 
     @Override
@@ -57,6 +57,7 @@ public class MyListener implements RecognitionListener {
         // Stop the mic button pulse and vibrate just a bit.
         Gdx.app.log(TAG, "onEndOfSpeech");
         ui.stopMicButtonPulse();
+//        ui.setCurrentlyRecognizingSpeech(false);
         Vibrator v = (Vibrator)appContext.getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(50);
     }
@@ -85,7 +86,7 @@ public class MyListener implements RecognitionListener {
                 ui.showToast("No matches found");
                 break;
             case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                ui.showToast("I'm still listening");
+                ui.showToast("Recognizer Busy");
                 break;
             case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
                 ui.showToast("Insufficient permissions");

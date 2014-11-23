@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.ant.very.ActionResolver;
 import com.ant.very.objects.Ui;
+import com.badlogic.gdx.Gdx;
 
 
 /**
@@ -71,6 +72,18 @@ public class ActionResolverAndroid implements ActionResolver {
             }
         };
         mainHandler.post(recognizeRunnable);
+    }
+
+    public void stopListeningForSpeech() {
+        Handler mainHandler = new Handler(appContext.getMainLooper());
+        Runnable stopRecognizingRunnable = new Runnable() {
+            @Override
+            public void run() {
+                Gdx.app.log("actionresolver", "stopping listening");
+                speechRecognizer.stopListening();
+            }
+        };
+        mainHandler.post(stopRecognizingRunnable);
     }
 
     public void shutDownTtsEngine() {

@@ -7,7 +7,8 @@ import com.ant.very.objects.Ui;
  */
 
 public interface ActionResolver {
+    public void setUi(Ui ui);
     public void showToast(CharSequence toastMessage, int toastDuration);
     public void recognizeSpeech();
-    public void setUi(Ui ui);
+    public void stopListeningForSpeech();
 }
