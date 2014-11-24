@@ -44,7 +44,7 @@ public class Ui {
 //        skin.addRegions(uiTextureAtlas);
 
 //        Create the actors
-        botResponseTextArea = new TextArea("\n Tell me something!...", skin);
+        botResponseTextArea = new TextArea("\n  Ask me something!...", skin);
         inputTextField = new TextField("   ...", skin);
         micButton = new MicButton();
         setupActors();
@@ -67,7 +67,6 @@ public class Ui {
         float textBoxHeight = 120;
         float offset = Gdx.graphics.getWidth() - textBoxWidth;
 
-//        botResponseTextArea.setStyle(new TextField.TextFieldStyle())
         botResponseTextArea.setWidth(textBoxWidth);
         botResponseTextArea.setHeight(textBoxHeight);
         botResponseTextArea.setPrefRows(2);
@@ -75,6 +74,7 @@ public class Ui {
         botResponseTextArea.setY(Gdx.graphics.getHeight() - textBoxHeight);
         botResponseTextArea.setDisabled(true);
 
+        inputTextField.setStyle(skin.get("grey", TextField.TextFieldStyle.class));
         inputTextField.setWidth(textBoxWidth);
         inputTextField.setHeight(textBoxHeight);
         inputTextField.setX(offset - offset / 2.0f);
