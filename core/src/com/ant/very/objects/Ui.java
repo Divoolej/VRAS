@@ -39,9 +39,9 @@ public class Ui {
 
 //        Create the stage
         stage = new Stage(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-        uiTextureAtlas = new TextureAtlas(Gdx.files.internal("Scene2D/uitextareas.atlas"));
+//        uiTextureAtlas = new TextureAtlas(Gdx.files.internal("Scene2D/uitextareas.atlas"));
         skin = new Skin(Gdx.files.internal("Scene2D/uiskin.json"));
-        skin.addRegions(uiTextureAtlas);
+//        skin.addRegions(uiTextureAtlas);
 
 //        Create the actors
         botResponseTextArea = new TextArea("\n Tell me something!...", skin);
