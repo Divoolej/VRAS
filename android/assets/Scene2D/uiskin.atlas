@@ -200,6 +200,7 @@ customtext1
   rotate: false
   xy: 2, 183
   size: 191, 49
+  split: 4, 4, 6, 4
   orig: 191, 49
   offset: 0, 0
   index: -1
@@ -207,6 +208,7 @@ customtext2
   rotate: false
   xy: 2, 132
   size: 190, 49
+  split: 6, 6, 6, 10
   orig: 190, 49
   offset: 0, 0
   index: -1
