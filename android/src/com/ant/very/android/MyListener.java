@@ -37,13 +37,16 @@ public class MyListener implements RecognitionListener {
 
     @Override
     public void onBeginningOfSpeech() {
-//        ui.setCurrentlyRecognizingSpeech(true);
+        ui.setCurrentlyRecognizingSpeech(true);
     }
 
     @Override
     public void onRmsChanged(float volumeDB) {
 //        This gets called when the input voice volume changes. May be useful.
 //        float volumeNo = (volumeDB+120)/1.8f; // Normalize to 0-100 scale.
+
+//        This is pretty wonky now.
+//        ui.actionScaleMicButton(1 + volumeDB / 60);
     }
 
     @Override
@@ -57,7 +60,7 @@ public class MyListener implements RecognitionListener {
         // Stop the mic button pulse and vibrate just a bit.
         Gdx.app.log(TAG, "onEndOfSpeech");
         ui.stopMicButtonPulse();
-//        ui.setCurrentlyRecognizingSpeech(false);
+        ui.setCurrentlyRecognizingSpeech(false);
         Vibrator v = (Vibrator)appContext.getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(50);
     }
@@ -121,7 +124,8 @@ public class MyListener implements RecognitionListener {
         }
     }
 
-    private void handleResult(String sentence) throws Exception {
+    // Public to let Ui interact with the bot by pressing enter.
+    public void handleResult(String sentence) throws Exception {
         String response = bot.ask(sentence);
         ui.setBotResponseTextAreaText("\n " + response);
         speakOutLoud(response);

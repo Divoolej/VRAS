@@ -29,7 +29,7 @@ public class ConversationBot {
     public ConversationBot(Context appContext) throws Exception {
         this.appContext = appContext;
         factory = new ChatterBotFactory();
-        bot = factory.create(ChatterBotType.JABBERWACKY); // I found it a bit faster than Cleverbot.
+        bot = factory.create(ChatterBotType.PANDORABOTS, "a41310638e34fe16"); // I found it a bit faster than Cleverbot.
         botSession = bot.createSession();
 
         tts = new TextToSpeech(appContext, new TextToSpeech.OnInitListener() {
@@ -67,7 +67,11 @@ public class ConversationBot {
             try {
                 response = botSession.think(strings[0]);
             } catch (Exception e) {
-                Gdx.app.log("There was a problem connecting with the bot: ", e.getMessage());
+                if (e.getMessage()==null)
+                    e.printStackTrace();
+                else {
+                    Gdx.app.log("There was a problem connecting with the bot: ", e.getMessage());
+                }
             }
             return response;
         }

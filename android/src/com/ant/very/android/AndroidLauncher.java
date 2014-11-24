@@ -26,5 +26,6 @@ public class AndroidLauncher extends AndroidApplication {
         super.onDestroy();
 //        The tts engine needs to be stopped, otherwise it grows up and becomes Hitler.
         actionResolver.shutDownTtsEngine();
+        actionResolver.destroySpeechRecognizer();
     }
 }

@@ -4,6 +4,7 @@ import com.ant.very.ActionResolver;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -28,6 +29,7 @@ public class Ui {
     private MicButton micButton;
     private Action shakeAction;
     private ActionResolver actionResolver;
+    private TextureAtlas uiTextureAtlas;
 
 //    This exists so that tapping the mic button while listening may stop this action.
     private boolean isCurrentlyRecognizingSpeech = false;
@@ -37,7 +39,9 @@ public class Ui {
 
 //        Create the stage
         stage = new Stage(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+        uiTextureAtlas = new TextureAtlas(Gdx.files.internal("Scene2D/uitextareas.atlas"));
         skin = new Skin(Gdx.files.internal("Scene2D/uiskin.json"));
+        skin.addRegions(uiTextureAtlas);
 
 //        Create the actors
         botResponseTextArea = new TextArea("\n Tell me something!...", skin);
@@ -63,6 +67,7 @@ public class Ui {
         float textBoxHeight = 120;
         float offset = Gdx.graphics.getWidth() - textBoxWidth;
 
+//        botResponseTextArea.setStyle(new TextField.TextFieldStyle())
         botResponseTextArea.setWidth(textBoxWidth);
         botResponseTextArea.setHeight(textBoxHeight);
         botResponseTextArea.setPrefRows(2);
@@ -74,6 +79,20 @@ public class Ui {
         inputTextField.setHeight(textBoxHeight);
         inputTextField.setX(offset - offset / 2.0f);
         inputTextField.setY(Gdx.graphics.getHeight() - textBoxHeight * 2);
+
+        inputTextField.setTextFieldListener(new TextField.TextFieldListener() {
+            @Override
+            public void keyTyped(TextField textField, char c) {
+                if (c == '\r' || c == '\n') {
+                    String sentence = textField.getText();
+                    if (sentence != null) {
+                        // Send the contents of the input textfield to the bot:
+                        actionResolver.handleBotQuestion(sentence);
+                        textField.setText(" ");
+                    }
+                }
+            }
+        });
 
         micButton.setTouchable(Touchable.enabled);
         micButton.setPosition(inputTextField.getX() + inputTextField.getWidth() - 15
@@ -139,11 +158,11 @@ public class Ui {
     public void actionPulseMicButton() {
         shakeAction = Actions.forever(
                 Actions.sequence(
-                        Actions.scaleTo(1.1f, 1.1f, 0.2f),
+                        Actions.scaleTo(1.05f, 1.05f, 0.2f),
                         Actions.scaleTo(1.0f, 1.0f, 0.2f),
-                        Actions.scaleTo(1.1f, 1.1f, 0.2f),
+                        Actions.scaleTo(1.05f, 1.05f, 0.2f),
                         Actions.scaleTo(1.0f, 1.0f, 0.2f),
-                        Actions.delay(0.6f)
+                        Actions.delay(0.5f)
                 ));
         if (micButton.getActions().size == 0) {
             micButton.addAction(shakeAction);
@@ -151,9 +170,14 @@ public class Ui {
         }
     }
 
+//    Kinda collides with the button pulse.
+//    public void actionScaleMicButton(float value) {
+//        micButton.setScale(value);
+//        micButton.act(Gdx.graphics.getDeltaTime());
+//    }
+
     public void stopMicButtonPulse() {
         micButton.clearActions();
         micButton.setScale(1.0f, 1.0f);
     }
-
 }

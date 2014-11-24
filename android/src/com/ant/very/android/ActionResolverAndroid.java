@@ -23,6 +23,7 @@ public class ActionResolverAndroid implements ActionResolver {
     private ConversationBot bot;
     private Ui ui;
     private SpeechRecognizer speechRecognizer;
+    private MyListener listener;
 
     public ActionResolverAndroid(Context appContext) {
         uiThread = new Handler();
@@ -37,6 +38,7 @@ public class ActionResolverAndroid implements ActionResolver {
     // Called by VRAS.
     public void setUi(Ui ui) {
         this.ui = ui;
+        listener = new MyListener(appContext, ui, bot);
     }
 
     @Override
@@ -57,7 +59,7 @@ public class ActionResolverAndroid implements ActionResolver {
             @Override
             public void run() {
                 speechRecognizer = SpeechRecognizer.createSpeechRecognizer(appContext);
-                speechRecognizer.setRecognitionListener(new MyListener(appContext, ui, bot));
+                speechRecognizer.setRecognitionListener(listener);
 
                 Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -74,6 +76,7 @@ public class ActionResolverAndroid implements ActionResolver {
         mainHandler.post(recognizeRunnable);
     }
 
+//    Called when you press the mic button a second time:
     public void stopListeningForSpeech() {
         Handler mainHandler = new Handler(appContext.getMainLooper());
         Runnable stopRecognizingRunnable = new Runnable() {
@@ -88,5 +91,18 @@ public class ActionResolverAndroid implements ActionResolver {
 
     public void shutDownTtsEngine() {
         bot.getTts().shutdown();
+    }
+
+    public void destroySpeechRecognizer() {
+        speechRecognizer.destroy();
+    }
+
+    @Override
+    public void handleBotQuestion(String sentence) {
+        try {
+            listener.handleResult(sentence);
+        } catch (Exception e) {
+            showToast(e.getMessage(), 5000);
+        }
     }
 }

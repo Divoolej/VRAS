@@ -1,0 +1,18 @@
+uitextareas.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mytextfield
+  rotate: false
+  xy: 2, 2
+  size: 191, 49
+  orig: 191, 49
+  offset: 0, 0
+  index: -1
+mytextfield2
+  rotate: false
+  xy: 195, 2
+  size: 190, 49
+  orig: 190, 49
+  offset: 0, 0
+  index: -1

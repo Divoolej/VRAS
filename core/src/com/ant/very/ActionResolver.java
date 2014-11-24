@@ -11,4 +11,5 @@ public interface ActionResolver {
     public void showToast(CharSequence toastMessage, int toastDuration);
     public void recognizeSpeech();
     public void stopListeningForSpeech();
+    public void handleBotQuestion(String sentence);
 }
