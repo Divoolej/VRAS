@@ -94,7 +94,9 @@ public class ActionResolverAndroid implements ActionResolver {
     }
 
     public void destroySpeechRecognizer() {
-        speechRecognizer.destroy();
+        if(ui.isCurrentlyRecognizingSpeech()) {
+            speechRecognizer.destroy();
+        }
     }
 
     @Override
