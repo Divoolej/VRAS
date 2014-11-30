@@ -32,7 +32,7 @@ public class Ui {
     private TextureAtlas uiTextureAtlas;
 
 //    This exists so that tapping the mic button while listening may stop this action.
-    private boolean isCurrentlyRecognizingSpeech = false;
+    private boolean currentlyRecognizingSpeech = false;
 
     public Ui(ActionResolver ar) {
         actionResolver = ar;
@@ -100,7 +100,10 @@ public class Ui {
     }
 
     public void setCurrentlyRecognizingSpeech(boolean is) {
-        isCurrentlyRecognizingSpeech = is;
+        currentlyRecognizingSpeech = is;
+    }
+    public boolean isCurrentlyRecognizingSpeech() {
+        return currentlyRecognizingSpeech;
     }
 
     public void disposeUi() {
@@ -123,7 +126,7 @@ public class Ui {
             addListener(new InputListener() {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    if (!isCurrentlyRecognizingSpeech) {
+                    if (!currentlyRecognizingSpeech) {
                         actionResolver.recognizeSpeech();
                         setCurrentlyRecognizingSpeech(true);
                     }

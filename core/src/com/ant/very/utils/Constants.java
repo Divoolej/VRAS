@@ -15,7 +15,7 @@ public class Constants {
         METAL, // 1
         BOX,   // 2
         LAVA,  // 3
-        GRASS, // 4
+//        GRASS, // 4
         CAKE,  // 5
         STONE, // 6
         BOMB;  // 7
