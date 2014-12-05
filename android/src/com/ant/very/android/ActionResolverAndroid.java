@@ -83,6 +83,7 @@ public class ActionResolverAndroid implements ActionResolver {
             @Override
             public void run() {
                 Gdx.app.log("actionresolver", "stopping listening");
+                ui.stopMicButtonPulse();
                 speechRecognizer.stopListening();
             }
         };
