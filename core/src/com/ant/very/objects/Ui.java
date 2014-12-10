@@ -86,9 +86,7 @@ public class Ui {
                 if (c == '\r' || c == '\n') {
                     String sentence = textField.getText();
                     if (sentence != null) {
-                        // Send the contents of the input textfield to the bot:
-                        actionResolver.handleBotQuestion(sentence);
-                        textField.setText(" ");
+                        handleInputSentence(textField, sentence);
                     }
                 }
             }
@@ -97,6 +95,16 @@ public class Ui {
         micButton.setTouchable(Touchable.enabled);
         micButton.setPosition(inputTextField.getX() + inputTextField.getWidth() - 15
                 - micButton.getWidth(), inputTextField.getY() - 10);
+    }
+
+    private void handleInputSentence(TextField textField, String sentence) {
+        // TODO: look for keywords
+        Boolean keywordFound = false;
+        if (!keywordFound) {
+            actionResolver.handleBotQuestion(sentence);
+        }
+        textField.setText(" ");
+        textField.setCursorPosition(1);
     }
 
     public void setCurrentlyRecognizingSpeech(boolean is) {
