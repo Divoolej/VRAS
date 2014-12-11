@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Custom listener used for receiving notifications from the
- * SpeechRecognizer when the recognition related events occur.
+ * SpeechRecognizer when the recognition events occur.
  */
 
 public class MyListener implements RecognitionListener {
@@ -56,7 +56,6 @@ public class MyListener implements RecognitionListener {
 
     @Override
     public void onEndOfSpeech() {
-        // TODO Call this when you touch the mic button a second time too.
         // Stop the mic button pulse and vibrate just a bit.
         Gdx.app.log(TAG, "onEndOfSpeech");
         ui.stopMicButtonPulse();

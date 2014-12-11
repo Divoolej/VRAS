@@ -1,10 +1,10 @@
 package com.ant.very.objects;
 
 import com.ant.very.ActionResolver;
+import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -29,9 +29,7 @@ public class Ui {
     private MicButton micButton;
     private Action shakeAction;
     private ActionResolver actionResolver;
-    private TextureAtlas uiTextureAtlas;
 
-//    This exists so that tapping the mic button while listening may stop this action.
     private boolean currentlyRecognizingSpeech = false;
 
     public Ui(ActionResolver ar) {
@@ -39,9 +37,7 @@ public class Ui {
 
 //        Create the stage
         stage = new Stage(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-//        uiTextureAtlas = new TextureAtlas(Gdx.files.internal("Scene2D/uitextareas.atlas"));
         skin = new Skin(Gdx.files.internal("Scene2D/uiskin.json"));
-//        skin.addRegions(uiTextureAtlas);
 
 //        Create the actors
         botResponseTextArea = new TextArea("\n  Ask me something!...", skin);
@@ -98,13 +94,18 @@ public class Ui {
     }
 
     private void handleInputSentence(TextField textField, String sentence) {
-        // TODO: look for keywords
         Boolean keywordFound = false;
+
+        // TODO: look for keywords
         if (!keywordFound) {
             actionResolver.handleBotQuestion(sentence);
         }
         textField.setText(" ");
         textField.setCursorPosition(1);
+    }
+
+    private void parseInput(String input) {
+        InputParser parser = new InputParser();
     }
 
     public void setCurrentlyRecognizingSpeech(boolean is) {

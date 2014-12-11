@@ -90,6 +90,15 @@ public class ActionResolverAndroid implements ActionResolver {
         mainHandler.post(stopRecognizingRunnable);
     }
 
+    @Override
+    public void handleBotQuestion(String sentence) {
+        try {
+            listener.handleResult(sentence);
+        } catch (Exception e) {
+            showToast(e.getMessage(), 5000);
+        }
+    }
+
     public void shutDownTtsEngine() {
         bot.getTts().shutdown();
     }
@@ -97,15 +106,6 @@ public class ActionResolverAndroid implements ActionResolver {
     public void destroySpeechRecognizer() {
         if(ui.isCurrentlyRecognizingSpeech()) {
             speechRecognizer.destroy();
-        }
-    }
-
-    @Override
-    public void handleBotQuestion(String sentence) {
-        try {
-            listener.handleResult(sentence);
-        } catch (Exception e) {
-            showToast(e.getMessage(), 5000);
         }
     }
 }
