@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/home/hubert/.gradle/caches/modules-2/files-2.1/ca.pjer/chatter-bot-api/1.3.2/8bec055ef205c0b8b8b8a799970d8d5df5d8638a/chatter-bot-api-1.3.2.jar"
+        jar="C:\Users\Divoolej\.gradle\caches\modules-2\files-2.1\ca.pjer\chatter-bot-api\1.3.2\8bec055ef205c0b8b8b8a799970d8d5df5d8638a\chatter-bot-api-1.3.2.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="8bec055ef205c0b8b8b8a799970d8d5df5d8638a">
-        <dex dex="/home/hubert/IdeaProjects/VRAS/android/build/intermediates/pre-dexed/debug/chatter-bot-api-1.3.2-7f6c51a6727bb9d2ea435a3e23ff52dca1b18f2b.jar" />
+        <dex dex="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VRAS\android\build\intermediates\pre-dexed\debug\chatter-bot-api-1.3.2-485f88486ebef01925d92ec03bab916cdab8b3e1.jar" />
     </item>
     <item
-        jar="/home/hubert/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.4.1/eca2621f18b162c03992bd3ecc226e8a477dc6f9/gdx-backend-android-1.4.1.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="eca2621f18b162c03992bd3ecc226e8a477dc6f9">
-        <dex dex="/home/hubert/IdeaProjects/VRAS/android/build/intermediates/pre-dexed/debug/gdx-backend-android-1.4.1-55755b9ab172f9814e23196bc70b10708499216f.jar" />
-    </item>
-    <item
-        jar="/home/hubert/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.4.1/5f54c6af55fa98e8dc469809e952c980e07541a/gdx-freetype-1.4.1.jar"
+        jar="C:\Users\Divoolej\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-freetype\1.4.1\5f54c6af55fa98e8dc469809e952c980e07541a\gdx-freetype-1.4.1.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="05f54c6af55fa98e8dc469809e952c980e07541a">
-        <dex dex="/home/hubert/IdeaProjects/VRAS/android/build/intermediates/pre-dexed/debug/gdx-freetype-1.4.1-412e439bec9f9ba7db8ec6d6cea7e0254d593929.jar" />
+        <dex dex="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VRAS\android\build\intermediates\pre-dexed\debug\gdx-freetype-1.4.1-c4cc3dd4bde4c06f28eb5fcad44977155150d903.jar" />
     </item>
     <item
-        jar="/home/hubert/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.4.1/df470d263438048af74860ca51fc497c16a0c76a/gdx-1.4.1.jar"
+        jar="C:\Users\Divoolej\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx\1.4.1\df470d263438048af74860ca51fc497c16a0c76a\gdx-1.4.1.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="df470d263438048af74860ca51fc497c16a0c76a">
-        <dex dex="/home/hubert/IdeaProjects/VRAS/android/build/intermediates/pre-dexed/debug/gdx-1.4.1-73d3c1f63074959883d274821206300b8b63e9e8.jar" />
+        <dex dex="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VRAS\android\build\intermediates\pre-dexed\debug\gdx-1.4.1-a98a0cf20edf663f937af6640b6c366c99628043.jar" />
     </item>
     <item
-        jar="/home/hubert/IdeaProjects/VRAS/core/build/libs/core-1.0.jar"
+        jar="C:\Users\Divoolej\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-backend-android\1.4.1\eca2621f18b162c03992bd3ecc226e8a477dc6f9\gdx-backend-android-1.4.1.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="4be2419e159f17c558edf39fc716803f013bbc82">
-        <dex dex="/home/hubert/IdeaProjects/VRAS/android/build/intermediates/pre-dexed/debug/core-1.0-9339a9eff2c4785a0dd60d293516510ece4a6f75.jar" />
+        sha1="eca2621f18b162c03992bd3ecc226e8a477dc6f9">
+        <dex dex="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VRAS\android\build\intermediates\pre-dexed\debug\gdx-backend-android-1.4.1-c9680719f9d5000679eff36e88cec182d92b9707.jar" />
+    </item>
+    <item
+        jar="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VRAS\core\build\libs\core-1.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="ed712a1e8cbe2e50c01d6e195e77c5deda348292">
+        <dex dex="C:\Users\Divoolej\Dokumenty\AndroidStudioProjects\VRAS\android\build\intermediates\pre-dexed\debug\core-1.0-b0b2d9b6ef8ce570e1f90e0955420912a24ea3c9.jar" />
     </item>
 
 </items>
