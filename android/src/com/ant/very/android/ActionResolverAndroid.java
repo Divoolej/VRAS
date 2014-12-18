@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.ant.very.ActionResolver;
 import com.ant.very.objects.Ui;
+import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.Gdx;
 
 
@@ -36,9 +37,9 @@ public class ActionResolverAndroid implements ActionResolver {
     }
 
     // Called by VRAS.
-    public void setUi(Ui ui) {
+    public void setComponents(Ui ui, InputParser parser) {
         this.ui = ui;
-        listener = new MyListener(appContext, ui, bot);
+        listener = new MyListener(appContext, ui, bot, parser);
     }
 
     @Override
@@ -97,6 +98,21 @@ public class ActionResolverAndroid implements ActionResolver {
         } catch (Exception e) {
             showToast(e.getMessage(), 5000);
         }
+    }
+
+    @Override
+    public void moveAntUp() {
+
+    }
+
+    @Override
+    public void pickUpObject() {
+
+    }
+
+    @Override
+    public void buyItem() {
+
     }
 
     public void shutDownTtsEngine() {
