@@ -4,7 +4,6 @@ import com.ant.very.ActionResolver;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -29,9 +28,7 @@ public class Ui {
     private MicButton micButton;
     private Action shakeAction;
     private ActionResolver actionResolver;
-    private TextureAtlas uiTextureAtlas;
 
-//    This exists so that tapping the mic button while listening may stop this action.
     private boolean currentlyRecognizingSpeech = false;
 
     public Ui(ActionResolver ar) {
@@ -39,9 +36,7 @@ public class Ui {
 
 //        Create the stage
         stage = new Stage(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-//        uiTextureAtlas = new TextureAtlas(Gdx.files.internal("Scene2D/uitextareas.atlas"));
         skin = new Skin(Gdx.files.internal("Scene2D/uiskin.json"));
-//        skin.addRegions(uiTextureAtlas);
 
 //        Create the actors
         botResponseTextArea = new TextArea("\n  Ask me something!...", skin);
@@ -86,9 +81,7 @@ public class Ui {
                 if (c == '\r' || c == '\n') {
                     String sentence = textField.getText();
                     if (sentence != null) {
-                        // Send the contents of the input textfield to the bot:
-                        actionResolver.handleBotQuestion(sentence);
-                        textField.setText(" ");
+                        handleInputSentence(textField, sentence);
                     }
                 }
             }
@@ -97,6 +90,12 @@ public class Ui {
         micButton.setTouchable(Touchable.enabled);
         micButton.setPosition(inputTextField.getX() + inputTextField.getWidth() - 15
                 - micButton.getWidth(), inputTextField.getY() - 10);
+    }
+
+    private void handleInputSentence(TextField textField, String sentence) {
+        actionResolver.handleBotQuestion(sentence);
+        textField.setText(" ");
+        textField.setCursorPosition(1);
     }
 
     public void setCurrentlyRecognizingSpeech(boolean is) {

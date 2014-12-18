@@ -4,6 +4,7 @@ import com.ant.very.objects.Ant;
 import com.ant.very.objects.Camera;
 import com.ant.very.objects.Ui;
 import com.ant.very.utils.Constants;
+import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -30,6 +31,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
     // UI stuff:
     private Ui ui;
     private BitmapFont font;
+    private InputParser parser;
 
     // For android methods:
     private ActionResolver actionResolver;
@@ -44,11 +46,12 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         GFX_HEIGHT = Gdx.graphics.getHeight();
 
         ui = new Ui(actionResolver);
+        parser = new InputParser(actionResolver);
 
-        // Pass the ui like this:
+        // Pass the ocmponents like this:
         // VRAS -> ActionResolver -> MyListener
-        // And update the UI from there on various events (i.e. SpeechRecognizer callbacks).
-        actionResolver.setUi(ui);
+        // And update from there on various events (i.e SpeechRecognizer callbacks).
+        actionResolver.setComponents(ui, parser);
 
         // Create a bitmap font from a ttf file using the freetype module.
         createFont();

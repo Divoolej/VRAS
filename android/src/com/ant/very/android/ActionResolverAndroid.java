@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.ant.very.ActionResolver;
 import com.ant.very.objects.Ui;
+import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.Gdx;
 
 
@@ -36,9 +37,9 @@ public class ActionResolverAndroid implements ActionResolver {
     }
 
     // Called by VRAS.
-    public void setUi(Ui ui) {
+    public void setComponents(Ui ui, InputParser parser) {
         this.ui = ui;
-        listener = new MyListener(appContext, ui, bot);
+        listener = new MyListener(appContext, ui, bot, parser);
     }
 
     @Override
@@ -90,6 +91,30 @@ public class ActionResolverAndroid implements ActionResolver {
         mainHandler.post(stopRecognizingRunnable);
     }
 
+    @Override
+    public void handleBotQuestion(String sentence) {
+        try {
+            listener.handleResult(sentence);
+        } catch (Exception e) {
+            showToast(e.getMessage(), 5000);
+        }
+    }
+
+    @Override
+    public void pickUpObject() {
+
+    }
+
+    @Override
+    public void buyItem(String item) {
+
+    }
+
+    @Override
+    public void moveAnt(String direction) {
+
+    }
+
     public void shutDownTtsEngine() {
         bot.getTts().shutdown();
     }
@@ -97,15 +122,6 @@ public class ActionResolverAndroid implements ActionResolver {
     public void destroySpeechRecognizer() {
         if(ui.isCurrentlyRecognizingSpeech()) {
             speechRecognizer.destroy();
-        }
-    }
-
-    @Override
-    public void handleBotQuestion(String sentence) {
-        try {
-            listener.handleResult(sentence);
-        } catch (Exception e) {
-            showToast(e.getMessage(), 5000);
         }
     }
 }
