@@ -20,7 +20,7 @@ public class GEngine {
     // Sprites:
     private Vector<Sprite> sprites;
 
-    public GEngine(Ant ant, Camera camera, SpriteBatch batch) {
+    public GEngine(Camera camera, SpriteBatch batch) {
         map = WorldMap.getInstance();
         this.camera = camera;
         this.batch = batch;
@@ -57,6 +57,7 @@ public class GEngine {
         int startX = camera.getX() / tileSize;
         int startY = camera.getY() / tileSize;
         int endX = startX + Constants.TILES_HORIZONTALLY + 1;
+        endX = ((endX > Constants.MAP_WIDTH) ? (endX - 1) : (endX));
         int endY = ( (startY + Constants.TILES_VERTICALLY + 1 > Constants.MAP_HEIGHT) ?
                 (Constants.MAP_HEIGHT) : (startY + Constants.TILES_VERTICALLY + 1) );
 
@@ -77,6 +78,17 @@ public class GEngine {
                         j * tileSize - (camera.getY() % tileSize));
 
                 sprites.get(spriteId).draw(batch);
+            }
+        }
+
+        int aX = Ant.getInstance().getX();
+        int aY = Ant.getInstance().getY();
+
+        if (aX >= startX && aX <= endX - 1) {
+            if (aY >= startY && aY < endY - 1) {
+                sprites.get(Constants.Sprites.ANT.toInt()).setPosition((aX - startX) * tileSize -
+                        (camera.getX() % tileSize), (aY - startY) * tileSize - (camera.getY() % tileSize));
+                sprites.get(Constants.Sprites.ANT.toInt()).draw(batch);
             }
         }
     }

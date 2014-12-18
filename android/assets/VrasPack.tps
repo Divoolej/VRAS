@@ -4,9 +4,9 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.5.3</string>
+        <string>3.5.2</string>
         <key>fileName</key>
-        <string>C:/Users/Divoolej/Dokumenty/AndroidStudioProjects/VRAS/android/assets/VrasPack.tps</string>
+        <string>/home/divoolej/Dokumenty/AndroidStudioProjects/VRAS/android/assets/VrasPack.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -188,20 +188,18 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>assets/grass.png</filename>
-            <filename>assets/round/background.png</filename>
-            <filename>assets/round/bedrock.png</filename>
-            <filename>assets/round/cherry.png</filename>
-            <filename>assets/round/historyButton.png</filename>
-            <filename>assets/round/marble1.png</filename>
-            <filename>assets/round/marble2.png</filename>
-            <filename>assets/round/mushroomBrown.png</filename>
-            <filename>assets/round/mushroomRed.png</filename>
-            <filename>assets/round/sand.png</filename>
-            <filename>assets/round/snailWalk1.png</filename>
-            <filename>assets/round/stone.png</filename>
-            <filename>assets/red_button10.png</filename>
-            <filename>assets/grey_button.png</filename>
+            <filename>sprites/background.png</filename>
+            <filename>sprites/bedrock.png</filename>
+            <filename>sprites/cherry.png</filename>
+            <filename>sprites/marble1.png</filename>
+            <filename>sprites/marble2.png</filename>
+            <filename>sprites/sand.png</filename>
+            <filename>sprites/stone.png</filename>
+            <filename>sprites/empty.png</filename>
+            <filename>sprites/snail.png</filename>
+            <filename>sprites/mushroom_red.png</filename>
+            <filename>sprites/mushroom_brown.png</filename>
+            <filename>sprites/ant.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

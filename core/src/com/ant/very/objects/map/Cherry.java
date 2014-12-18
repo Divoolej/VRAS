@@ -8,7 +8,7 @@ import com.ant.very.utils.Constants;
 /**
  * Created by divoolej on 18.12.14.
  */
-public class Sand extends MapEntity {
+public class Cherry extends MapEntity {
     private int x, y;
     public void onLook() {}
     public void onInteract() {
@@ -16,8 +16,8 @@ public class Sand extends MapEntity {
         m = new Empty(x, y);
         Ant.getInstance().move(x, y);
     }
-    public Sand(int x, int y) {
-        spriteId = Constants.Sprites.SAND.toInt();
+    public Cherry(int x, int y) {
+        spriteId = Constants.Sprites.CHERRY.toInt();
         this.x = x;
         this.y = y;
     }

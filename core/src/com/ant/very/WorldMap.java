@@ -6,7 +6,9 @@ package com.ant.very;
 
 import com.ant.very.objects.MapEntity;
 import com.ant.very.objects.map.Bedrock;
+import com.ant.very.objects.map.Cherry;
 import com.ant.very.objects.map.Empty;
+import com.ant.very.objects.map.Sand;
 import com.ant.very.utils.Constants;
 
 public class WorldMap {
@@ -16,11 +18,11 @@ public class WorldMap {
     private final int width;  // The width of the map array, measured in tiles
 
     private final int LEVEL_ONE_START = 9;
-    private final int LEVEL_ONE_END = 79;
-    private final int LEVEL_TWO_START = 80;
-    private final int LEVEL_TWO_END = 180;
-    private final int LEVEL_THREE_START = 181;
-    private final int LEVEL_THREE_END = 211;
+    private final int LEVEL_ONE_END = 69;
+    private final int LEVEL_TWO_START = 70;
+    private final int LEVEL_TWO_END = 140;
+    private final int LEVEL_THREE_START = 141;
+    private final int LEVEL_THREE_END = 200;
     private final int BASE_WIDTH = 9;
     private final int BASE_HEIGHT = 8;
 
@@ -59,7 +61,7 @@ public class WorldMap {
     private void fillMapWithEmpty() {
         for (int x0 = 0; x0 < width; x0++) {
             for (int y0 = 0; y0 < height; y0++) {
-                map[x0][y0] = new Empty();
+                map[x0][y0] = new Empty(x0, y0);
             }
         }
     }
@@ -90,7 +92,18 @@ public class WorldMap {
     }
 
     private void generateLevelOne(int startY, int endY) {
-
+        for (int x = 0; x < Constants.MAP_WIDTH; x++) {
+            for (int y = startY; y < endY; y++) {
+                int chance = (int)((Math.random() * 10) + 1);
+                if (chance == 1) {
+                    map[x][y] = new Cherry(x, y);
+                } else if (chance <= 3) {
+                    map[x][y] = new Bedrock();
+                } else {
+                    map[x][y] = new Sand(x, y);
+                }
+            }
+        }
     }
 
     private void generateLevelTwo(int startY, int endY) {

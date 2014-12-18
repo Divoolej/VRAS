@@ -2,100 +2,86 @@ VrasPack.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+ant
+  rotate: false
+  xy: 2, 2
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
 background
   rotate: false
-  xy: 470, 2
+  xy: 74, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 bedrock
   rotate: false
-  xy: 542, 2
+  xy: 146, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 cherry
   rotate: false
-  xy: 614, 2
+  xy: 218, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-grass
+empty
   rotate: false
-  xy: 758, 2
+  xy: 290, 2
   size: 70, 70
   orig: 70, 70
-  offset: 0, 0
-  index: -1
-grey_button
-  rotate: false
-  xy: 194, 74
-  size: 191, 49
-  orig: 191, 49
-  offset: 0, 0
-  index: -1
-historyButton
-  rotate: false
-  xy: 2, 2
-  size: 50, 48
-  orig: 50, 48
   offset: 0, 0
   index: -1
 marble1
   rotate: false
-  xy: 686, 2
+  xy: 362, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 marble2
   rotate: false
-  xy: 398, 2
+  xy: 434, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 mushroom_brown
   rotate: false
-  xy: 326, 2
+  xy: 506, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 mushroom_red
   rotate: false
-  xy: 254, 2
+  xy: 578, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-red_button10
-  rotate: false
-  xy: 2, 74
-  size: 190, 49
-  orig: 190, 49
-  offset: 0, 0
-  index: -1
 sand
   rotate: false
-  xy: 110, 2
+  xy: 650, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
 snail
   rotate: false
-  xy: 54, 2
+  xy: 722, 2
   size: 54, 31
   orig: 54, 31
   offset: 0, 0
   index: -1
 stone
   rotate: false
-  xy: 182, 2
+  xy: 778, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
