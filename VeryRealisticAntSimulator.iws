@@ -12,15 +12,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.ant.very.android" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cf62554-bda1-4ead-a5f8-510dc7ec0592" name="Default" comment="Parser pretty much ready.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/ant/very/ActionResolver.java" afterPath="$PROJECT_DIR$/core/src/com/ant/very/ActionResolver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/com/ant/very/android/ActionResolverAndroid.java" afterPath="$PROJECT_DIR$/android/src/com/ant/very/android/ActionResolverAndroid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/ant/very/utils/Constants.java" afterPath="$PROJECT_DIR$/core/src/com/ant/very/utils/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/ant/very/utils/InputParser.java" afterPath="$PROJECT_DIR$/core/src/com/ant/very/utils/InputParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VeryRealisticAntSimulator.ipr" afterPath="$PROJECT_DIR$/VeryRealisticAntSimulator.ipr" />
+    <list default="true" id="2cf62554-bda1-4ead-a5f8-510dc7ec0592" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/src/com/ant/very/android/MyListener.java" afterPath="$PROJECT_DIR$/android/src/com/ant/very/android/MyListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VeryRealisticAntSimulator.iws" afterPath="$PROJECT_DIR$/VeryRealisticAntSimulator.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/android.iml" afterPath="$PROJECT_DIR$/android/android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="VeryRealisticAntSimulator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,7 +82,7 @@
       <file leaf-file-name="ActionResolverAndroid.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/android/src/com/ant/very/android/ActionResolverAndroid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1422" max-vertical-offset="1998">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2052" max-vertical-offset="2376">
               <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
               <folding />
             </state>
@@ -97,7 +92,7 @@
       <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/ant/very/utils/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+            <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="756">
               <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
@@ -134,20 +129,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyListener.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MyListener.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/android/src/com/ant/very/android/MyListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2610" max-vertical-offset="2952">
-              <caret line="145" column="25" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
-              <folding />
+            <state vertical-scroll-proportion="-5.1232877" vertical-offset="2514" max-vertical-offset="2952">
+              <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InputParser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="InputParser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/ant/very/utils/InputParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33190578" vertical-offset="907" max-vertical-offset="2034">
+            <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="2034">
               <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -159,7 +156,7 @@
       <file leaf-file-name="Ant.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/ant/very/objects/Ant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+            <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="288">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
@@ -169,7 +166,7 @@
       <file leaf-file-name="WorldMap.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/ant/very/WorldMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="577" max-vertical-offset="1044">
+            <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="1188">
               <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
               <folding />
             </state>
@@ -179,7 +176,7 @@
       <file leaf-file-name="ActionResolver.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/ant/very/ActionResolver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="486">
+            <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="504">
               <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
@@ -1293,6 +1290,11 @@
         </entry>
       </map>
     </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$" value="5675639294778" />
+      </map>
+    </option>
     <option name="projectBuildClasspath">
       <map>
         <entry key="$PROJECT_DIR$">
@@ -1439,13 +1441,13 @@
         <option value="$PROJECT_DIR$/core/src/com/ant/very/VRAS.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/core/build.gradle" />
-        <option value="$PROJECT_DIR$/android/src/com/ant/very/android/MyListener.java" />
         <option value="$PROJECT_DIR$/core/src/com/ant/very/objects/Ui.java" />
         <option value="$PROJECT_DIR$/android/src/com/ant/very/android/ActionResolverAndroid.java" />
         <option value="$PROJECT_DIR$/core/src/com/ant/very/ActionResolver.java" />
         <option value="$PROJECT_DIR$/core/src/com/ant/very/utils/InputParser.java" />
         <option value="$PROJECT_DIR$/core/src/com/ant/very/objects/Ant.java" />
         <option value="$PROJECT_DIR$/core/src/com/ant/very/utils/Constants.java" />
+        <option value="$PROJECT_DIR$/android/src/com/ant/very/android/MyListener.java" />
       </list>
     </option>
   </component>
@@ -1490,8 +1492,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1636,7 +1636,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1869,7 +1871,11 @@
       <created>1418861472041</created>
       <updated>1418861472041</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Merged the ParseSentences branch.">
+      <created>1418912491421</created>
+      <updated>1418912491421</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1899,7 +1905,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32831737" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34135976" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32147744" sideWeight="0.49935815" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32147744" sideWeight="0.49935815" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1957,12 +1963,21 @@
     <MESSAGE value="Added the InputParser." />
     <MESSAGE value="Basic parser in place." />
     <MESSAGE value="Parser pretty much ready." />
-    <option name="LAST_COMMIT_MESSAGE" value="Parser pretty much ready." />
+    <MESSAGE value="Merged the ParseSentences branch." />
+    <option name="LAST_COMMIT_MESSAGE" value="Merged the ParseSentences branch." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/android/src/com/ant/very/android/MyListener.java</url>
+          <line>2</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -2278,14 +2293,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/android/src/com/ant/very/android/MyListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1898" max-vertical-offset="2718">
-          <caret line="145" column="25" selection-start-line="145" selection-start-column="25" selection-end-line="145" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/android/src/com/ant/very/android/ConversationBot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1314">
@@ -2336,8 +2343,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/ant/very/utils/InputParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33190578" vertical-offset="907" max-vertical-offset="2034">
+        <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="2034">
           <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/src/com/ant/very/android/MyListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.1232877" vertical-offset="2514" max-vertical-offset="2952">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

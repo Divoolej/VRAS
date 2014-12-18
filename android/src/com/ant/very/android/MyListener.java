@@ -13,6 +13,8 @@ import com.badlogic.gdx.Gdx;
 
 import java.util.ArrayList;
 
+import static com.ant.very.utils.Constants.*;
+
 /**
  * Custom listener used for receiving notifications from the
  * SpeechRecognizer when the recognition events occur.
@@ -132,7 +134,7 @@ public class MyListener implements RecognitionListener {
     public void handleResult(String sentence) throws Exception {
 
         String response = parser.parseSentence(sentence);
-        if(response.equals(InputParser.BOT_CALL)) {
+        if(response.equals(BOT_CALL)) {
             response = bot.ask(sentence);
         }
 
