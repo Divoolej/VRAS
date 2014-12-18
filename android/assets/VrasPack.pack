@@ -58,14 +58,14 @@ marble2
   orig: 70, 70
   offset: 0, 0
   index: -1
-mushroomBrown
+mushroom_brown
   rotate: false
   xy: 326, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-mushroomRed
+mushroom_red
   rotate: false
   xy: 254, 2
   size: 70, 70
@@ -86,7 +86,7 @@ sand
   orig: 70, 70
   offset: 0, 0
   index: -1
-snailWalk1
+snail
   rotate: false
   xy: 54, 2
   size: 54, 31
