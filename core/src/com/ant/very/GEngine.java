@@ -20,7 +20,7 @@ public class GEngine {
     // Sprites:
     private Vector<Sprite> sprites;
 
-    public GEngine(Ant ant, Camera camera, SpriteBatch batch) {
+    public GEngine(Camera camera, SpriteBatch batch) {
         map = WorldMap.getInstance();
         this.camera = camera;
         this.batch = batch;
@@ -33,10 +33,10 @@ public class GEngine {
 
     public void loadSprites() {
         sprites = new Vector<Sprite>();
-        for (int i = 0; i < Constants.Tiles.count(); i++) {
+        for (int i = 0; i < Constants.Sprites.count(); i++) {
             sprites.add(new Sprite(atlas.findRegion(
-                    Constants.Tiles.values()[i].toString().toLowerCase()) ) );
-                        // Taking the region name from Constants makes the makes the code a lot
+                    Constants.Sprites.values()[i].toString().toLowerCase()) ) );
+                        // Taking the region name from Constants makes the code a lot
                         // more independent. Using the Vector helps to get rid of the switch later on.
         }
     }
@@ -57,6 +57,7 @@ public class GEngine {
         int startX = camera.getX() / tileSize;
         int startY = camera.getY() / tileSize;
         int endX = startX + Constants.TILES_HORIZONTALLY + 1;
+        endX = ((endX > Constants.MAP_WIDTH) ? (endX - 1) : (endX));
         int endY = ( (startY + Constants.TILES_VERTICALLY + 1 > Constants.MAP_HEIGHT) ?
                 (Constants.MAP_HEIGHT) : (startY + Constants.TILES_VERTICALLY + 1) );
 
@@ -64,12 +65,30 @@ public class GEngine {
         {
             for (int j = 0; j < endY - startY; j++)
             {
-                int spriteId = map.at(i + startX, j + startY);
+                int spriteId = map.at(i + startX, j + startY).getSpriteId();
 
+                //Draw the background tile first
+                sprites.get(Constants.Sprites.BACKGROUND.toInt()).setPosition(i * tileSize -
+                        (camera.getX() % tileSize), j * tileSize - (camera.getY() % tileSize));
+
+                sprites.get(Constants.Sprites.BACKGROUND.toInt()).draw(batch);
+
+                //Then draw the actual object
                 sprites.get(spriteId).setPosition(i * tileSize - (camera.getX() % tileSize),
                         j * tileSize - (camera.getY() % tileSize));
 
                 sprites.get(spriteId).draw(batch);
+            }
+        }
+
+        int aX = Ant.getInstance().getX();
+        int aY = Ant.getInstance().getY();
+
+        if (aX >= startX && aX <= endX - 1) {
+            if (aY >= startY && aY < endY - 1) {
+                sprites.get(Constants.Sprites.ANT.toInt()).setPosition((aX - startX) * tileSize -
+                        (camera.getX() % tileSize), (aY - startY) * tileSize - (camera.getY() % tileSize));
+                sprites.get(Constants.Sprites.ANT.toInt()).draw(batch);
             }
         }
     }

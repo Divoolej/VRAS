@@ -4,6 +4,11 @@ package com.ant.very;
  * A Singleton class for generating and storing map data
  */
 
+import com.ant.very.objects.MapEntity;
+import com.ant.very.objects.map.Bedrock;
+import com.ant.very.objects.map.Cherry;
+import com.ant.very.objects.map.Empty;
+import com.ant.very.objects.map.Sand;
 import com.ant.very.utils.Constants;
 
 public class WorldMap {
@@ -12,7 +17,16 @@ public class WorldMap {
     private final int height; // The height of the map array, measured in tiles
     private final int width;  // The width of the map array, measured in tiles
 
-    private int[][] map; // The Array containing the map data, each field contains an integer
+    private final int LEVEL_ONE_START = 9;
+    private final int LEVEL_ONE_END = 69;
+    private final int LEVEL_TWO_START = 70;
+    private final int LEVEL_TWO_END = 140;
+    private final int LEVEL_THREE_START = 141;
+    private final int LEVEL_THREE_END = 200;
+    private final int BASE_WIDTH = 9;
+    private final int BASE_HEIGHT = 8;
+
+    private MapEntity[][] map; // The Array containing the map data, each field contains an integer
                          // which represents certain unique type of game object. Possible values
                          // can be found in the Constants class
 
@@ -20,7 +34,7 @@ public class WorldMap {
         this.height = height;
         this.width = width;
 
-        map = new int[width][height];
+        map = new MapEntity[width][height];
 
         generateMap();
     }
@@ -35,19 +49,74 @@ public class WorldMap {
     private void generateMap() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                map[x][y] = getRandomTile();
+                fillMapWithEmpty();
+                generateBase();
+                generateLevelOne(LEVEL_ONE_START, LEVEL_ONE_END);
+                generateLevelTwo(LEVEL_TWO_START, LEVEL_TWO_END);
+                generateLevelThree(LEVEL_THREE_START, LEVEL_THREE_END);
             }
         }
     }
 
-    // Function returns the id of a tile given at a target (x, y) position
-    public int at(int x, int y) {
-        return map[x][y];
+    private void fillMapWithEmpty() {
+        for (int x0 = 0; x0 < width; x0++) {
+            for (int y0 = 0; y0 < height; y0++) {
+                map[x0][y0] = new Empty(x0, y0);
+            }
+        }
     }
 
-    // Function returns an id of a random tile, currently used for debugging.
-    public int getRandomTile() {
-        return (int)( Math.random() * Constants.Tiles.count() );
+    private void generateBase() {
+        int left_and_right_of_base_width = (width - BASE_WIDTH) / 2;
+        for (int x0 = 0; x0 <= left_and_right_of_base_width; x0++)
+        {
+            for (int y0 = 0; y0 < BASE_HEIGHT; y0++)
+            {
+                map[x0][y0] = new Bedrock();
+            }
+        }
+        for (int x0 = left_and_right_of_base_width + BASE_WIDTH - 1; x0 < width; x0++)
+        {
+            for (int y0 = 0; y0 < BASE_HEIGHT; y0++)
+            {
+                map[x0][y0] = new Bedrock();
+            }
+        }
+        for (int x0 = left_and_right_of_base_width + 1; x0 < left_and_right_of_base_width + BASE_WIDTH - 1; x0++) {
+            map[x0][0] = new Bedrock();
+        }
+        map[left_and_right_of_base_width + 1][BASE_HEIGHT - 1] = new Bedrock();
+        map[left_and_right_of_base_width + 2][BASE_HEIGHT - 1] = new Bedrock();
+        map[left_and_right_of_base_width + BASE_WIDTH - 2][BASE_HEIGHT - 1] = new Bedrock();
+        map[left_and_right_of_base_width + BASE_WIDTH - 3][BASE_HEIGHT - 1] = new Bedrock();
+    }
+
+    private void generateLevelOne(int startY, int endY) {
+        for (int x = 0; x < Constants.MAP_WIDTH; x++) {
+            for (int y = startY; y < endY; y++) {
+                int chance = (int)((Math.random() * 10) + 1);
+                if (chance == 1) {
+                    map[x][y] = new Cherry(x, y);
+                } else if (chance <= 3) {
+                    map[x][y] = new Bedrock();
+                } else {
+                    map[x][y] = new Sand(x, y);
+                }
+            }
+        }
+    }
+
+    private void generateLevelTwo(int startY, int endY) {
+
+    }
+
+    private void generateLevelThree(int startY, int endY) {
+
+    }
+
+    // Function returns the MapEntity given at a target (x, y) position
+    public MapEntity at(int x, int y) {
+        return map[x][y];
     }
 
     public int getWidth() {

@@ -25,7 +25,6 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
     private SpriteBatch batch;
     private Camera camera;
     private GEngine gEngine;
-    private Ant ant;
     private WorldMap map;
 
     // UI stuff:
@@ -69,8 +68,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
                  // We want our our "ground" to take TILES_HORIZONTALLY x TILES_VERTICALLY tiles, the
                  // rest of the screen is for communication
 
-        ant = new Ant();
-        gEngine = new GEngine(ant, camera, batch);
+        gEngine = new GEngine(camera, batch);
     }
 
     private void createFont() {
