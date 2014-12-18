@@ -1,7 +1,6 @@
 package com.ant.very.objects;
 
 import com.ant.very.ActionResolver;
-import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -94,18 +93,9 @@ public class Ui {
     }
 
     private void handleInputSentence(TextField textField, String sentence) {
-        Boolean keywordFound = false;
-
-        // TODO: look for keywords
-        if (!keywordFound) {
-            actionResolver.handleBotQuestion(sentence);
-        }
+        actionResolver.handleBotQuestion(sentence);
         textField.setText(" ");
         textField.setCursorPosition(1);
-    }
-
-    private void parseInput(String input) {
-        InputParser parser = new InputParser();
     }
 
     public void setCurrentlyRecognizingSpeech(boolean is) {

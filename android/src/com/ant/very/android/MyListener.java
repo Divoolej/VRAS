@@ -8,6 +8,7 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 
 import com.ant.very.objects.Ui;
+import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.Gdx;
 
 import java.util.ArrayList;
@@ -23,11 +24,13 @@ public class MyListener implements RecognitionListener {
     private Context appContext;
     private Ui ui;
     private ConversationBot bot;
+    private InputParser parser;
 
-    public MyListener(Context context, Ui ui, ConversationBot bot) {
+    public MyListener(Context context, Ui ui, ConversationBot bot, InputParser parser) {
         appContext = context;
         this.bot = bot;
         this.ui = ui;
+        this.parser = parser;
     }
 
     @Override
@@ -114,18 +117,25 @@ public class MyListener implements RecognitionListener {
             Gdx.app.log(TAG, "result: " + element);
         }
 
-        ui.setInputTextFieldText(data.get(0));
+        String bestResult = data.get(0);
+
+        ui.setInputTextFieldText(bestResult);
 
         try {
-            handleResult(data.get(0));
+            handleResult(bestResult);
         } catch (Exception e) {
-            ui.showToast("Exception " + e);
+            Gdx.app.log(TAG, "Exception " + e);
         }
     }
 
     // Public to let Ui interact with the bot by pressing enter.
     public void handleResult(String sentence) throws Exception {
-        String response = bot.ask(sentence);
+
+        String response = parser.parseSentence(sentence);
+        if(response.equals(InputParser.BOT_CALL)) {
+            response = bot.ask(sentence);
+        }
+
         ui.setBotResponseTextAreaText("\n " + response);
         speakOutLoud(response);
     }
