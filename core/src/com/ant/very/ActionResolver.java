@@ -14,9 +14,9 @@ public interface ActionResolver {
     public void stopListeningForSpeech();
     public void handleBotQuestion(String sentence);
 
-    public void moveAntUp();
-
     public void pickUpObject();
 
-    public void buyItem();
+    public void buyItem(String item);
+
+    void moveAnt(String direction);
 }

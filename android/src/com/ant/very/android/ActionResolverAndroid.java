@@ -101,17 +101,17 @@ public class ActionResolverAndroid implements ActionResolver {
     }
 
     @Override
-    public void moveAntUp() {
-
-    }
-
-    @Override
     public void pickUpObject() {
 
     }
 
     @Override
-    public void buyItem() {
+    public void buyItem(String item) {
+
+    }
+
+    @Override
+    public void moveAnt(String direction) {
 
     }
 
