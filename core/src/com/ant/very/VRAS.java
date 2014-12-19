@@ -16,7 +16,6 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 public class VRAS extends ApplicationAdapter implements InputProcessor {
-    private static final String TAG = "VRAS";
     public static final int FONT_SIZE = 20;
     public int GFX_WIDTH;
     public int GFX_HEIGHT;
@@ -46,7 +45,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         ui = new Ui(actionResolver);
         parser = new InputParser(actionResolver);
 
-        // Pass the ocmponents like this:
+        // Pass the components like this:
         // VRAS -> ActionResolver -> MyListener
         // And update from there on various events (i.e SpeechRecognizer callbacks).
         actionResolver.setComponents(ui, parser);

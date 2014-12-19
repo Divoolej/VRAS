@@ -45,8 +45,8 @@ public class WorldMap {
                 fillMapWithEmpty();
                 generateBase();
                 generateLevelOne(LEVEL_ONE_START, LEVEL_ONE_END);
-                generateLevelTwo(LEVEL_TWO_START, LEVEL_TWO_END);
-                generateLevelThree(LEVEL_THREE_START, LEVEL_THREE_END);
+//                generateLevelTwo(LEVEL_TWO_START, LEVEL_TWO_END);
+//                generateLevelThree(LEVEL_THREE_START, LEVEL_THREE_END);
             }
         }
     }
@@ -99,13 +99,13 @@ public class WorldMap {
         }
     }
 
-    private void generateLevelTwo(int startY, int endY) {
-
-    }
-
-    private void generateLevelThree(int startY, int endY) {
-
-    }
+//    private void generateLevelTwo(int startY, int endY) {
+//
+//    }
+//
+//    private void generateLevelThree(int startY, int endY) {
+//
+//    }
 
     // Function returns the MapEntity given at a target (x, y) position
     public MapEntity at(int x, int y) {
@@ -118,5 +118,9 @@ public class WorldMap {
 
     public int getMapHeight() {
         return mapHeight;
+    }
+
+    public void setEmpty(int x, int y) {
+        map[x][y] = new Empty(x, y);
     }
 }

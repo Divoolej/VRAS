@@ -1,13 +1,11 @@
 package com.ant.very.objects;
 
+import com.ant.very.WorldMap;
 import com.ant.very.utils.Constants;
 
-public class Ant {
+import static com.ant.very.utils.Constants.*;
 
-    /*private final int NORTH = 0;
-    private final int EAST = 1;
-    private final int SOUTH = 2;
-    private final int WEST = 3;*/
+public class Ant {
 
     private int x, y; //The coordinates of Ant, in tiles.
     private static Ant ant;
@@ -15,7 +13,7 @@ public class Ant {
 
     private Ant() { // 'private' prevents other classes from instantiating
         x = (Constants.MAP_WIDTH - 9) / 2 + 4; // 4 is a magic number, don't ask!
-        y = 3;
+        y = 8;
     }
 
     public static Ant getInstance() { // Singleton pattern; lazy instantiation
@@ -33,22 +31,26 @@ public class Ant {
         return y;
     }
 
-    // LINK WITH PARSER HERE
-    /*
-    public example_interact(string command) {
-        if command == "north"
-            WorldMap.getInstance().at(x, y + 1).onInteract()
-        ETC
+    public void move(String direction) {
+        switch (direction) {
+            case DIRECTION_DOWN:
+                WorldMap.getInstance().at(x, y - 1).onInteract();
+                break;
+            case DIRECTION_UP:
+                WorldMap.getInstance().at(x, y + 1).onInteract();
+                break;
+            case DIRECTION_LEFT:
+                WorldMap.getInstance().at(x - 1, y).onInteract();
+                break;
+            case DIRECTION_RIGHT:
+                WorldMap.getInstance().at(x + 1, y).onInteract();
+                break;
+        }
     }
-     */
 
     public void moveTo(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public void moveBy(int x, int y) {
-        this.x = getX() + x;
-        this.y = getY() + y;
-    }
 }

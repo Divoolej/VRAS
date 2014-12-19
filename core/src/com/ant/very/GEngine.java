@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class GEngine {
     private Camera camera;
@@ -18,13 +18,13 @@ public class GEngine {
     private SpriteBatch batch;
 
     // Sprites:
-    private Vector<Sprite> sprites;
+    private ArrayList<Sprite> sprites;
 
     public GEngine(Camera camera, SpriteBatch batch) {
         map = WorldMap.getInstance();
         this.camera = camera;
         this.batch = batch;
-        tileSize = this.camera.getWidth() / 9;
+        tileSize = this.camera.getWidth() / Constants.TILES_HORIZONTALLY;
 
         atlas = new TextureAtlas("VrasPack.pack");
         loadSprites();
@@ -32,7 +32,7 @@ public class GEngine {
     }
 
     public void loadSprites() {
-        sprites = new Vector<Sprite>();
+        sprites = new ArrayList<>();
         for (int i = 0; i < Constants.Sprites.count(); i++) {
             sprites.add(new Sprite(atlas.findRegion(
                     Constants.Sprites.values()[i].toString().toLowerCase()) ) );

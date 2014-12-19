@@ -11,7 +11,6 @@ import com.ant.very.ActionResolver;
 import com.ant.very.objects.Ant;
 import com.ant.very.objects.Ui;
 import com.ant.very.utils.InputParser;
-import static com.ant.very.utils.Constants.*;
 import com.badlogic.gdx.Gdx;
 
 
@@ -114,20 +113,7 @@ public class ActionResolverAndroid implements ActionResolver {
 
     @Override
     public void moveAnt(String direction) {
-        switch (direction) {
-            case DIRECTION_DOWN:
-                Ant.getInstance().moveBy(0, -1);
-                break;
-            case DIRECTION_UP:
-                Ant.getInstance().moveBy(0, 1);
-                break;
-            case DIRECTION_LEFT:
-                Ant.getInstance().moveBy(-1, 0);
-                break;
-            case DIRECTION_RIGHT:
-                Ant.getInstance().moveBy(1, 0);
-                break;
-        }
+        Ant.getInstance().move(direction);
     }
 
     @Override
