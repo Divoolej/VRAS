@@ -1,6 +1,5 @@
 package com.ant.very;
 
-import com.ant.very.objects.Ant;
 import com.ant.very.objects.Camera;
 import com.ant.very.objects.Ui;
 import com.ant.very.utils.Constants;
@@ -63,8 +62,8 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         map = WorldMap.getInstance();
         float w = (float)Constants.TILES_HORIZONTALLY; // Shortcut variable
         camera = new Camera(0, 0, GFX_WIDTH, GFX_HEIGHT,
-                (int)((GFX_WIDTH / w) * map.getWidth() - GFX_WIDTH) - 1,
-                (int)((GFX_WIDTH / w) * map.getHeight() - ((GFX_WIDTH / w) * Constants.TILES_VERTICALLY)));
+                (int)((GFX_WIDTH / w) * map.getMapWidth() - GFX_WIDTH) - 1,
+                (int)((GFX_WIDTH / w) * map.getMapHeight() - ((GFX_WIDTH / w) * Constants.TILES_VERTICALLY)));
                  // We want our our "ground" to take TILES_HORIZONTALLY x TILES_VERTICALLY tiles, the
                  // rest of the screen is for communication
 

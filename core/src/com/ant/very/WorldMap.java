@@ -1,5 +1,7 @@
 package com.ant.very;
 
+import static com.ant.very.utils.Constants.*;
+
 /*
  * A Singleton class for generating and storing map data
  */
@@ -14,41 +16,32 @@ import com.ant.very.utils.Constants;
 public class WorldMap {
     private static WorldMap worldMap = null; // The one and only instance
 
-    private final int height; // The height of the map array, measured in tiles
-    private final int width;  // The width of the map array, measured in tiles
-
-    private final int LEVEL_ONE_START = 9;
-    private final int LEVEL_ONE_END = 69;
-    private final int LEVEL_TWO_START = 70;
-    private final int LEVEL_TWO_END = 140;
-    private final int LEVEL_THREE_START = 141;
-    private final int LEVEL_THREE_END = 200;
-    private final int BASE_WIDTH = 9;
-    private final int BASE_HEIGHT = 8;
+    private final int mapHeight; // The height of the map array, measured in tiles
+    private final int mapWidth;  // The width of the map array, measured in tiles
 
     private MapEntity[][] map; // The Array containing the map data, each field contains an integer
                          // which represents certain unique type of game object. Possible values
                          // can be found in the Constants class
 
-    private WorldMap(int width, int height) { // 'private' prevents other classes from instantiating
-        this.height = height;
-        this.width = width;
+    private WorldMap(int mapWidth, int mapHeight) { // 'private' prevents other classes from instantiating
+        this.mapHeight = mapHeight;
+        this.mapWidth = mapWidth;
 
-        map = new MapEntity[width][height];
+        map = new MapEntity[mapWidth][mapHeight];
 
         generateMap();
     }
 
     public static WorldMap getInstance() { // Singleton pattern; lazy instantiation
         if (worldMap == null) {
-            worldMap = new WorldMap(Constants.MAP_WIDTH, Constants.MAP_HEIGHT);
+            worldMap = new WorldMap(MAP_WIDTH, MAP_HEIGHT);
         }
         return worldMap;
     }
 
     private void generateMap() {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+        for (int x = 0; x < mapWidth; x++) {
+            for (int y = 0; y < mapHeight; y++) {
                 fillMapWithEmpty();
                 generateBase();
                 generateLevelOne(LEVEL_ONE_START, LEVEL_ONE_END);
@@ -59,15 +52,15 @@ public class WorldMap {
     }
 
     private void fillMapWithEmpty() {
-        for (int x0 = 0; x0 < width; x0++) {
-            for (int y0 = 0; y0 < height; y0++) {
+        for (int x0 = 0; x0 < mapWidth; x0++) {
+            for (int y0 = 0; y0 < mapHeight; y0++) {
                 map[x0][y0] = new Empty(x0, y0);
             }
         }
     }
 
     private void generateBase() {
-        int left_and_right_of_base_width = (width - BASE_WIDTH) / 2;
+        int left_and_right_of_base_width = (mapWidth - BASE_WIDTH) / 2;
         for (int x0 = 0; x0 <= left_and_right_of_base_width; x0++)
         {
             for (int y0 = 0; y0 < BASE_HEIGHT; y0++)
@@ -75,7 +68,7 @@ public class WorldMap {
                 map[x0][y0] = new Bedrock();
             }
         }
-        for (int x0 = left_and_right_of_base_width + BASE_WIDTH - 1; x0 < width; x0++)
+        for (int x0 = left_and_right_of_base_width + BASE_WIDTH - 1; x0 < mapWidth; x0++)
         {
             for (int y0 = 0; y0 < BASE_HEIGHT; y0++)
             {
@@ -119,11 +112,11 @@ public class WorldMap {
         return map[x][y];
     }
 
-    public int getWidth() {
-        return width;
+    public int getMapWidth() {
+        return mapWidth;
     }
 
-    public int getHeight() {
-        return height;
+    public int getMapHeight() {
+        return mapHeight;
     }
 }

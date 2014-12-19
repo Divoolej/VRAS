@@ -11,7 +11,7 @@ public class Ant {
 
     private int x, y; //The coordinates of Ant, in tiles.
     private static Ant ant;
-    //private int direction; // e.g. "go 1 meter up" will change this to NORTH, it's then used in move() // OLD OLD OLD but i'm keeping it for now
+    //private int direction; // e.g. "go 1 meter up" will change this to NORTH, it's then used in moveBy() // OLD OLD OLD but i'm keeping it for now
 
     private Ant() { // 'private' prevents other classes from instantiating
         x = (Constants.MAP_WIDTH - 9) / 2 + 4; // 4 is a magic number, don't ask!
@@ -42,8 +42,13 @@ public class Ant {
     }
      */
 
-    public void move(int x, int y) {
+    public void moveTo(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void moveBy(int x, int y) {
+        this.x = getX() + x;
+        this.y = getY() + y;
     }
 }

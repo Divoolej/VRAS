@@ -78,14 +78,18 @@ public class InputParser {
     }
 
     private void performAction(String action, String sentence) {
+        boolean argFound = false;
         switch (action) {
             case ACTION_MOVE:
                 for (String direction : moveArgs) {
                     if (sentence.contains(direction)) {
+                        argFound = true;
                         actionResolver.moveAnt(direction);
                         break;
                     }
-                    else actionResolver.showToast("Move where?", 5000);
+                    }
+                if (!argFound) {
+                    actionResolver.showToast("Move where?", 5000);
                 }
                 break;
             case ACTION_PICKUP:
@@ -96,10 +100,13 @@ public class InputParser {
             case ACTION_BUY:
                 for (String item : buyArgs) {
                     if (sentence.contains(item)) {
+                        argFound = true;
                         actionResolver.buyItem(item);
                         break;
                     }
-                    else actionResolver.showToast("Hmm.. what should I buy?", 5000);
+                }
+                if (!argFound) {
+                    actionResolver.showToast("Hmm.. what should I buy?", 5000);
                 }
                 break;
         }

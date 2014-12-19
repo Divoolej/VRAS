@@ -40,7 +40,7 @@ public class Ui {
 
 //        Create the actors
         botResponseTextArea = new TextArea("\n  Ask me something!...", skin);
-        inputTextField = new TextField("   ...", skin);
+        inputTextField = new TextField(" ", skin);
         micButton = new MicButton();
         setupActors();
 

@@ -349,6 +349,9 @@
       </SOURCES>
     </library>
     <library name="gdx-1.4.1">
+      <ANNOTATIONS>
+        <root url="file://$PROJECT_DIR$" />
+      </ANNOTATIONS>
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.4.1/df470d263438048af74860ca51fc497c16a0c76a/gdx-1.4.1.jar!/" />
       </CLASSES>

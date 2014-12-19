@@ -14,7 +14,7 @@ public class Sand extends MapEntity {
     public void onInteract() {
         MapEntity m = WorldMap.getInstance().at(x, y);
         m = new Empty(x, y);
-        Ant.getInstance().move(x, y);
+        Ant.getInstance().moveBy(x, y);
     }
     public Sand(int x, int y) {
         spriteId = Constants.Sprites.SAND.toInt();

@@ -4,6 +4,15 @@ package com.ant.very.utils;
  * Created by hubert on 28.10.14.
  */
 public class Constants {
+    public static final int LEVEL_ONE_START = 9;
+    public static final int LEVEL_ONE_END = 69;
+    public static final int LEVEL_TWO_START = 70;
+    public static final int LEVEL_TWO_END = 140;
+    public static final int LEVEL_THREE_START = 141;
+    public static final int LEVEL_THREE_END = 200;
+    public static final int BASE_WIDTH = 9;
+    public static final int BASE_HEIGHT = 8;
+
     public static final int MAP_HEIGHT = 208;
     public static final int MAP_WIDTH = 19;
 

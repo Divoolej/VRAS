@@ -19,4 +19,6 @@ public interface ActionResolver {
     public void buyItem(String item);
 
     void moveAnt(String direction);
+
+    void setResponseFieldText(String s);
 }

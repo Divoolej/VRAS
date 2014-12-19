@@ -11,7 +11,7 @@ public class Camera {
     private int maxX, maxY;
 
     // The following are very important, they are used to store the coordinates of Camera before
-    // the dragging begins, so that the camera won't move by the calculated offset EVERY frame.
+    // the dragging begins, so that the camera won't moveBy by the calculated offset EVERY frame.
     // When the user isn't dragging the Camera, they are equal to x and y.
     private int originX, originY;
 
