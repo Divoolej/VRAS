@@ -87,9 +87,9 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
 
         batch.begin();
         gEngine.drawAll();
-        font.draw(batch, "x = " + camera.getX() + ", y = " + camera.getY(), 30, 30); //debug
-        font.draw(batch, "dX = " + camera.getDraggedX() + ", dY = " + camera.getDraggedY(), 30, 60);
-        font.draw(batch, "oX = " + camera.getOriginX() + ", oY = " + camera.getOriginY(), 30, 90);
+//        font.draw(batch, "x = " + camera.getX() + ", y = " + camera.getY(), 30, 30); //debug
+//        font.draw(batch, "dX = " + camera.getDraggedX() + ", dY = " + camera.getDraggedY(), 30, 60);
+//        font.draw(batch, "oX = " + camera.getOriginX() + ", oY = " + camera.getOriginY(), 30, 90);
         batch.end();
 
         ui.renderUI();
