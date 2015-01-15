@@ -10,12 +10,8 @@ import com.google.code.chatterbotapi.ChatterBotFactory;
 import com.google.code.chatterbotapi.ChatterBotSession;
 import com.google.code.chatterbotapi.ChatterBotType;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
-import java.util.SortedMap;
 
 /**
  * An implementation of the ChatterBot API by pierredavidbelanger.
@@ -79,12 +75,6 @@ public class ConversationBot {
         respondTask.execute(what);
         String response = respondTask.get();
         respondTask.cancel(true); // Kill the AsyncTask.
-
-        // Put current time and values in history map:
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        historyMap.put(dateFormat.format(new Date()) + ": " + what, response);
-
-        Gdx.app.log("MAP", what + " | " + response);
 
         return response;
     }
