@@ -1,10 +1,14 @@
 package com.ant.very.android;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ant.very.ActionResolver;
@@ -13,11 +17,14 @@ import com.ant.very.objects.Ui;
 import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.Gdx;
 
+import java.util.HashMap;
+
 
 /**
  * This class contains native android code that can be called by the core libGDX project.
  * Created by hubert on 09.11.14.
  */
+
 public class ActionResolverAndroid implements ActionResolver {
     Context appContext;
     Handler uiThread;
@@ -113,7 +120,7 @@ public class ActionResolverAndroid implements ActionResolver {
 
     @Override
     public void moveAnt(String direction) {
-        Ant.getInstance().move(direction);
+        Ant.getInstance().moveInDirection(direction);
     }
 
     @Override
@@ -129,5 +136,47 @@ public class ActionResolverAndroid implements ActionResolver {
         if(ui.isCurrentlyRecognizingSpeech()) {
             speechRecognizer.destroy();
         }
+    }
+
+    public void showHistoryDialog(HashMap<String, String> historyMap) {
+//        TextView tv = new TextView(appContext);
+//        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(appContext);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(appContext);
+        builder.setIcon(R.drawable.ic_launcher);
+        builder.setTitle("select name:");
+        final ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(
+                appContext, android.R.layout.select_dialog_singlechoice);
+        mArrayAdapter.add("czesiek");
+        mArrayAdapter.add("grzesiek");
+        mArrayAdapter.add("karol");
+        mArrayAdapter.add("barol");
+        mArrayAdapter.add("ratata");
+        builder.setNegativeButton("cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.setAdapter(mArrayAdapter,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name = mArrayAdapter.getItem(which);
+                        AlertDialog.Builder builderInner = new AlertDialog.Builder(appContext);
+                        builderInner.setMessage(name);
+                        builderInner.setTitle("selected item is:");
+                        builderInner.setPositiveButton("ok",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        builderInner.show();
+                    }
+                });
+        builder.show();
+
     }
 }

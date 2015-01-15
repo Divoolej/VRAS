@@ -27,6 +27,7 @@ public class Ui {
     private TextArea botResponseTextArea;
     private MicButton micButton;
     private Action shakeAction;
+    private HistoryButton historyButton;
     private ActionResolver actionResolver;
 
     private boolean currentlyRecognizingSpeech = false;
@@ -39,7 +40,7 @@ public class Ui {
         skin = new Skin(Gdx.files.internal("Scene2D/uiskin.json"));
 
 //        Create the actors
-        botResponseTextArea = new TextArea("\n  Ask me something!...", skin);
+        botResponseTextArea = new TextArea("\n  Ask me anything!...", skin);
         inputTextField = new TextField(" ", skin);
         micButton = new MicButton();
         setupActors();
@@ -115,6 +116,22 @@ public class Ui {
         stage.draw();
     }
 
+    private class HistoryButton extends Actor {
+        Texture texture = new Texture(Gdx.files.internal("Scene2D/mic.png"));
+
+        protected HistoryButton() {
+            setBounds(getX(), getY(), texture.getWidth()/1.5f, texture.getHeight()/1.5f);
+            setOrigin(texture.getWidth()/3.0f, texture.getHeight()/3.0f);
+
+            addListener(new InputListener() {
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    actionResolver.showHistoryDialog();
+                }
+            });
+        }
+    }
+
     private class MicButton extends Actor {
         Texture texture = new Texture(Gdx.files.internal("Scene2D/mic.png"));
 
@@ -171,12 +188,6 @@ public class Ui {
             micButton.act(Gdx.graphics.getDeltaTime());
         }
     }
-
-//    Kinda collides with the button pulse.
-//    public void actionScaleMicButton(float value) {
-//        micButton.setScale(value);
-//        micButton.act(Gdx.graphics.getDeltaTime());
-//    }
 
     public void stopMicButtonPulse() {
         micButton.clearActions();

@@ -10,6 +10,7 @@ import com.google.code.chatterbotapi.ChatterBotFactory;
 import com.google.code.chatterbotapi.ChatterBotSession;
 import com.google.code.chatterbotapi.ChatterBotType;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 /**
@@ -26,11 +27,15 @@ public class ConversationBot {
     TextToSpeech tts;
     static ChatterBotSession botSession;
 
+    private HashMap<String, String> historyMap;
+
     public ConversationBot(Context appContext) throws Exception {
         this.appContext = appContext;
         factory = new ChatterBotFactory();
         bot = factory.create(ChatterBotType.PANDORABOTS, "a41310638e34fe16"); // I found it a bit faster than Cleverbot.
         botSession = bot.createSession();
+
+        historyMap = new HashMap<>();
 
         tts = new TextToSpeech(appContext, new TextToSpeech.OnInitListener() {
             @Override
@@ -56,6 +61,11 @@ public class ConversationBot {
         respondTask.execute(what);
         String response = respondTask.get();
         respondTask.cancel(true); // Kill the AsyncTask.
+
+        historyMap.put(what, response);
+
+        Gdx.app.log("MAP", what + " | " + response);
+
         return response;
     }
 
@@ -80,5 +90,9 @@ public class ConversationBot {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
         }
+    }
+
+    public HashMap<String, String> getHistoryMap() {
+        return historyMap;
     }
 }

@@ -53,6 +53,7 @@ public class InputParser {
         moveArgs.add(DIRECTION_RIGHT);
         // BUY:
         buyArgs.add(ITEM_FOOD);
+
     }
 
     // When passed the sentence, finds keywords and executes methods. Returns the response string.

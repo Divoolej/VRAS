@@ -3,8 +3,10 @@ package com.ant.very;
 import com.ant.very.objects.Ui;
 import com.ant.very.utils.InputParser;
 
+import java.util.HashMap;
+
 /**
- * A class that enables communication between core & android.
+ * An interface that enables communication between core & android.
  */
 
 public interface ActionResolver {
@@ -21,4 +23,6 @@ public interface ActionResolver {
     void moveAnt(String direction);
 
     void setResponseFieldText(String s);
-}
+
+    void showHistoryDialog(HashMap<String, String> historyMap);
+    }
