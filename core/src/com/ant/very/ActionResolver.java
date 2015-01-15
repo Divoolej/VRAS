@@ -20,5 +20,7 @@ public interface ActionResolver {
 
     void moveAnt(String direction);
 
+    void setResponseFieldText(String s);
+
     void showHistoryDialog();
     }

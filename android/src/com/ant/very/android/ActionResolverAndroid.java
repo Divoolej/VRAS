@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.widget.ArrayAdapter;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ant.very.ActionResolver;
@@ -16,7 +18,9 @@ import com.ant.very.objects.Ui;
 import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.Gdx;
 
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 /**
@@ -137,46 +141,37 @@ public class ActionResolverAndroid implements ActionResolver {
     }
 
     public void showHistoryDialog() {
-//        HashMap<String, String> historyMap =  ConversationBot.getInstance().getHistoryMap();
-
-//        TextView tv = new TextView(appContext);
-//        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(appContext);
+        LinkedHashMap<String, String> historyMap =  ConversationBot.getInstance().getHistoryMap();
+        TextView tv = new TextView(appContext);
         final AlertDialog.Builder builder = new AlertDialog.Builder(appContext);
+
+        tv.setTextSize(20);
+        tv.setVerticalScrollBarEnabled(true);
+        tv.setMovementMethod(new ScrollingMovementMethod());
+        Iterator it = historyMap.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry pairs = (Map.Entry)it.next();
+            tv.setText(tv.getText() + "" + pairs.getKey() + "\nAnt: " + pairs.getValue() + "\n\n");
+        }
+
         builder.setIcon(R.drawable.ic_launcher);
-        builder.setTitle("select name:");
-        final ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<>(
-                appContext, android.R.layout.select_dialog_singlechoice);
-        mArrayAdapter.add("czesiek");
-        mArrayAdapter.add("grzesiek");
-        mArrayAdapter.add("karol");
-        mArrayAdapter.add("barol");
-        mArrayAdapter.add("ratata");
-        builder.setNegativeButton("cancel",
+        builder.setTitle("Chat history:");
+        builder.setView(tv);
+        builder.setNegativeButton("Close",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 });
-        builder.setAdapter(mArrayAdapter,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String name = mArrayAdapter.getItem(which);
-                        AlertDialog.Builder builderInner = new AlertDialog.Builder(appContext);
-                        builderInner.setMessage(name);
-                        builderInner.setTitle("selected item is:");
-                        builderInner.setPositiveButton("ok",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                        builderInner.show();
-                    }
-                });
-        builder.show();
+        Handler handler = new Handler(Looper.getMainLooper());
 
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                builder.show();
+            }
+        });
     }
 }

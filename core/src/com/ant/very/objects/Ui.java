@@ -90,7 +90,7 @@ public class Ui {
         });
 
         historyButton.setTouchable(Touchable.enabled);
-        historyButton.setPosition(50, 50);
+        historyButton.setPosition(Gdx.graphics.getWidth() - 100, 50);
 
         micButton.setTouchable(Touchable.enabled);
         micButton.setPosition(inputTextField.getX() + inputTextField.getWidth() - 15
@@ -121,11 +121,10 @@ public class Ui {
     }
 
     private class HistoryButton extends Actor {
-        Texture texture = new Texture(Gdx.files.internal("Scene2D/mic.png"));
+        Texture texture = new Texture(Gdx.files.internal("Scene2D/history.png"));
 
         protected HistoryButton() {
-            setBounds(getX(), getY(), texture.getWidth()/1.5f, texture.getHeight()/1.5f);
-            setOrigin(texture.getWidth()/3.0f, texture.getHeight()/3.0f);
+            setBounds(getX(), getY(), texture.getWidth()*1.6f, texture.getHeight()*1.6f);
 
             addListener(new InputListener() {
                 @Override

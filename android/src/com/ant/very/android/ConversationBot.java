@@ -10,8 +10,12 @@ import com.google.code.chatterbotapi.ChatterBotFactory;
 import com.google.code.chatterbotapi.ChatterBotSession;
 import com.google.code.chatterbotapi.ChatterBotType;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.SortedMap;
 
 /**
  * An implementation of the ChatterBot API by pierredavidbelanger.
@@ -29,7 +33,7 @@ public class ConversationBot {
     TextToSpeech tts;
     static ChatterBotSession botSession;
 
-    private HashMap<String, String> historyMap;
+    private LinkedHashMap<String, String> historyMap;
 
     public static ConversationBot getInstance() {
         if(conversationBot == null) {
@@ -49,7 +53,7 @@ public class ConversationBot {
         chatterBot = factory.create(ChatterBotType.PANDORABOTS, "a41310638e34fe16"); // I found it a bit faster than Cleverbot.
         botSession = chatterBot.createSession();
 
-        historyMap = new HashMap<>();
+        historyMap = new LinkedHashMap<>();
 
         tts = new TextToSpeech(appContext, new TextToSpeech.OnInitListener() {
             @Override
@@ -76,7 +80,9 @@ public class ConversationBot {
         String response = respondTask.get();
         respondTask.cancel(true); // Kill the AsyncTask.
 
-        historyMap.put(what, response);
+        // Put current time and values in history map:
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        historyMap.put(dateFormat.format(new Date()) + ": " + what, response);
 
         Gdx.app.log("MAP", what + " | " + response);
 
@@ -110,7 +116,7 @@ public class ConversationBot {
         }
     }
 
-    public HashMap<String, String> getHistoryMap() {
+    public LinkedHashMap<String, String> getHistoryMap() {
         return historyMap;
     }
 }
