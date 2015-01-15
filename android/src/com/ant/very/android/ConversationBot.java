@@ -20,20 +20,34 @@ import java.util.Locale;
 
 public class ConversationBot {
     private static final String TAG = "ConversationBot";
-    Context appContext;
+    static Context appContext;
 
-    ChatterBotFactory factory;
-    ChatterBot bot;
+    private static ConversationBot conversationBot;
+
+    final ChatterBotFactory factory;
+    ChatterBot chatterBot;
     TextToSpeech tts;
     static ChatterBotSession botSession;
 
     private HashMap<String, String> historyMap;
 
-    public ConversationBot(Context appContext) throws Exception {
-        this.appContext = appContext;
+    public static ConversationBot getInstance() {
+        if(conversationBot == null) {
+            try {
+                conversationBot = new ConversationBot(appContext);
+            } catch (Exception e) {
+                Gdx.app.log("BOT:", "there was problem creating the bot");
+                e.printStackTrace();
+            }
+        }
+        return conversationBot;
+    }
+
+    private ConversationBot(Context appContext) throws Exception {
+        ConversationBot.appContext = appContext;
         factory = new ChatterBotFactory();
-        bot = factory.create(ChatterBotType.PANDORABOTS, "a41310638e34fe16"); // I found it a bit faster than Cleverbot.
-        botSession = bot.createSession();
+        chatterBot = factory.create(ChatterBotType.PANDORABOTS, "a41310638e34fe16"); // I found it a bit faster than Cleverbot.
+        botSession = chatterBot.createSession();
 
         historyMap = new HashMap<>();
 
@@ -67,6 +81,10 @@ public class ConversationBot {
         Gdx.app.log("MAP", what + " | " + response);
 
         return response;
+    }
+
+    public static void setContext(Context appContext) {
+        ConversationBot.appContext = appContext;
     }
 
     // A task that will run on a separate thread. It takes in and returns a String.

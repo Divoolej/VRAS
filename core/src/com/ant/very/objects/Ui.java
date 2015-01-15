@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 
 public class Ui {
-    private static final String TAG = "Ui";
     private Stage stage;
     private Skin skin;
 
@@ -43,12 +42,14 @@ public class Ui {
         botResponseTextArea = new TextArea("\n  Ask me anything!...", skin);
         inputTextField = new TextField(" ", skin);
         micButton = new MicButton();
+        historyButton = new HistoryButton();
         setupActors();
 
         Group group = new Group();
         group.addActor(inputTextField);
         group.addActor(botResponseTextArea);
         group.addActor(micButton);
+        group.addActor(historyButton);
         stage.addActor(group);
     }
 
@@ -87,6 +88,9 @@ public class Ui {
                 }
             }
         });
+
+        historyButton.setTouchable(Touchable.enabled);
+        historyButton.setPosition(50, 50);
 
         micButton.setTouchable(Touchable.enabled);
         micButton.setPosition(inputTextField.getX() + inputTextField.getWidth() - 15
@@ -127,8 +131,17 @@ public class Ui {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     actionResolver.showHistoryDialog();
+                    return true;
                 }
             });
+
+        }
+
+        @Override
+        public void draw(Batch batch, float parentAlpha) {
+            batch.draw(texture, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+                    getHeight(), getScaleX(), getScaleY(), getRotation(), 0, 0,
+                    texture.getWidth(), texture.getHeight(), false, false);
         }
     }
 

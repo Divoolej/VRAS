@@ -25,12 +25,11 @@ public class MyListener implements RecognitionListener {
 
     private Context appContext;
     private Ui ui;
-    private ConversationBot bot;
+    private ConversationBot bot = ConversationBot.getInstance();
     private InputParser parser;
 
-    public MyListener(Context context, Ui ui, ConversationBot bot, InputParser parser) {
+    public MyListener(Context context, Ui ui, InputParser parser) {
         appContext = context;
-        this.bot = bot;
         this.ui = ui;
         this.parser = parser;
     }

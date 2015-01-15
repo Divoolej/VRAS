@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ant.very.ActionResolver;
@@ -29,7 +28,6 @@ public class ActionResolverAndroid implements ActionResolver {
     Context appContext;
     Handler uiThread;
 
-    private ConversationBot bot;
     private Ui ui;
     private SpeechRecognizer speechRecognizer;
     private MyListener listener;
@@ -38,7 +36,7 @@ public class ActionResolverAndroid implements ActionResolver {
         uiThread = new Handler();
         this.appContext = appContext;
         try {
-            bot = new ConversationBot(appContext);
+            ConversationBot.setContext(appContext);
         } catch (Exception e) {
             showToast("Error creating the chatbot: " + e, 5000);
         }
@@ -47,7 +45,7 @@ public class ActionResolverAndroid implements ActionResolver {
     // Called by VRAS.
     public void setComponents(Ui ui, InputParser parser) {
         this.ui = ui;
-        listener = new MyListener(appContext, ui, bot, parser);
+        listener = new MyListener(appContext, ui, parser);
     }
 
     @Override
@@ -129,7 +127,7 @@ public class ActionResolverAndroid implements ActionResolver {
     }
 
     public void shutDownTtsEngine() {
-        bot.getTts().shutdown();
+        ConversationBot.getInstance().getTts().shutdown();
     }
 
     public void destroySpeechRecognizer() {
@@ -138,13 +136,15 @@ public class ActionResolverAndroid implements ActionResolver {
         }
     }
 
-    public void showHistoryDialog(HashMap<String, String> historyMap) {
+    public void showHistoryDialog() {
+//        HashMap<String, String> historyMap =  ConversationBot.getInstance().getHistoryMap();
+
 //        TextView tv = new TextView(appContext);
 //        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(appContext);
         final AlertDialog.Builder builder = new AlertDialog.Builder(appContext);
         builder.setIcon(R.drawable.ic_launcher);
         builder.setTitle("select name:");
-        final ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<String>(
+        final ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<>(
                 appContext, android.R.layout.select_dialog_singlechoice);
         mArrayAdapter.add("czesiek");
         mArrayAdapter.add("grzesiek");
