@@ -30,19 +30,19 @@ public class InputParser {
         // MOVE:
         responseMap.put(ACTION_MOVE, "Moving on.");
         synonymMap.put(ACTION_MOVE, ACTION_MOVE);
-        synonymMap.put("go", ACTION_MOVE);
-        synonymMap.put("walk", ACTION_MOVE);
-        synonymMap.put("advance", ACTION_MOVE);
+        synonymMap.put(" go ", ACTION_MOVE);
+        synonymMap.put(" walk ", ACTION_MOVE);
+        synonymMap.put(" advance ", ACTION_MOVE);
         // PICK UP:
         responseMap.put(ACTION_PICKUP, "Picked x up.");
         synonymMap.put(ACTION_PICKUP, ACTION_PICKUP);
-        synonymMap.put("take", ACTION_PICKUP);
-        synonymMap.put("gather", ACTION_PICKUP);
-        synonymMap.put("lift", ACTION_PICKUP);
+        synonymMap.put(" take ", ACTION_PICKUP);
+        synonymMap.put(" gather ", ACTION_PICKUP);
+        synonymMap.put(" lift ", ACTION_PICKUP);
         // BUY:
         responseMap.put(ACTION_BUY, "I bought x");
         synonymMap.put(ACTION_BUY, ACTION_BUY);
-        synonymMap.put("purchase", ACTION_BUY);
+        synonymMap.put(" purchase ", ACTION_BUY);
     }
 
     private void loadArgs() {
@@ -53,6 +53,7 @@ public class InputParser {
         moveArgs.add(DIRECTION_RIGHT);
         // BUY:
         buyArgs.add(ITEM_FOOD);
+
     }
 
     // When passed the sentence, finds keywords and executes methods. Returns the response string.

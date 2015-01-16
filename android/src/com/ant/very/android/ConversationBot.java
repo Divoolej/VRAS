@@ -10,6 +10,7 @@ import com.google.code.chatterbotapi.ChatterBotFactory;
 import com.google.code.chatterbotapi.ChatterBotSession;
 import com.google.code.chatterbotapi.ChatterBotType;
 
+import java.util.LinkedHashMap;
 import java.util.Locale;
 
 /**
@@ -19,18 +20,36 @@ import java.util.Locale;
 
 public class ConversationBot {
     private static final String TAG = "ConversationBot";
-    Context appContext;
+    static Context appContext;
 
-    ChatterBotFactory factory;
-    ChatterBot bot;
+    private static ConversationBot conversationBot;
+
+    final ChatterBotFactory factory;
+    ChatterBot chatterBot;
     TextToSpeech tts;
     static ChatterBotSession botSession;
 
-    public ConversationBot(Context appContext) throws Exception {
-        this.appContext = appContext;
+    private LinkedHashMap<String, String> historyMap;
+
+    public static ConversationBot getInstance() {
+        if(conversationBot == null) {
+            try {
+                conversationBot = new ConversationBot(appContext);
+            } catch (Exception e) {
+                Gdx.app.log("BOT:", "there was problem creating the bot");
+                e.printStackTrace();
+            }
+        }
+        return conversationBot;
+    }
+
+    private ConversationBot(Context appContext) throws Exception {
+        ConversationBot.appContext = appContext;
         factory = new ChatterBotFactory();
-        bot = factory.create(ChatterBotType.PANDORABOTS, "a41310638e34fe16"); // I found it a bit faster than Cleverbot.
-        botSession = bot.createSession();
+        chatterBot = factory.create(ChatterBotType.PANDORABOTS, "a41310638e34fe16"); // I found it a bit faster than Cleverbot.
+        botSession = chatterBot.createSession();
+
+        historyMap = new LinkedHashMap<>();
 
         tts = new TextToSpeech(appContext, new TextToSpeech.OnInitListener() {
             @Override
@@ -56,7 +75,12 @@ public class ConversationBot {
         respondTask.execute(what);
         String response = respondTask.get();
         respondTask.cancel(true); // Kill the AsyncTask.
+
         return response;
+    }
+
+    public static void setContext(Context appContext) {
+        ConversationBot.appContext = appContext;
     }
 
     // A task that will run on a separate thread. It takes in and returns a String.
@@ -80,5 +104,9 @@ public class ConversationBot {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
         }
+    }
+
+    public LinkedHashMap<String, String> getHistoryMap() {
+        return historyMap;
     }
 }

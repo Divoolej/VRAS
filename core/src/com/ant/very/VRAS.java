@@ -81,7 +81,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public void render () {
-        Gdx.gl.glClearColor(0, 0, 0, 0.5f);
+        Gdx.gl.glClearColor(0.592f, 0.321f, 0.054f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();

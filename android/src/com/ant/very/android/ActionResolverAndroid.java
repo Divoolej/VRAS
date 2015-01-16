@@ -1,10 +1,15 @@
 package com.ant.very.android;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ant.very.ActionResolver;
@@ -13,16 +18,20 @@ import com.ant.very.objects.Ui;
 import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.Gdx;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 
 /**
  * This class contains native android code that can be called by the core libGDX project.
  * Created by hubert on 09.11.14.
  */
+
 public class ActionResolverAndroid implements ActionResolver {
     Context appContext;
     Handler uiThread;
 
-    private ConversationBot bot;
     private Ui ui;
     private SpeechRecognizer speechRecognizer;
     private MyListener listener;
@@ -31,7 +40,7 @@ public class ActionResolverAndroid implements ActionResolver {
         uiThread = new Handler();
         this.appContext = appContext;
         try {
-            bot = new ConversationBot(appContext);
+            ConversationBot.setContext(appContext);
         } catch (Exception e) {
             showToast("Error creating the chatbot: " + e, 5000);
         }
@@ -40,7 +49,7 @@ public class ActionResolverAndroid implements ActionResolver {
     // Called by VRAS.
     public void setComponents(Ui ui, InputParser parser) {
         this.ui = ui;
-        listener = new MyListener(appContext, ui, bot, parser);
+        listener = new MyListener(appContext, ui, parser);
     }
 
     @Override
@@ -113,7 +122,7 @@ public class ActionResolverAndroid implements ActionResolver {
 
     @Override
     public void moveAnt(String direction) {
-        Ant.getInstance().move(direction);
+        Ant.getInstance().moveInDirection(direction);
     }
 
     @Override
@@ -122,12 +131,47 @@ public class ActionResolverAndroid implements ActionResolver {
     }
 
     public void shutDownTtsEngine() {
-        bot.getTts().shutdown();
+        ConversationBot.getInstance().getTts().shutdown();
     }
 
     public void destroySpeechRecognizer() {
         if(ui.isCurrentlyRecognizingSpeech()) {
             speechRecognizer.destroy();
         }
+    }
+
+    public void showHistoryDialog() {
+        LinkedHashMap<String, String> historyMap =  ConversationBot.getInstance().getHistoryMap();
+        TextView tv = new TextView(appContext);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(appContext);
+
+        tv.setTextSize(20);
+        tv.setVerticalScrollBarEnabled(true);
+        tv.setMovementMethod(new ScrollingMovementMethod());
+        Iterator it = historyMap.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry pairs = (Map.Entry)it.next();
+            tv.setText(tv.getText() + "" + pairs.getKey() + "\nAnt: " + pairs.getValue() + "\n\n");
+        }
+
+        builder.setIcon(R.drawable.ic_launcher);
+        builder.setTitle("Chat history:");
+        builder.setView(tv);
+        builder.setNegativeButton("Close",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                builder.show();
+            }
+        });
     }
 }

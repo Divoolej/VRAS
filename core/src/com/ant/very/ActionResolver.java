@@ -4,7 +4,7 @@ import com.ant.very.objects.Ui;
 import com.ant.very.utils.InputParser;
 
 /**
- * A class that enables communication between core & android.
+ * An interface that enables communication between core & android.
  */
 
 public interface ActionResolver {
@@ -21,4 +21,6 @@ public interface ActionResolver {
     void moveAnt(String direction);
 
     void setResponseFieldText(String s);
-}
+
+    void showHistoryDialog();
+    }

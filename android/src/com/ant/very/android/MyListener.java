@@ -11,7 +11,9 @@ import com.ant.very.objects.Ui;
 import com.ant.very.utils.InputParser;
 import com.badlogic.gdx.Gdx;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static com.ant.very.utils.Constants.*;
 
@@ -25,12 +27,11 @@ public class MyListener implements RecognitionListener {
 
     private Context appContext;
     private Ui ui;
-    private ConversationBot bot;
+    private ConversationBot bot = ConversationBot.getInstance();
     private InputParser parser;
 
-    public MyListener(Context context, Ui ui, ConversationBot bot, InputParser parser) {
+    public MyListener(Context context, Ui ui, InputParser parser) {
         appContext = context;
-        this.bot = bot;
         this.ui = ui;
         this.parser = parser;
     }
@@ -138,6 +139,12 @@ public class MyListener implements RecognitionListener {
             response = bot.ask(sentence);
         }
 
+        // Put current time and values in history map:
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        ConversationBot.getInstance().getHistoryMap().put
+                (dateFormat.format(new Date()) + ": " + sentence, response);
+
+        Gdx.app.log("MAP", sentence + " | " + response);
         ui.setBotResponseTextAreaText("\n " + response);
         speakOutLoud(response);
     }
@@ -150,7 +157,6 @@ public class MyListener implements RecognitionListener {
 
     @Override
     public void onPartialResults(Bundle bundle) {
-
     }
 
     @Override
