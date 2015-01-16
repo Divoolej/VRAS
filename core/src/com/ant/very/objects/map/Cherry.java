@@ -10,6 +10,7 @@ public class Cherry extends MapEntity {
     public void onLook() {}
     public void onInteract() {
         WorldMap.getInstance().setEmpty(x, y);
+        Ant.getInstance().getEq().addCherry();
         Ant.getInstance().moveTo(x, y);
     }
     public Cherry(int x, int y) {

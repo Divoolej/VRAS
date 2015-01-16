@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.ant.very.ActionResolver;
 import com.ant.very.objects.Ant;
 import com.ant.very.objects.Ui;
-import com.ant.very.utils.InputParser;
+import com.ant.very.utils.Parser;
 import com.badlogic.gdx.Gdx;
 
 import java.util.Iterator;
@@ -47,7 +47,7 @@ public class ActionResolverAndroid implements ActionResolver {
     }
 
     // Called by VRAS.
-    public void setComponents(Ui ui, InputParser parser) {
+    public void setComponents(Ui ui, Parser parser) {
         this.ui = ui;
         listener = new MyListener(appContext, ui, parser);
     }

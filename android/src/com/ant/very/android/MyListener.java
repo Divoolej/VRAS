@@ -8,7 +8,7 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 
 import com.ant.very.objects.Ui;
-import com.ant.very.utils.InputParser;
+import com.ant.very.utils.Parser;
 import com.badlogic.gdx.Gdx;
 
 import java.text.SimpleDateFormat;
@@ -28,9 +28,9 @@ public class MyListener implements RecognitionListener {
     private Context appContext;
     private Ui ui;
     private ConversationBot bot = ConversationBot.getInstance();
-    private InputParser parser;
+    private Parser parser;
 
-    public MyListener(Context context, Ui ui, InputParser parser) {
+    public MyListener(Context context, Ui ui, Parser parser) {
         appContext = context;
         this.ui = ui;
         this.parser = parser;

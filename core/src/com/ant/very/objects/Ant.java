@@ -8,17 +8,25 @@ import static com.ant.very.utils.Constants.*;
 public class Ant {
 
     private int x, y; //The coordinates of Ant, in tiles.
-    private Equipment eq;
+    private int hp;
+    private int maxHp = 100;
+    private int fuelBurnSpeed = 5;
+
+    public Inventory getEq() {
+        return eq;
+    }
+
+    private Inventory eq;
     private static Ant ant;
     //private int direction; // e.g. "go 1 meter up" will change this to NORTH, it's then used in moveBy() // OLD OLD OLD but i'm keeping it for now
 
-    private Ant() { // 'private' prevents other classes from instantiating
+    private Ant() {
         x = (Constants.MAP_WIDTH - 9) / 2 + 4; // 4 is a magic number, don't ask!
         y = 8;
-        eq = new Equipment(5);
+        eq = new Inventory(5);
     }
 
-    public static Ant getInstance() { // Singleton pattern; lazy instantiation
+    public static Ant getInstance() {
         if (ant == null) {
             ant = new Ant();
         }
@@ -33,7 +41,8 @@ public class Ant {
         return y;
     }
 
-    public void move(String direction) {
+    public void moveInDirection(String direction) {
+        eq.burnFuel(5);
         switch (direction) {
             case DIRECTION_DOWN:
                 WorldMap.getInstance().at(x, y - 1).onInteract();
@@ -55,4 +64,24 @@ public class Ant {
         this.y = y;
     }
 
+    public void eatCherry() {
+        this.eq.removeCherry();
+        hp += 20;
+    }
+
+    public String getQuantity(String foundItem) {
+        switch (foundItem) {
+            case ITEM_CHERRY:
+                return String.valueOf(eq.getNumCherries()) + " cherries.";
+            case ITEM_FUEL:
+                return String.valueOf(eq.getCurrentFuel()) + " fuel.";
+            case ITEM_FREE_SPACE:
+                return String.valueOf(eq.getFreeSpace() + " free spaces in my inventory");
+        }
+        return " no such thing!";
+    }
+
+    public void digInDirection(String direction) {
+        
+    }
 }
