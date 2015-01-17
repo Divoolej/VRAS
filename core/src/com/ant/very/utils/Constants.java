@@ -16,16 +16,25 @@ public class Constants {
     public static final int TILES_VERTICALLY = 13;
     public static final int TILES_HORIZONTALLY = 9;
 
-    public static final String ACTION_MOVE = "move";
-    public static final String ACTION_PICKUP = "pick up";
-    public static final String ACTION_BUY = "buy";
+    public static final String ACTION_MOVE = " move ";
+    public static final String ACTION_PICKUP = " pick up ";
+    public static final String ACTION_BUY = " buy ";
+    public static final String ACTION_QUANTITY = " how many ";
+    public static final String ACTION_DIG = " dig ";
+    public static final String ACTION_SELL = " sell ";
+    // Disregard this:
     public static final String BOT_CALL = "ring ring";
     // Arguments:
-    public static final String DIRECTION_UP = "up";
-    public static final String DIRECTION_DOWN = "down";
-    public static final String DIRECTION_LEFT = "left";
-    public static final String DIRECTION_RIGHT = "right";
-    public static final String ITEM_FOOD = "food";
+    public static final String DIRECTION_UP = " up";
+    public static final String DIRECTION_DOWN = " down";
+    public static final String DIRECTION_LEFT = " left";
+    public static final String DIRECTION_RIGHT = " right";
+
+    public static final String ITEM_CHERRY = "cherries";
+    public static final String ITEM_FUEL = "fuel";
+    public static final String ITEM_FREE_SPACE = "free space";
+    public static final String ITEM_BIGGER_BACKPACK = "bigger backpack";
+
 
 
     public enum Sprites {

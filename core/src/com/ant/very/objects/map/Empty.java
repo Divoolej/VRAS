@@ -8,9 +8,9 @@ public class Empty extends MapEntity {
     private int x, y;
     public void onLook() {}
     public void onInteract() {
-        if (Ant.getInstance().eq.getFuel() > 0) {
+        if (Ant.getInstance().getEq().getCurrentFuel() > 0) {
             Ant.getInstance().moveTo(x, y);
-            Ant.getInstance().eq.eatFuel(1);
+            Ant.getInstance().getEq().burnFuel(1);
         }
     }
     public Empty(int x, int y) {

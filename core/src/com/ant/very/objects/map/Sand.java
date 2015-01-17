@@ -9,10 +9,10 @@ public class Sand extends MapEntity {
     private int x, y;
     public void onLook() {}
     public void onInteract() {
-        if (Ant.getInstance().eq.getFuel() > 1) {
+        if (Ant.getInstance().getEq().getCurrentFuel() > 1) {
             WorldMap.getInstance().setEmpty(x, y);
             Ant.getInstance().moveTo(x, y);
-            Ant.getInstance().eq.eatFuel(2);
+            Ant.getInstance().getEq().burnFuel(2);
         }
     }
     public Sand(int x, int y) {

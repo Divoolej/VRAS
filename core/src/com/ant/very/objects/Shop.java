@@ -16,18 +16,18 @@ public class Shop {
     }
 
     public boolean sellCherry(int amount) {
-        if (Ant.getInstance().eq.getNumCherries() >= amount) {
-            Ant.getInstance().eq.addMoney(amount * 5);
-            Ant.getInstance().eq.removeCherry(amount);
+        if (Ant.getInstance().getEq().getNumCherries() >= amount) {
+            Ant.getInstance().getEq().addMoney(amount * 5);
+            Ant.getInstance().getEq().removeCherry(amount);
             return true;
         }
         return false;
     }
 
     public boolean buyFuel() {
-        if (Ant.getInstance().eq.getMoney() >= 20) {
-            Ant.getInstance().eq.removeMoney(20);
-            Ant.getInstance().eq.refillFuel();
+        if (Ant.getInstance().getEq().getMoney() >= 20) {
+            Ant.getInstance().getEq().removeMoney(20);
+            Ant.getInstance().getEq().refillFuel();
             return true;
         }
         return false;

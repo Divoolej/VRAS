@@ -3,7 +3,7 @@ package com.ant.very;
 import com.ant.very.objects.Camera;
 import com.ant.very.objects.Ui;
 import com.ant.very.utils.Constants;
-import com.ant.very.utils.InputParser;
+import com.ant.very.utils.Parser;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -28,7 +28,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
     // UI stuff:
     private Ui ui;
     private BitmapFont font;
-    private InputParser parser;
+    private Parser parser;
 
     // For android methods:
     private ActionResolver actionResolver;
@@ -43,7 +43,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
         GFX_HEIGHT = Gdx.graphics.getHeight();
 
         ui = new Ui(actionResolver);
-        parser = new InputParser(actionResolver);
+        parser = new Parser(actionResolver);
 
         // Pass the components like this:
         // VRAS -> ActionResolver -> MyListener
@@ -81,7 +81,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public void render () {
-        Gdx.gl.glClearColor(0, 0, 0, 0.5f);
+        Gdx.gl.glClearColor(0.592f, 0.321f, 0.054f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();

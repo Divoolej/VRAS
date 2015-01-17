@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 
 public class Ui {
-    private static final String TAG = "Ui";
     private Stage stage;
     private Skin skin;
 
@@ -27,6 +26,7 @@ public class Ui {
     private TextArea botResponseTextArea;
     private MicButton micButton;
     private Action shakeAction;
+    private HistoryButton historyButton;
     private ActionResolver actionResolver;
 
     private boolean currentlyRecognizingSpeech = false;
@@ -39,15 +39,17 @@ public class Ui {
         skin = new Skin(Gdx.files.internal("Scene2D/uiskin.json"));
 
 //        Create the actors
-        botResponseTextArea = new TextArea("\n  Ask me something!...", skin);
+        botResponseTextArea = new TextArea("\n  Ask me anything!...", skin);
         inputTextField = new TextField(" ", skin);
         micButton = new MicButton();
+        historyButton = new HistoryButton();
         setupActors();
 
         Group group = new Group();
         group.addActor(inputTextField);
         group.addActor(botResponseTextArea);
         group.addActor(micButton);
+        group.addActor(historyButton);
         stage.addActor(group);
     }
 
@@ -87,6 +89,9 @@ public class Ui {
             }
         });
 
+        historyButton.setTouchable(Touchable.enabled);
+        historyButton.setPosition(Gdx.graphics.getWidth() - 100, 50);
+
         micButton.setTouchable(Touchable.enabled);
         micButton.setPosition(inputTextField.getX() + inputTextField.getWidth() - 15
                 - micButton.getWidth(), inputTextField.getY() - 10);
@@ -113,6 +118,30 @@ public class Ui {
     public void renderUI() {
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+    }
+
+    private class HistoryButton extends Actor {
+        Texture texture = new Texture(Gdx.files.internal("Scene2D/history.png"));
+
+        protected HistoryButton() {
+            setBounds(getX(), getY(), texture.getWidth()*1.6f, texture.getHeight()*1.6f);
+
+            addListener(new InputListener() {
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    actionResolver.showHistoryDialog();
+                    return true;
+                }
+            });
+
+        }
+
+        @Override
+        public void draw(Batch batch, float parentAlpha) {
+            batch.draw(texture, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+                    getHeight(), getScaleX(), getScaleY(), getRotation(), 0, 0,
+                    texture.getWidth(), texture.getHeight(), false, false);
+        }
     }
 
     private class MicButton extends Actor {
@@ -171,12 +200,6 @@ public class Ui {
             micButton.act(Gdx.graphics.getDeltaTime());
         }
     }
-
-//    Kinda collides with the button pulse.
-//    public void actionScaleMicButton(float value) {
-//        micButton.setScale(value);
-//        micButton.act(Gdx.graphics.getDeltaTime());
-//    }
 
     public void stopMicButtonPulse() {
         micButton.clearActions();
