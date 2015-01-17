@@ -91,6 +91,17 @@ public class GEngine {
                 sprites.get(Constants.Sprites.ANT.toInt()).draw(batch);
             }
         }
+
+        int shopX = 9;
+        int shopY = 4;
+
+        if (shopX >= startX && shopX <= endX - 1) {
+            if (shopY >= startY && shopY < endY - 1) {
+                sprites.get(Constants.Sprites.SNAIL.toInt()).setPosition((shopX - startX) * tileSize -
+                        (camera.getX() % tileSize), (shopY - startY) * tileSize - (camera.getY() % tileSize));
+                sprites.get(Constants.Sprites.SNAIL.toInt()).draw(batch);
+            }
+        }
     }
 
     public void dispose() {

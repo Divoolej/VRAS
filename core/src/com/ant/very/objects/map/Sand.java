@@ -9,8 +9,11 @@ public class Sand extends MapEntity {
     private int x, y;
     public void onLook() {}
     public void onInteract() {
-        WorldMap.getInstance().setEmpty(x, y);
-        Ant.getInstance().moveTo(x, y);
+        if (Ant.getInstance().eq.getFuel() > 1) {
+            WorldMap.getInstance().setEmpty(x, y);
+            Ant.getInstance().moveTo(x, y);
+            Ant.getInstance().eq.eatFuel(2);
+        }
     }
     public Sand(int x, int y) {
         spriteId = Constants.Sprites.SAND.toInt();

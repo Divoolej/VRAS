@@ -9,8 +9,12 @@ public class Cherry extends MapEntity {
     private int x, y;
     public void onLook() {}
     public void onInteract() {
-        WorldMap.getInstance().setEmpty(x, y);
-        Ant.getInstance().moveTo(x, y);
+        if (Ant.getInstance().eq.getFuel() > 0) {
+            WorldMap.getInstance().setEmpty(x, y);
+            Ant.getInstance().moveTo(x, y);
+            Ant.getInstance().eq.addCherry();
+            Ant.getInstance().eq.eatFuel(1);
+        }
     }
     public Cherry(int x, int y) {
         spriteId = Constants.Sprites.CHERRY.toInt();

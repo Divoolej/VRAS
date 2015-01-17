@@ -8,7 +8,7 @@ import static com.ant.very.utils.Constants.*;
 public class Ant {
 
     private int x, y; //The coordinates of Ant, in tiles.
-    private Equipment eq;
+    public Equipment eq;
     private static Ant ant;
     //private int direction; // e.g. "go 1 meter up" will change this to NORTH, it's then used in moveBy() // OLD OLD OLD but i'm keeping it for now
 
@@ -54,5 +54,4 @@ public class Ant {
         this.x = x;
         this.y = y;
     }
-
 }
