@@ -8,9 +8,6 @@ import static com.ant.very.utils.Constants.*;
 public class Ant {
 
     private int x, y; //The coordinates of Ant, in tiles.
-     private int hp;
-    private int maxHp = 100;
-    private int fuelBurnSpeed = 5;
 
     public Inventory getEq() {
         return eq;
@@ -41,19 +38,19 @@ public class Ant {
         return y;
     }
 
-    public void moveInDirection(String direction) {
+    public void moveInDirection(String direction) { //Trebuszq - handle the result from onWalk
         switch (direction) {
             case DIRECTION_DOWN:
-                WorldMap.getInstance().at(x, y - 1).onInteract();
+                WorldMap.getInstance().at(x, y - 1).onWalk();
                 break;
             case DIRECTION_UP:
-                WorldMap.getInstance().at(x, y + 1).onInteract();
+                WorldMap.getInstance().at(x, y + 1).onWalk();
                 break;
             case DIRECTION_LEFT:
-                WorldMap.getInstance().at(x - 1, y).onInteract();
+                WorldMap.getInstance().at(x - 1, y).onWalk();
                 break;
             case DIRECTION_RIGHT:
-                WorldMap.getInstance().at(x + 1, y).onInteract();
+                WorldMap.getInstance().at(x + 1, y).onWalk();
                 break;
         }
     }
@@ -63,12 +60,7 @@ public class Ant {
         this.y = y;
     }
 
-    public void eatCherry() {
-        this.eq.removeCherry(1);
-        hp += 20;
-    }
-
-    public String getQuantity(String foundItem) {
+    public String getQuantity(String foundItem) { //Trebuszq - add other cherry-berries
         switch (foundItem) {
             case ITEM_CHERRY:
                 return String.valueOf(eq.getNumCherries()) + " cherries.";
@@ -80,7 +72,41 @@ public class Ant {
         return " no such thing!";
     }
 
-    public void digInDirection(String direction) {
-        
+    public void digInDirection(String direction) { //Trebuszq - handle the result from onDig
+        switch (direction) {
+            case DIRECTION_DOWN:
+                WorldMap.getInstance().at(x, y - 1).onDig();
+                break;
+            case DIRECTION_UP:
+                WorldMap.getInstance().at(x, y + 1).onDig();
+                break;
+            case DIRECTION_LEFT:
+                WorldMap.getInstance().at(x - 1, y).onDig();
+                break;
+            case DIRECTION_RIGHT:
+                WorldMap.getInstance().at(x + 1, y).onDig();
+                break;
+        }
+    }
+
+    public void pickUp() { //Trebuszq - assign this function to the keyword "pick up";
+        WorldMap.getInstance().at(x, y).onDig();
+    }
+
+    public void lookInDirection(String direction) { //Trebuszq - handle the result from onLook
+        switch (direction) {
+            case DIRECTION_DOWN:
+                WorldMap.getInstance().at(x, y - 1).onLook();
+                break;
+            case DIRECTION_UP:
+                WorldMap.getInstance().at(x, y + 1).onLook();
+                break;
+            case DIRECTION_LEFT:
+                WorldMap.getInstance().at(x - 1, y).onLook();
+                break;
+            case DIRECTION_RIGHT:
+                WorldMap.getInstance().at(x + 1, y).onLook();
+                break;
+        }
     }
 }

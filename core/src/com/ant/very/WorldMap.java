@@ -9,6 +9,7 @@ import static com.ant.very.utils.Constants.*;
 import com.ant.very.objects.MapEntity;
 import com.ant.very.objects.map.Bedrock;
 import com.ant.very.objects.map.Berry;
+import com.ant.very.objects.map.Blueberry;
 import com.ant.very.objects.map.Cherry;
 import com.ant.very.objects.map.Empty;
 import com.ant.very.objects.map.Raspberry;
@@ -126,7 +127,28 @@ public class WorldMap {
     }
 
     private void generateLevelThree(int startY, int endY) {
-
+        for (int x = 0; x < Constants.MAP_WIDTH; x++) {
+            for (int y = startY; y < endY; y++) {
+                int chance = (int)((Math.random() * 10) + 1);
+                if (chance == 1) {
+                    chance = (int)((Math.random() * 10) + 1);
+                    if (chance < 2)
+                        map[x][y] = new Cherry(x, y);
+                    else if (chance < 5)
+                        map[x][y] = new Berry(x, y);
+                    else if (chance < 8)
+                        map[x][y] = new Raspberry(x, y);
+                    else
+                        map[x][y] = new Blueberry(x, y);
+                } else if (chance <= 3) {
+                    map[x][y] = new Bedrock();
+                } else if (chance <= 6) {
+                    map[x][y] = new Sand(x, y);
+                } else {
+                    map[x][y] = new Stone(x, y);
+                }
+            }
+        }
     }
 
     // Function returns the MapEntity given at a target (x, y) position
