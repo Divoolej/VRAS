@@ -136,6 +136,7 @@ public class Parser {
                         argFound = true;
 //                        Shop.buyItem(item);
                         // TODO: Wat do do if ant has no monies.
+                        // :ooooooooo NO MONEY NO HONEY
                         return "I bought " + item + ".";
                     }
                 }
