@@ -52,7 +52,10 @@ public class Constants {
         MUSHROOM_BROWN(8),
         MUSHROOM_RED(9),
         SNAIL(10),
-        ANT(11);
+        ANT(11),
+        BERRY(12),
+        RASPBERRY(13),
+        BLUEBERRY(14);
 
         private final int value;
         public static int count() {

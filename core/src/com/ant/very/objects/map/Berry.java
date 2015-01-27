@@ -7,17 +7,30 @@ import com.ant.very.utils.Constants;
 
 public class Berry extends MapEntity {
     private int x, y;
-    public void onLook() {}
-    public void onInteract() {
-        if (Ant.getInstance().getEq().getCurrentFuel()  > 0) {
-            WorldMap.getInstance().setEmpty(x, y);
-            Ant.getInstance().moveTo(x, y);
-            Ant.getInstance().getEq().addCherry();
-            Ant.getInstance().getEq().burnFuel(1);
-        }
+
+    public String onLook() {
+        return "a berry";
+    }
+
+    public String onWalk() {
+        return "I walked on a berry";
+    }
+
+    public String onDig() {
+        if (Ant.getInstance().getEq().getCurrentFuel() > 0) {
+            if (Ant.getInstance().getEq().getFreeSpace() > 0) {
+                WorldMap.getInstance().setEmpty(x, y);
+                Ant.getInstance().moveTo(x, y);
+                Ant.getInstance().getEq().addBerry();
+                Ant.getInstance().getEq().burnFuel(1);
+                return "I picked up a berry";
+            } else
+                return "I don't have enough space in my inventory";
+        } else
+            return "I don't have enough fuel";
     }
     public Berry(int x, int y) {
-        spriteId = Constants.Sprites.CHERRY.toInt();
+        spriteId = Constants.Sprites.BERRY.toInt();
         this.x = x;
         this.y = y;
     }

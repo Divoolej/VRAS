@@ -7,8 +7,15 @@ import com.ant.very.utils.Constants;
  * Created by divoolej on 18.12.14.
  */
 public class Bedrock extends MapEntity {
-    public void onLook() {}
-    public void onInteract() {}
+    public String onLook() {
+        return "a bedrock, impassable";
+    }
+    public String onDig() {
+        return "I will never be able to dig through this";
+    }
+    public String onWalk() {
+        return "There is a bedrock in the way";
+    }
     public Bedrock() {
         spriteId = Constants.Sprites.BEDROCK.toInt();
     }

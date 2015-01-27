@@ -13,6 +13,7 @@ import com.ant.very.objects.map.Cherry;
 import com.ant.very.objects.map.Empty;
 import com.ant.very.objects.map.Raspberry;
 import com.ant.very.objects.map.Sand;
+import com.ant.very.objects.map.Stone;
 import com.ant.very.utils.Constants;
 
 public class WorldMap {
@@ -117,6 +118,8 @@ public class WorldMap {
                     map[x][y] = new Bedrock();
                 } else if (chance <= 6) {
                     map[x][y] = new Sand(x, y);
+                } else {
+                    map[x][y] = new Stone(x, y);
                 }
             }
         }

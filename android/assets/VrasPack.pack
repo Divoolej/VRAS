@@ -23,65 +23,72 @@ bedrock
   orig: 70, 70
   offset: 0, 0
   index: -1
-cherry
+berry
   rotate: false
   xy: 218, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-empty
+blueberry
   rotate: false
   xy: 290, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-marble1
+cherry
   rotate: false
   xy: 362, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-marble2
+empty
   rotate: false
   xy: 434, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-mushroom_brown
+marble1
   rotate: false
   xy: 506, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-mushroom_red
+marble2
   rotate: false
   xy: 578, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-sand
+raspberry
   rotate: false
   xy: 650, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
   index: -1
-snail
+sand
   rotate: false
   xy: 722, 2
-  size: 54, 31
-  orig: 54, 31
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+snail
+  rotate: false
+  xy: 794, 2
+  size: 70, 70
+  orig: 70, 70
   offset: 0, 0
   index: -1
 stone
   rotate: false
-  xy: 778, 2
+  xy: 866, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0

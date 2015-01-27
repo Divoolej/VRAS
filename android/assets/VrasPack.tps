@@ -196,10 +196,11 @@
             <filename>sprites/sand.png</filename>
             <filename>sprites/stone.png</filename>
             <filename>sprites/empty.png</filename>
-            <filename>sprites/snail.png</filename>
-            <filename>sprites/mushroom_red.png</filename>
-            <filename>sprites/mushroom_brown.png</filename>
             <filename>sprites/ant.png</filename>
+            <filename>sprites/blueberry.png</filename>
+            <filename>sprites/berry.png</filename>
+            <filename>sprites/raspberry.png</filename>
+            <filename>sprites/snail.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

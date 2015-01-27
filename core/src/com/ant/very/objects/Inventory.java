@@ -5,12 +5,20 @@ public class Inventory {
     private int fuel;
     private int maxFuel = 100;
     private int maxSize = 10;
+    private int pickTier = 1; //Variable to determine which blocks are possible to break
 
     public int getNumCherries() {
         return numCherries;
     }
+    public int getNumBerries() {
+        return numBerries;
+    }
 
     private int numCherries;
+    private int numBerries;
+    private int numRaspberries;
+    private int numBlueberries;
+
     private int money;
 
     public Inventory(int size) {
@@ -32,6 +40,24 @@ public class Inventory {
     public void removeCherry(int amount) {
         if (numCherries - amount >= 0) {
             numCherries -= amount;
+        }
+    }
+
+    public void removeBerry(int amount) {
+        if (numBerries - amount >= 0) {
+            numBerries -= amount;
+        }
+    }
+
+    public void removeRaspberry(int amount) {
+        if (numRaspberries - amount >= 0) {
+            numRaspberries -= amount;
+        }
+    }
+
+    public void removeBlueberry(int amount) {
+        if (numBlueberries - amount >= 0) {
+            numBlueberries -= amount;
         }
     }
 
@@ -69,5 +95,38 @@ public class Inventory {
 
     public int getMoney() {
         return money;
+    }
+
+    public int getPickTier() {
+        return pickTier;
+    }
+
+    public void addBerry() {
+        if (maxSize > currentSize) {
+            numBerries++;
+            currentSize++;
+        }
+    }
+
+    public void addRaspberry() {
+        if (maxSize > currentSize) {
+            numRaspberries++;
+            currentSize++;
+        }
+    }
+
+    public void addBlueberry() {
+        if (maxSize > currentSize) {
+            numBlueberries++;
+            currentSize++;
+        }
+    }
+
+    public int getNumRaspberries() {
+        return numRaspberries;
+    }
+
+    public int getNumBlueberries() {
+        return numBlueberries;
     }
 }

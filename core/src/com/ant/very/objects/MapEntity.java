@@ -7,8 +7,9 @@ package com.ant.very.objects;
 public abstract class MapEntity {
     protected int spriteId;
 
-    public abstract void onInteract();
-    public abstract void onLook();
+    public abstract String onWalk();
+    public abstract String onDig();
+    public abstract String onLook();
 
     public int getSpriteId() {
         return spriteId;
