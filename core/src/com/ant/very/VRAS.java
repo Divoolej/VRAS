@@ -60,7 +60,7 @@ public class VRAS extends ApplicationAdapter implements InputProcessor {
 
         map = WorldMap.getInstance();
         float w = (float)Constants.TILES_HORIZONTALLY; // Shortcut variable
-        camera = new Camera(0, 0, GFX_WIDTH, GFX_HEIGHT,
+        camera = new Camera(5 * (int)(GFX_WIDTH / w), 0, GFX_WIDTH, GFX_HEIGHT,
                 (int)((GFX_WIDTH / w) * map.getMapWidth() - GFX_WIDTH) - 1,
                 (int)((GFX_WIDTH / w) * map.getMapHeight() - ((GFX_WIDTH / w) * Constants.TILES_VERTICALLY)));
                  // We want our our "ground" to take TILES_HORIZONTALLY x TILES_VERTICALLY tiles, the

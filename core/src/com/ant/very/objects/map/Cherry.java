@@ -13,6 +13,8 @@ public class Cherry extends MapEntity {
     }
 
     public String onWalk() {
+        Ant.getInstance().moveTo(x, y);
+        Ant.getInstance().getEq().burnFuel(1);
         return "I walked on a cherry";
     }
 
