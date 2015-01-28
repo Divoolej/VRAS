@@ -1,11 +1,13 @@
 package com.ant.very.objects;
 
+import com.ant.very.utils.Constants;
+
 public class Inventory {
     private int currentSize;
     private int fuel;
     private int maxFuel = 100;
     private int maxSize = 10;
-    private int pickTier = 1; //Variable to determine which blocks are possible to break
+    private int pickTier = 0; //Variable to determine which blocks are possible to break
 
     public int getNumCherries() {
         return numCherries;
@@ -24,6 +26,23 @@ public class Inventory {
     public Inventory(int size) {
         this.currentSize = size;
         fuel = maxFuel;
+        money = 0;
+    }
+
+    //Trebuszq - link this to some command like "show me your itemz, you little beyotch"
+    public String getContent() {
+        String result = "I have ";
+        if (numCherries > 0)
+            result += Integer.toString(numCherries) + " cherries ";
+        if (numBerries > 0)
+            result += Integer.toString(numBerries) + " berries ";
+        if (numRaspberries > 0)
+            result += Integer.toString(numRaspberries) + " raspberries ";
+        if (numBlueberries > 0)
+            result += Integer.toString(numBlueberries) + " blueberries ";
+        if (result == "I have ")
+            result += "nothing";
+        return result;
     }
 
     public void addCherry() {
@@ -100,6 +119,8 @@ public class Inventory {
     public int getPickTier() {
         return pickTier;
     }
+
+    public void upgradePickTier() { if (pickTier < Constants.TIER_MARBLE) pickTier++; }
 
     public void addBerry() {
         if (maxSize > currentSize) {

@@ -89,7 +89,8 @@ public class Ant {
         }
     }
 
-    public void pickUp() { //Trebuszq - assign this function to the keyword "pick up";
+    //Trebuszq - assign this function to the keyword "pick up";
+    public void pickUp() {
         WorldMap.getInstance().at(x, y).onDig();
     }
 

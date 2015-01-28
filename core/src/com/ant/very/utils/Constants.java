@@ -2,9 +2,9 @@ package com.ant.very.utils;
 
 public class Constants {
     public static final int LEVEL_ONE_START = 9;
-    public static final int LEVEL_ONE_END = 19;
+    public static final int LEVEL_ONE_END = 20;
     public static final int LEVEL_TWO_START = 20;
-    public static final int LEVEL_TWO_END = 39;
+    public static final int LEVEL_TWO_END = 40;
     public static final int LEVEL_THREE_START = 40;
     public static final int LEVEL_THREE_END = 60;
     public static final int BASE_WIDTH = 9;
@@ -15,6 +15,12 @@ public class Constants {
 
     public static final int TILES_VERTICALLY = 13;
     public static final int TILES_HORIZONTALLY = 9;
+
+    public static final int TIER_MARBLE = 2;
+    public static final int TIER_MARBLE_PRICE = 100;
+    public static final int TIER_STONE = 1;
+    public static final int TIER_STONE_PRICE = 50;
+    public static final int TIER_SAND = 0;
 
     public static final String ACTION_MOVE = " move ";
     public static final String ACTION_PICKUP = " pick up ";
@@ -49,13 +55,11 @@ public class Constants {
         SAND(5),
         STONE(6),
         CHERRY(7),
-        MUSHROOM_BROWN(8),
-        MUSHROOM_RED(9),
-        SNAIL(10),
-        ANT(11),
-        BERRY(12),
-        RASPBERRY(13),
-        BLUEBERRY(14);
+        SNAIL(8),
+        ANT(9),
+        BERRY(10),
+        RASPBERRY(11),
+        BLUEBERRY(12);
 
         private final int value;
         public static int count() {

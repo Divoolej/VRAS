@@ -12,6 +12,7 @@ import com.ant.very.objects.map.Berry;
 import com.ant.very.objects.map.Blueberry;
 import com.ant.very.objects.map.Cherry;
 import com.ant.very.objects.map.Empty;
+import com.ant.very.objects.map.Marble;
 import com.ant.very.objects.map.Raspberry;
 import com.ant.very.objects.map.Sand;
 import com.ant.very.objects.map.Stone;
@@ -142,10 +143,12 @@ public class WorldMap {
                         map[x][y] = new Blueberry(x, y);
                 } else if (chance <= 3) {
                     map[x][y] = new Bedrock();
-                } else if (chance <= 6) {
+                } else if (chance <= 5) {
                     map[x][y] = new Sand(x, y);
-                } else {
+                } else if (chance <= 7) {
                     map[x][y] = new Stone(x, y);
+                } else {
+                    map[x][y] = new Marble(x, y);
                 }
             }
         }
