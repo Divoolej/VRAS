@@ -93,7 +93,7 @@ public class GEngine {
         }
 
         int shopX = 9;
-        int shopY = 4;
+        int shopY = 1;
 
         if (shopX >= startX && shopX <= endX - 1) {
             if (shopY >= startY && shopY < endY - 1) {

@@ -19,7 +19,7 @@ public class Ant {
 
     private Ant() {
         x = (Constants.MAP_WIDTH - 9) / 2 + 4; // 4 is a magic number, don't ask!
-        y = 8;
+        y = 2;
         eq = new Inventory(5);
     }
 
@@ -89,12 +89,12 @@ public class Ant {
         }
     }
 
-    //Trebuszq - assign this function to the keyword "pick up";
-    public void pickUp() {
+    //TODO: Trebuszq - assign this function to the keyword "pick up";
+    public void    pickUp() {
         WorldMap.getInstance().at(x, y).onDig();
     }
 
-    public void lookInDirection(String direction) { //Trebuszq - handle the result from onLook
+    public void lookInDirection(String direction) { //TODO: Trebuszq - handle the result from onLook
         switch (direction) {
             case DIRECTION_DOWN:
                 WorldMap.getInstance().at(x, y - 1).onLook();
