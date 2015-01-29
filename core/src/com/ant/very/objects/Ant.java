@@ -38,7 +38,7 @@ public class Ant {
         return y;
     }
 
-    public void moveInDirection(String direction) { //Trebuszq - handle the result from onWalk
+    public void moveInDirection(String direction) { //todo Trebuszq - handle the result from onWalk
         switch (direction) {
             case DIRECTION_DOWN:
                 WorldMap.getInstance().at(x, y - 1).onWalk();
@@ -60,10 +60,16 @@ public class Ant {
         this.y = y;
     }
 
-    public String getQuantity(String foundItem) { //Trebuszq - add other cherry-berries
+    public String getQuantity(String foundItem) { //TODO Trebuszq - link this
         switch (foundItem) {
             case ITEM_CHERRY:
                 return String.valueOf(eq.getNumCherries()) + " cherries.";
+            case ITEM_BERRY:
+                return String.valueOf(eq.getNumBerries()) + " berries.";
+            case ITEM_BLUEBERRY:
+                return String.valueOf(eq.getNumBlueberries()) + " blueberries.";
+            case ITEM_RASPBERRY:
+                return String.valueOf(eq.getNumRaspberries()) + " raspberries.";
             case ITEM_FUEL:
                 return String.valueOf(eq.getCurrentFuel()) + " fuel.";
             case ITEM_FREE_SPACE:
@@ -72,7 +78,7 @@ public class Ant {
         return " no such thing!";
     }
 
-    public void digInDirection(String direction) { //Trebuszq - handle the result from onDig
+    public void digInDirection(String direction) { //TODO Trebuszq - handle the result from onDig
         switch (direction) {
             case DIRECTION_DOWN:
                 WorldMap.getInstance().at(x, y - 1).onDig();

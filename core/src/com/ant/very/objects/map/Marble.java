@@ -35,7 +35,8 @@ public class Marble extends MapEntity {
 
     public Marble(int x, int y) {
         int tmp_random = (int)(Math.random() * 2);
-        spriteId = (tmp_random == 0 ? Constants.Sprites.MARBLE1.toInt() : Constants.Sprites.MARBLE2.toInt());
+        spriteId = (tmp_random == 0 ?
+                Constants.Sprites.MARBLE1.toInt() : Constants.Sprites.MARBLE2.toInt());
         this.x = x;
         this.y = y;
     }

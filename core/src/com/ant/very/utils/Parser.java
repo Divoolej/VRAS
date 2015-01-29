@@ -2,6 +2,8 @@ package com.ant.very.utils;
 
 import com.ant.very.ActionResolver;
 import com.ant.very.objects.Ant;
+import com.ant.very.objects.Shop;
+import com.badlogic.gdx.Gdx;
 
 import static com.ant.very.utils.Constants.*;
 
@@ -30,7 +32,6 @@ public class Parser {
     }
 
     private void loadWords() {
-        // TODO: add variation to the responses. Moving should probably be silent though.
         // MOVE:
         responseMap.put(ACTION_MOVE, "Moving on.");
         synonymMap.put(ACTION_MOVE, ACTION_MOVE);
@@ -55,9 +56,10 @@ public class Parser {
         responseMap.put(ACTION_DIG, "Diggy doo");
         synonymMap.put(ACTION_DIG, ACTION_DIG);
         // QUANTITY:
-        responseMap.put(ACTION_QUANTITY, "I've got x x");
-        synonymMap.put(ACTION_QUANTITY, ACTION_QUANTITY);
-        synonymMap.put(" how much ", ACTION_QUANTITY);
+        responseMap.put(ACTION_SHOW_ALL_ITEMS, "I've got loads of stuff!");
+        synonymMap.put(ACTION_SHOW_ALL_ITEMS, ACTION_SHOW_ALL_ITEMS);
+        synonymMap.put(" show all items", ACTION_SHOW_ALL_ITEMS);
+        synonymMap.put(" show me all your items", ACTION_SHOW_ALL_ITEMS);
     }
 
     private void loadArgs() {
@@ -80,6 +82,7 @@ public class Parser {
     public String parseSentence(String sentence) {
         String response = new String(BOT_CALL);
 
+        // Look for keyword entries in the synonym map:
         for (HashMap.Entry<String, String> entry : synonymMap.entrySet()) {
             String word = entry.getKey();
 
@@ -91,6 +94,7 @@ public class Parser {
 //                Execute the methods
                 response = actAndRespond(cmdId, lCaseSentence);
 
+                // If the parser is clueless, return a standard response:
                 if (response.equals("")) {
                     response = responseMap.get(cmdId);
                 }
@@ -134,24 +138,27 @@ public class Parser {
                 for (String item : buyArgs) {
                     if (sentence.contains(item)) {
                         argFound = true;
-//                        Shop.buyItem(item);
-                        // TODO: Wat do do if ant has no monies.
-                        // :ooooooooo NO MONEY NO HONEY
+//                       Shop.buyItem(item);
+                        // TODO: Wat do if ant has no monies.
                         return "I bought " + item + ".";
                     }
                 }
                 if (!argFound) {
                     return "Hmm.. what do you want me to buy?";
                 }
-            case ACTION_QUANTITY:
-                for (String item : quantityArgs) {
+            case ACTION_SHOW_ALL_ITEMS:
+                Gdx.app.log("Parser", "show items");
+                return Ant.getInstance().getEq().getContent();
+            case ACTION_SHOW_QUANTITY:
+                    for (String item : quantityArgs) {
                     if (sentence.contains(item)) {
                         String foundItem = item;
-                        argFound = true;
                         String quantity = Ant.getInstance().getQuantity(foundItem);
                         return "I've got " + quantity;
                     }
+                    else return "I've got none of that.";
                 }
+
         }
         return "";
     }

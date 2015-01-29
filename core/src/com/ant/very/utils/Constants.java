@@ -2,15 +2,15 @@ package com.ant.very.utils;
 
 public class Constants {
     public static final int LEVEL_ONE_START = 3;
-    public static final int LEVEL_ONE_END = 10;
-    public static final int LEVEL_TWO_START = 10;
-    public static final int LEVEL_TWO_END = 18;
-    public static final int LEVEL_THREE_START = 18;
-    public static final int LEVEL_THREE_END = 28;
+    public static final int LEVEL_ONE_END = 7;
+    public static final int LEVEL_TWO_START = 7;
+    public static final int LEVEL_TWO_END = 12;
+    public static final int LEVEL_THREE_START = 12;
+    public static final int LEVEL_THREE_END = 20;
     public static final int BASE_WIDTH = 9;
     public static final int BASE_HEIGHT = 8;
 
-    public static final int MAP_HEIGHT = 28;
+    public static final int MAP_HEIGHT = 20;
     public static final int MAP_WIDTH = 19;
 
     public static final int TILES_VERTICALLY = 13;
@@ -25,9 +25,10 @@ public class Constants {
     public static final String ACTION_MOVE = " move ";
     public static final String ACTION_PICKUP = " pick up ";
     public static final String ACTION_BUY = " buy ";
-    public static final String ACTION_QUANTITY = " how many ";
+    public static final String ACTION_SHOW_ALL_ITEMS = " show items";
     public static final String ACTION_DIG = " dig ";
     public static final String ACTION_SELL = " sell ";
+    public static final String ACTION_SHOW_QUANTITY = " how many ";
     // Disregard this:
     public static final String BOT_CALL = "ring ring";
     // Arguments:
@@ -37,14 +38,12 @@ public class Constants {
     public static final String DIRECTION_RIGHT = " right";
 
     public static final String ITEM_CHERRY = "cherries";
-//    public static final String ITEM_BERRY = "berries";
-//    public static final String ITEM_RASPBERRY = "raspberries";
-//    public static final String ITEM_BLUEBERRY = "blueberries";
+    public static final String ITEM_BERRY = "berries";
+    public static final String ITEM_RASPBERRY = "raspberries";
+    public static final String ITEM_BLUEBERRY = "blueberries";
     public static final String ITEM_FUEL = "fuel";
     public static final String ITEM_FREE_SPACE = "free space";
     public static final String ITEM_BIGGER_BACKPACK = "bigger backpack";
-
-
 
     public enum Sprites {
         EMPTY(0),
