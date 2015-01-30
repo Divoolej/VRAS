@@ -60,24 +60,28 @@ public class Inventory {
     public void removeCherry(int amount) {
         if (numCherries - amount >= 0) {
             numCherries -= amount;
+            currentSize--;
         }
     }
 
     public void removeBerry(int amount) {
         if (numBerries - amount >= 0) {
             numBerries -= amount;
+            currentSize--;
         }
     }
 
     public void removeRaspberry(int amount) {
         if (numRaspberries - amount >= 0) {
             numRaspberries -= amount;
+            currentSize--;
         }
     }
 
     public void removeBlueberry(int amount) {
         if (numBlueberries - amount >= 0) {
             numBlueberries -= amount;
+            currentSize--;
         }
     }
 
