@@ -44,8 +44,11 @@ public class Constants {
     public static final String ITEM_BLUEBERRY = "blueberries";
     public static final String ITEM_FUEL = "fuel";
     public static final String ITEM_FREE_SPACE = "free space";
-    public static final String ITEM_BIGGER_BACKPACK = "bigger backpack";
     public static final String ITEM_MONEY = "money";
+
+    public static final String ITEM_BIGGER_BACKPACK = "bigger backpack";
+    public static final String ITEM_PICK_UPGRADE = "pick upgrade";
+
 
     public enum Sprites {
         EMPTY(0),

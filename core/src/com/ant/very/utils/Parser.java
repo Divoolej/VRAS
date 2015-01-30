@@ -2,6 +2,8 @@ package com.ant.very.utils;
 
 import com.ant.very.ActionResolver;
 import com.ant.very.objects.Ant;
+import com.ant.very.objects.Shop;
+import com.ant.very.objects.map.Blueberry;
 import com.badlogic.gdx.Gdx;
 
 import static com.ant.very.utils.Constants.*;
@@ -18,6 +20,7 @@ public class Parser {
     private static ArrayList<String> directionArgs;
     private static ArrayList<String> buyArgs;
     private final ArrayList<String> quantityArgs;
+    private final ArrayList<String> sellArgs;
 
     public Parser(ActionResolver actionResolver) {
         this.actionResolver = actionResolver;
@@ -25,6 +28,7 @@ public class Parser {
         synonymMap = new HashMap<>();
         directionArgs = new ArrayList<>();
         buyArgs = new ArrayList<>();
+        sellArgs = new ArrayList<>();
         quantityArgs = new ArrayList<>();
         loadWords();
         loadArgs();
@@ -37,16 +41,18 @@ public class Parser {
         synonymMap.put(" go ", ACTION_MOVE);
         synonymMap.put(" walk ", ACTION_MOVE);
         // PICK UP:
-        responseMap.put(ACTION_PICKUP, "Picked x up.");
+        responseMap.put(ACTION_PICKUP, "I picked nothing up.");
         synonymMap.put(ACTION_PICKUP, ACTION_PICKUP);
         synonymMap.put(" pick up", ACTION_PICKUP);
         synonymMap.put(" take", ACTION_PICKUP);
         synonymMap.put(" gather", ACTION_PICKUP);
         synonymMap.put(" lift", ACTION_PICKUP);
         // BUY:
-        responseMap.put(ACTION_BUY, "I bought x");
+        responseMap.put(ACTION_BUY, "I bought nothing");
         synonymMap.put(ACTION_BUY, ACTION_BUY);
         synonymMap.put(" purchase ", ACTION_BUY);
+        synonymMap.put(" upgrade ", ACTION_BUY);
+        synonymMap.put(" refill ", ACTION_BUY);
         // SELL:
         responseMap.put(ACTION_SELL, "I sold x");
         synonymMap.put(ACTION_SELL, ACTION_SELL);
@@ -77,9 +83,14 @@ public class Parser {
         directionArgs.add(DIRECTION_DOWN);
         directionArgs.add(DIRECTION_RIGHT);
         // BUY:
-        buyArgs.add(ITEM_CHERRY);
         buyArgs.add(ITEM_FUEL);
-        buyArgs.add(ITEM_BIGGER_BACKPACK);
+        buyArgs.add(ITEM_PICK_UPGRADE);
+//        buyArgs.add(ITEM_BIGGER_BACKPACK);
+        // SELL:
+        sellArgs.add(ITEM_BERRY);
+        sellArgs.add(ITEM_CHERRY);
+        sellArgs.add(ITEM_BLUEBERRY);
+        sellArgs.add(ITEM_RASPBERRY);
         // QUANTITY:
         quantityArgs.add(ITEM_MONEY);
         quantityArgs.add(ITEM_CHERRY);
@@ -147,14 +158,37 @@ public class Parser {
             case ACTION_BUY:
                 for (String item : buyArgs) {
                     if (sentence.contains(item)) {
-                        argFound = true;
-//                       Shop.buyItem(item);
-                        // TODO: Wat do if ant has no monies.
-                        return "I bought " + item + ".";
+                        if (Shop.isAvailable()) {
+                            Gdx.app.log("shop", "close to shop");
+                            switch (item) {
+                                case ITEM_FUEL:
+                                    return Shop.buyFuel();
+                                case ITEM_PICK_UPGRADE:
+                                    return Shop.upgradePick();
+                            }
+                        }
+                        else return "I have to stand closer to the ant shop.";
                     }
+                    else return "What should I buy? Fuel? Pick upgrade?";
                 }
-                if (!argFound) {
-                    return "Hmm.. what do you want me to buy?";
+            case ACTION_SELL:
+                for (String item : sellArgs) {
+                    if (sentence.contains(item)) {
+                        if (Shop.isAvailable()) {
+                            switch (item) {
+                                case ITEM_BERRY:
+                                    return Shop.sellBerry(1);
+                                case ITEM_BLUEBERRY:
+                                    return Shop.sellBlueberry(1);
+                                case ITEM_CHERRY:
+                                    return Shop.sellCherry(1);
+                                case ITEM_RASPBERRY:
+                                    return Shop.sellRaspberry(1);
+                            }
+                        }
+                        else return "I have to stand closer to the ant shop.";
+                    }
+                    else return "What should I buy? Fuel? Pick upgrade?";
                 }
             case ACTION_SHOW_QUANTITY:
                     for (String item : quantityArgs) {
