@@ -46,7 +46,8 @@ public class ConversationBot {
     private ConversationBot(Context appContext) throws Exception {
         ConversationBot.appContext = appContext;
         factory = new ChatterBotFactory();
-        chatterBot = factory.create(ChatterBotType.PANDORABOTS, "a41310638e34fe16"); // I found it a bit faster than Cleverbot.
+        chatterBot = factory.create(ChatterBotType.CLEVERBOT); // I found it a bit faster than Cleverbot.
+//        chatterBot = factory.create(ChatterBotType.PANDORABOTS, "a41310638e34fe16"); // I found it a bit faster than Cleverbot.
         botSession = chatterBot.createSession();
 
         historyMap = new LinkedHashMap<>();

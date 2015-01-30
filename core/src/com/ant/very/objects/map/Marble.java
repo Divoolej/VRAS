@@ -20,7 +20,7 @@ public class Marble extends MapEntity {
     }
 
     public String onDig() {
-        if (Ant.getInstance().getEq().getPickTier() > 2) {
+        if (Ant.getInstance().getEq().getPickTier() >= Constants.TIER_MARBLE) {
             if (Ant.getInstance().getEq().getCurrentFuel() > 3) {
                 WorldMap.getInstance().setEmpty(x, y);
                 Ant.getInstance().moveTo(x, y);

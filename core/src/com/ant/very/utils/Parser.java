@@ -36,7 +36,7 @@ public class Parser {
 
     private void loadWords() {
         // MOVE:
-        responseMap.put(ACTION_MOVE, "Moving on.");
+        responseMap.put(ACTION_MOVE, "Move in which direction?");
         synonymMap.put(ACTION_MOVE, ACTION_MOVE);
         synonymMap.put(" go ", ACTION_MOVE);
         synonymMap.put(" walk ", ACTION_MOVE);
@@ -54,7 +54,7 @@ public class Parser {
         synonymMap.put(" upgrade ", ACTION_BUY);
         synonymMap.put(" refill ", ACTION_BUY);
         // SELL:
-        responseMap.put(ACTION_SELL, "I sold x");
+        responseMap.put(ACTION_SELL, "I can't sell that.");
         synonymMap.put(ACTION_SELL, ACTION_SELL);
         synonymMap.put(" trade ", ACTION_SELL);
         //DIG:
@@ -82,6 +82,7 @@ public class Parser {
         directionArgs.add(DIRECTION_LEFT);
         directionArgs.add(DIRECTION_DOWN);
         directionArgs.add(DIRECTION_RIGHT);
+        directionArgs.add(LOCATION_HOME);
         // BUY:
         buyArgs.add(ITEM_FUEL);
         buyArgs.add(ITEM_PICK_UPGRADE);
@@ -138,18 +139,21 @@ public class Parser {
                         return Ant.getInstance().moveInDirection(direction);
                     }
                 }
+                break;
             case ACTION_DIG:
                 for (String direction : directionArgs) {
                     if (sentence.contains(direction)) {
                         return Ant.getInstance().digInDirection(direction);
                     }
                 }
+                break;
             case ACTION_LOOK:
                 for (String direction : directionArgs) {
                     if (sentence.contains(direction)) {
                         return Ant.getInstance().lookInDirection(direction);
                     }
                 }
+                break;
             case ACTION_PICKUP:
                 return Ant.getInstance().pickUp();
             case ACTION_SHOW_ALL_ITEMS:
@@ -169,8 +173,8 @@ public class Parser {
                         }
                         else return "I have to stand closer to the ant shop.";
                     }
-                    else return "What should I buy? Fuel? Pick upgrade?";
                 }
+                break;
             case ACTION_SELL:
                 for (String item : sellArgs) {
                     if (sentence.contains(item)) {
@@ -188,15 +192,15 @@ public class Parser {
                         }
                         else return "I have to stand closer to the ant shop.";
                     }
-                    else return "What should I buy? Fuel? Pick upgrade?";
                 }
+                break;
             case ACTION_SHOW_QUANTITY:
                     for (String item : quantityArgs) {
                     if (sentence.contains(item)) {
                         return Ant.getInstance().getQuantity(item);
                     }
                 }
-
+                break;
         }
         return "";
     }

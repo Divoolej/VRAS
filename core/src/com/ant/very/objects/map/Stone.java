@@ -20,7 +20,7 @@ public class Stone extends MapEntity {
     }
 
     public String onDig() {
-        if (Ant.getInstance().getEq().getPickTier() > 1) {
+        if (Ant.getInstance().getEq().getPickTier() >= Constants.TIER_STONE) {
             if (Ant.getInstance().getEq().getCurrentFuel() > 2) {
                 WorldMap.getInstance().setEmpty(x, y);
                 Ant.getInstance().moveTo(x, y);

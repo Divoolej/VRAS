@@ -18,7 +18,7 @@ public class Constants {
 
     public static final int TIER_MARBLE = 2;
     public static final int TIER_MARBLE_PRICE = 50;
-//    public static final int TIER_STONE = 1;
+    public static final int TIER_STONE = 1;
     public static final int TIER_STONE_PRICE = 20;
     public static final int TIER_SAND = 0;
 
@@ -37,6 +37,7 @@ public class Constants {
     public static final String DIRECTION_DOWN = " down";
     public static final String DIRECTION_LEFT = " left";
     public static final String DIRECTION_RIGHT = " right";
+    public static final String LOCATION_HOME = " home";
 
     public static final String ITEM_CHERRY = "cherries";
     public static final String ITEM_BERRY = "berries";

@@ -48,6 +48,8 @@ public class Ant {
                 return WorldMap.getInstance().at(x - 1, y).onWalk();
             case DIRECTION_RIGHT:
                 return WorldMap.getInstance().at(x + 1, y).onWalk();
+            case LOCATION_HOME:
+                return WorldMap.getInstance().at(9, 2).onWalk();
             default:
                 // (never gonna happen)
                 return "wat";
@@ -74,6 +76,8 @@ public class Ant {
             case ITEM_FREE_SPACE:
                 return String.valueOf("I've got " + eq.getFreeSpace() + " free spaces in my inventory");
             case ITEM_MONEY:
+            case "cash":
+            case "gold":
                 return String.valueOf("I've got " + eq.getMoney() + " gold pieces.");
         }
         return " no such thing!";
