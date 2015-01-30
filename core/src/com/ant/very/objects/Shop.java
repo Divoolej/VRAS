@@ -9,8 +9,8 @@ public class Shop {
     public static boolean isAvailable() { //Ant must stand in the squares around the shop
         int absX = Ant.getInstance().getX() - 9;
         int absY = Ant.getInstance().getY() - 1;
-        if (absX >= -1 || absX <= 1) {
-            if (absY >= -1 || absY <= 1) {
+        if (absX >= -1 && absX <= 1) {
+            if (absY >= -1 && absY <= 1) {
                 return true;
             }
         }

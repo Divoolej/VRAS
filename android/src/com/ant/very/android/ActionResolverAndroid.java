@@ -140,7 +140,7 @@ public class ActionResolverAndroid implements ActionResolver {
         TextView tv = new TextView(appContext);
         final AlertDialog.Builder builder = new AlertDialog.Builder(appContext);
 
-        tv.setTextSize(20);
+        tv.setTextSize(16);
         tv.setVerticalScrollBarEnabled(true);
         tv.setMovementMethod(new ScrollingMovementMethod());
         Iterator it = historyMap.entrySet().iterator();
