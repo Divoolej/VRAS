@@ -20,9 +20,9 @@ public class Sand extends MapEntity {
             WorldMap.getInstance().setEmpty(x, y);
             Ant.getInstance().moveTo(x, y);
             Ant.getInstance().getEq().burnFuel(2);
-            return "I successfully dug through the sand";
+            return "I dug through delicious sand";
         }
-        return "I don't have enough fuel";
+        return "I don't have enough fuel.";
     }
     public Sand(int x, int y) {
         spriteId = Constants.Sprites.SAND.toInt();

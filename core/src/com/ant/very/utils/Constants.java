@@ -17,9 +17,9 @@ public class Constants {
     public static final int TILES_HORIZONTALLY = 9;
 
     public static final int TIER_MARBLE = 2;
-    public static final int TIER_MARBLE_PRICE = 100;
+    public static final int TIER_MARBLE_PRICE = 50;
 //    public static final int TIER_STONE = 1;
-    public static final int TIER_STONE_PRICE = 50;
+    public static final int TIER_STONE_PRICE = 20;
     public static final int TIER_SAND = 0;
 
     public static final String ACTION_MOVE = " move ";
@@ -29,6 +29,7 @@ public class Constants {
     public static final String ACTION_DIG = " dig ";
     public static final String ACTION_SELL = " sell ";
     public static final String ACTION_SHOW_QUANTITY = " how many ";
+    public static final String ACTION_LOOK = " look at ";
     // Disregard this:
     public static final String BOT_CALL = "ring ring";
     // Arguments:
@@ -44,6 +45,7 @@ public class Constants {
     public static final String ITEM_FUEL = "fuel";
     public static final String ITEM_FREE_SPACE = "free space";
     public static final String ITEM_BIGGER_BACKPACK = "bigger backpack";
+    public static final String ITEM_MONEY = "money";
 
     public enum Sprites {
         EMPTY(0),

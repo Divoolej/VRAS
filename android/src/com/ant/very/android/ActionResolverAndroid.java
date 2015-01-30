@@ -111,11 +111,6 @@ public class ActionResolverAndroid implements ActionResolver {
     }
 
     @Override
-    public void pickUpObject() {
-
-    }
-
-    @Override
     public void buyItem(String item) {
 
     }

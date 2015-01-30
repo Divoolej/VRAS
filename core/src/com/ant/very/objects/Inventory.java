@@ -26,20 +26,21 @@ public class Inventory {
     public Inventory(int size) {
         this.currentSize = size;
         fuel = maxFuel;
-        money = 0;
+        money = 50;
     }
 
-    //TODO: Trebuszq - link this to some command like "show me your itemz, you little beyotch"
     public String getContent() {
         String result = "I have ";
         if (numCherries > 0)
-            result += Integer.toString(numCherries) + " cherrie ";
+            result += Integer.toString(numCherries) + " cherries ";
         if (numBerries > 0)
             result += Integer.toString(numBerries) + " berries ";
         if (numRaspberries > 0)
             result += Integer.toString(numRaspberries) + " raspberries ";
         if (numBlueberries > 0)
             result += Integer.toString(numBlueberries) + " blueberries ";
+        if (money > 0)
+            result += Integer.toString(money) + " gold";
         if (result == "I have ")
             result += "nothing";
         return result;

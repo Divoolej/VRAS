@@ -16,6 +16,7 @@ public class AndroidLauncher extends AndroidApplication {
 
         actionResolver = new ActionResolverAndroid(this);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+        config.numSamples = 2; // MSAA
 
         VRAS vras = new VRAS(actionResolver);
         initialize(vras, config);

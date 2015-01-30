@@ -2,7 +2,6 @@ package com.ant.very.utils;
 
 import com.ant.very.ActionResolver;
 import com.ant.very.objects.Ant;
-import com.ant.very.objects.Shop;
 import com.badlogic.gdx.Gdx;
 
 import static com.ant.very.utils.Constants.*;
@@ -16,7 +15,7 @@ public class Parser {
 
     private static HashMap<String, String> responseMap;
     private static HashMap<String, String> synonymMap;
-    private static ArrayList<String> moveArgs;
+    private static ArrayList<String> directionArgs;
     private static ArrayList<String> buyArgs;
     private final ArrayList<String> quantityArgs;
 
@@ -24,7 +23,7 @@ public class Parser {
         this.actionResolver = actionResolver;
         responseMap = new HashMap<>();
         synonymMap = new HashMap<>();
-        moveArgs = new ArrayList<>();
+        directionArgs = new ArrayList<>();
         buyArgs = new ArrayList<>();
         quantityArgs = new ArrayList<>();
         loadWords();
@@ -37,13 +36,13 @@ public class Parser {
         synonymMap.put(ACTION_MOVE, ACTION_MOVE);
         synonymMap.put(" go ", ACTION_MOVE);
         synonymMap.put(" walk ", ACTION_MOVE);
-        synonymMap.put(" advance ", ACTION_MOVE);
         // PICK UP:
         responseMap.put(ACTION_PICKUP, "Picked x up.");
         synonymMap.put(ACTION_PICKUP, ACTION_PICKUP);
-        synonymMap.put(" take ", ACTION_PICKUP);
-        synonymMap.put(" gather ", ACTION_PICKUP);
-        synonymMap.put(" lift ", ACTION_PICKUP);
+        synonymMap.put(" pick up", ACTION_PICKUP);
+        synonymMap.put(" take", ACTION_PICKUP);
+        synonymMap.put(" gather", ACTION_PICKUP);
+        synonymMap.put(" lift", ACTION_PICKUP);
         // BUY:
         responseMap.put(ACTION_BUY, "I bought x");
         synonymMap.put(ACTION_BUY, ACTION_BUY);
@@ -55,24 +54,34 @@ public class Parser {
         //DIG:
         responseMap.put(ACTION_DIG, "Diggy doo");
         synonymMap.put(ACTION_DIG, ACTION_DIG);
-        // QUANTITY:
+        // SHOW_ALL_ITEMS:
         responseMap.put(ACTION_SHOW_ALL_ITEMS, "I've got loads of stuff!");
         synonymMap.put(ACTION_SHOW_ALL_ITEMS, ACTION_SHOW_ALL_ITEMS);
         synonymMap.put(" show all items", ACTION_SHOW_ALL_ITEMS);
         synonymMap.put(" show me all your items", ACTION_SHOW_ALL_ITEMS);
+        // SHOW QUANTITY:
+        responseMap.put(ACTION_SHOW_QUANTITY, "I've got none of that.");
+        synonymMap.put(ACTION_SHOW_QUANTITY, ACTION_SHOW_QUANTITY);
+        synonymMap.put(" how much ", ACTION_SHOW_QUANTITY);
+        synonymMap.put(" do you have any ", ACTION_SHOW_QUANTITY);
+        // LOOK:
+        responseMap.put(ACTION_LOOK, "I'm looking great.");
+        synonymMap.put(ACTION_LOOK, ACTION_LOOK);
+        synonymMap.put(" look ", ACTION_LOOK);
     }
 
     private void loadArgs() {
         // MOVE:
-        moveArgs.add(DIRECTION_UP);
-        moveArgs.add(DIRECTION_LEFT);
-        moveArgs.add(DIRECTION_DOWN);
-        moveArgs.add(DIRECTION_RIGHT);
+        directionArgs.add(DIRECTION_UP);
+        directionArgs.add(DIRECTION_LEFT);
+        directionArgs.add(DIRECTION_DOWN);
+        directionArgs.add(DIRECTION_RIGHT);
         // BUY:
         buyArgs.add(ITEM_CHERRY);
         buyArgs.add(ITEM_FUEL);
         buyArgs.add(ITEM_BIGGER_BACKPACK);
         // QUANTITY:
+        quantityArgs.add(ITEM_MONEY);
         quantityArgs.add(ITEM_CHERRY);
         quantityArgs.add(ITEM_BLUEBERRY);
         quantityArgs.add(ITEM_RASPBERRY);
@@ -113,32 +122,25 @@ public class Parser {
         boolean argFound = false;
         switch (action) {
             case ACTION_MOVE:
-                for (String direction : moveArgs) {
+                for (String direction : directionArgs) {
                     if (sentence.contains(direction)) {
-                        argFound = true;
-                        Ant.getInstance().moveInDirection(direction);
-                        break;
+                        return Ant.getInstance().moveInDirection(direction);
                     }
                 }
-                if (!argFound) {
-                    return "Move in which direction?";
-                }
-                break;
             case ACTION_DIG:
-                for (String direction : moveArgs) {
+                for (String direction : directionArgs) {
                     if (sentence.contains(direction)) {
-                        argFound = true;
                         return Ant.getInstance().digInDirection(direction);
                     }
                 }
-                if (!argFound) {
-                    return "Dig in which direction?";
+            case ACTION_LOOK:
+                for (String direction : directionArgs) {
+                    if (sentence.contains(direction)) {
+                        return Ant.getInstance().lookInDirection(direction);
+                    }
                 }
-                break;
             case ACTION_PICKUP:
-                // TODO: check if there's an object in the current tile.
-                actionResolver.pickUpObject();
-                return  "I just picked something up in my mind!";
+                return Ant.getInstance().pickUp();
             case ACTION_SHOW_ALL_ITEMS:
                 Gdx.app.log("Parser", "show items");
                 return Ant.getInstance().getEq().getContent();
@@ -159,7 +161,6 @@ public class Parser {
                     if (sentence.contains(item)) {
                         return Ant.getInstance().getQuantity(item);
                     }
-                    else return "I've got none of that.";
                 }
 
         }

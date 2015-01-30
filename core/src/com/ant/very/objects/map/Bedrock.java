@@ -8,7 +8,7 @@ import com.ant.very.utils.Constants;
  */
 public class Bedrock extends MapEntity {
     public String onLook() {
-        return "a bedrock, impassable";
+        return "I see bedrock, impassable";
     }
     public String onDig() {
         return "I will never be able to dig through this";

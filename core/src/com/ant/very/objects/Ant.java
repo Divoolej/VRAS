@@ -38,20 +38,19 @@ public class Ant {
         return y;
     }
 
-    public void moveInDirection(String direction) { //todo Trebuszq - handle the result from onWalk
+    public String moveInDirection(String direction) {
         switch (direction) {
             case DIRECTION_DOWN:
-                WorldMap.getInstance().at(x, y - 1).onWalk();
-                break;
+                return WorldMap.getInstance().at(x, y - 1).onWalk();
             case DIRECTION_UP:
-                WorldMap.getInstance().at(x, y + 1).onWalk();
-                break;
+                return WorldMap.getInstance().at(x, y + 1).onWalk();
             case DIRECTION_LEFT:
-                WorldMap.getInstance().at(x - 1, y).onWalk();
-                break;
+                return WorldMap.getInstance().at(x - 1, y).onWalk();
             case DIRECTION_RIGHT:
-                WorldMap.getInstance().at(x + 1, y).onWalk();
-                break;
+                return WorldMap.getInstance().at(x + 1, y).onWalk();
+            default:
+                // (never gonna happen)
+                return "wat";
         }
     }
 
@@ -60,25 +59,27 @@ public class Ant {
         this.y = y;
     }
 
-    public String getQuantity(String foundItem) { //TODO Trebuszq - link this
+    public String getQuantity(String foundItem) {
         switch (foundItem) {
             case ITEM_CHERRY:
-                return String.valueOf(eq.getNumCherries()) + " cherries.";
+                return String.valueOf("I've got " + eq.getNumCherries()) + " cherries.";
             case ITEM_BERRY:
-                return String.valueOf(eq.getNumBerries()) + " berries.";
+                return String.valueOf("I've got " + eq.getNumBerries()) + " berries.";
             case ITEM_BLUEBERRY:
-                return String.valueOf(eq.getNumBlueberries()) + " blueberries.";
+                return String.valueOf("I've got " + eq.getNumBlueberries()) + " blueberries.";
             case ITEM_RASPBERRY:
-                return String.valueOf(eq.getNumRaspberries()) + " raspberries.";
+                return String.valueOf("I've got " + eq.getNumRaspberries()) + " raspberries.";
             case ITEM_FUEL:
-                return String.valueOf(eq.getCurrentFuel()) + " fuel.";
+                return String.valueOf("I've got " + eq.getCurrentFuel()) + " fuel.";
             case ITEM_FREE_SPACE:
-                return String.valueOf(eq.getFreeSpace() + " free spaces in my inventory");
+                return String.valueOf("I've got " + eq.getFreeSpace() + " free spaces in my inventory");
+            case ITEM_MONEY:
+                return String.valueOf("I've got " + eq.getMoney() + " gold pieces.");
         }
         return " no such thing!";
     }
 
-    public String digInDirection(String direction) { //TODO Trebuszq - handle the result from onDig
+    public String digInDirection(String direction) {
         switch (direction) {
             case DIRECTION_DOWN:
                 return WorldMap.getInstance().at(x, y - 1).onDig();
@@ -93,25 +94,22 @@ public class Ant {
         }
     }
 
-    //TODO: Trebuszq - assign this function to the keyword "pick up";
     public String pickUp() {
         return WorldMap.getInstance().at(x, y).onDig();
     }
 
-    public void lookInDirection(String direction) { //TODO: Trebuszq - handle the result from onLook
+    public String lookInDirection(String direction) {
         switch (direction) {
             case DIRECTION_DOWN:
-                WorldMap.getInstance().at(x, y - 1).onLook();
-                break;
+                return WorldMap.getInstance().at(x, y - 1).onLook();
             case DIRECTION_UP:
-                WorldMap.getInstance().at(x, y + 1).onLook();
-                break;
+                return WorldMap.getInstance().at(x, y + 1).onLook();
             case DIRECTION_LEFT:
-                WorldMap.getInstance().at(x - 1, y).onLook();
-                break;
+                return WorldMap.getInstance().at(x - 1, y).onLook();
             case DIRECTION_RIGHT:
-                WorldMap.getInstance().at(x + 1, y).onLook();
-                break;
+                return WorldMap.getInstance().at(x + 1, y).onLook();
+            default:
+                return "wat do";
         }
     }
 }

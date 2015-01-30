@@ -126,6 +126,8 @@ public class Ui {
         protected HistoryButton() {
             setBounds(getX(), getY(), texture.getWidth()*1.6f, texture.getHeight()*1.6f);
 
+            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
             addListener(new InputListener() {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -151,14 +153,15 @@ public class Ui {
             setBounds(getX(), getY(), texture.getWidth()/1.5f, texture.getHeight()/1.5f);
             setOrigin(texture.getWidth()/3.0f, texture.getHeight()/3.0f);
 
+            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
             addListener(new InputListener() {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if (!currentlyRecognizingSpeech) {
                         actionResolver.recognizeSpeech();
                         setCurrentlyRecognizingSpeech(true);
-                    }
-                    else {
+                    } else {
                         actionResolver.stopListeningForSpeech();
                         setCurrentlyRecognizingSpeech(false);
                     }
