@@ -74,9 +74,15 @@ public class Parser {
         buyArgs.add(ITEM_BIGGER_BACKPACK);
         // QUANTITY:
         quantityArgs.add(ITEM_CHERRY);
+        quantityArgs.add(ITEM_BLUEBERRY);
+        quantityArgs.add(ITEM_RASPBERRY);
+        quantityArgs.add(ITEM_BERRY);
         quantityArgs.add(ITEM_FUEL);
         quantityArgs.add(ITEM_FREE_SPACE);
     }
+
+    // To add a new action:
+
 
     // When passed the sentence, finds keywords and executes methods. Returns the response string.
     public String parseSentence(String sentence) {
@@ -94,7 +100,7 @@ public class Parser {
 //                Execute the methods
                 response = actAndRespond(cmdId, lCaseSentence);
 
-                // If the parser is clueless, return a standard response:
+//                If the parser is clueless, return a standard response:
                 if (response.equals("")) {
                     response = responseMap.get(cmdId);
                 }
@@ -122,8 +128,7 @@ public class Parser {
                 for (String direction : moveArgs) {
                     if (sentence.contains(direction)) {
                         argFound = true;
-                        Ant.getInstance().digInDirection(direction);
-                        break;
+                        return Ant.getInstance().digInDirection(direction);
                     }
                 }
                 if (!argFound) {
@@ -134,6 +139,9 @@ public class Parser {
                 // TODO: check if there's an object in the current tile.
                 actionResolver.pickUpObject();
                 return  "I just picked something up in my mind!";
+            case ACTION_SHOW_ALL_ITEMS:
+                Gdx.app.log("Parser", "show items");
+                return Ant.getInstance().getEq().getContent();
             case ACTION_BUY:
                 for (String item : buyArgs) {
                     if (sentence.contains(item)) {
@@ -146,15 +154,10 @@ public class Parser {
                 if (!argFound) {
                     return "Hmm.. what do you want me to buy?";
                 }
-            case ACTION_SHOW_ALL_ITEMS:
-                Gdx.app.log("Parser", "show items");
-                return Ant.getInstance().getEq().getContent();
             case ACTION_SHOW_QUANTITY:
                     for (String item : quantityArgs) {
                     if (sentence.contains(item)) {
-                        String foundItem = item;
-                        String quantity = Ant.getInstance().getQuantity(foundItem);
-                        return "I've got " + quantity;
+                        return Ant.getInstance().getQuantity(item);
                     }
                     else return "I've got none of that.";
                 }

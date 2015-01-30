@@ -33,13 +33,13 @@ public class Inventory {
     public String getContent() {
         String result = "I have ";
         if (numCherries > 0)
-            result += Integer.toString(numCherries) + " cherries, ";
+            result += Integer.toString(numCherries) + " cherrie ";
         if (numBerries > 0)
-            result += Integer.toString(numBerries) + " berries, ";
+            result += Integer.toString(numBerries) + " berries ";
         if (numRaspberries > 0)
-            result += Integer.toString(numRaspberries) + " raspberries, ";
+            result += Integer.toString(numRaspberries) + " raspberries ";
         if (numBlueberries > 0)
-            result += Integer.toString(numBlueberries) + " blueberries, ";
+            result += Integer.toString(numBlueberries) + " blueberries ";
         if (result == "I have ")
             result += "nothing";
         return result;

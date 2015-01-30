@@ -78,26 +78,24 @@ public class Ant {
         return " no such thing!";
     }
 
-    public void digInDirection(String direction) { //TODO Trebuszq - handle the result from onDig
+    public String digInDirection(String direction) { //TODO Trebuszq - handle the result from onDig
         switch (direction) {
             case DIRECTION_DOWN:
-                WorldMap.getInstance().at(x, y - 1).onDig();
-                break;
+                return WorldMap.getInstance().at(x, y - 1).onDig();
             case DIRECTION_UP:
-                WorldMap.getInstance().at(x, y + 1).onDig();
-                break;
+                return WorldMap.getInstance().at(x, y + 1).onDig();
             case DIRECTION_LEFT:
-                WorldMap.getInstance().at(x - 1, y).onDig();
-                break;
+                return WorldMap.getInstance().at(x - 1, y).onDig();
             case DIRECTION_RIGHT:
-                WorldMap.getInstance().at(x + 1, y).onDig();
-                break;
+                return WorldMap.getInstance().at(x + 1, y).onDig();
+            default:
+                return "wat do";
         }
     }
 
     //TODO: Trebuszq - assign this function to the keyword "pick up";
-    public void    pickUp() {
-        WorldMap.getInstance().at(x, y).onDig();
+    public String pickUp() {
+        return WorldMap.getInstance().at(x, y).onDig();
     }
 
     public void lookInDirection(String direction) { //TODO: Trebuszq - handle the result from onLook
